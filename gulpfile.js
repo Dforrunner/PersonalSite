@@ -1,0 +1,53 @@
+const { watch, series, src, dest } = require('gulp');
+const rename = require('gulp-rename');
+const uglifycss = require('gulp-uglifycss');
+const uglify = require('gulp-uglify-es').default;
+const htmlmin = require('gulp-htmlmin');
+
+
+// Minify CSS
+function minifyCSS() {
+    return src('./mySite/static/mySite/styles/css/main.css')
+    .pipe(uglifycss({
+      "uglyComments": true
+    }))
+    .pipe(rename({extname:'.min.css'}))
+    .pipe(dest('./mySite/static/mySite/styles/css/'));
+}
+
+// Minify JS
+function minifyJS() {
+    return src("./mySite/static/mySite/scripts/*.js")
+        .pipe(rename({extname:'.min.js'}))
+        .pipe(uglify())
+        .pipe(dest("./mySite/static/mySite/scripts/minJS"));
+}
+
+// Minify HTML
+function minifyHTML(){
+  return src('./mySite/templates/mySite/*.html')
+    .pipe(htmlmin({ collapseWhitespace: true }))
+    .pipe(dest('./mySite/templates/mySite/minHTML'));
+}
+
+exports.build = series(sassCompile, minifyCSS, minifyJS, minifyHTML);
+exports.default = function (){
+    watch(
+        './mySite/static/mySite/styles/css/*.css',
+        { ignoreInitial: false },
+        series(minifyCSS)
+    );
+
+    watch(
+        './mySite/static/mySite/scripts/*.js',
+        { ignoreInitial: false },
+        series(minifyJS)
+    );
+     watch(
+        './mySite/templates/mySite/*.html',
+        { ignoreInitial: false },
+        series(minifyHTML)
+    );
+};
+
+
