@@ -4,7 +4,6 @@ const uglifycss = require('gulp-uglifycss');
 const uglify = require('gulp-uglify-es').default;
 const htmlmin = require('gulp-htmlmin');
 
-
 // Minify CSS
 function minifyCSS() {
     return src('./mySite/static/mySite/styles/css/main.css')
@@ -30,22 +29,18 @@ function minifyHTML(){
     .pipe(dest('./mySite/templates/mySite/minHTML'));
 }
 
-exports.build = series(sassCompile, minifyCSS, minifyJS, minifyHTML);
+exports.build = series(minifyCSS, minifyJS, minifyHTML);
 exports.default = function (){
     watch(
-        './mySite/static/mySite/styles/css/*.css',
-        { ignoreInitial: false },
+        './mySite/static/mySite/styles/scss/*.scss',
         series(minifyCSS)
     );
-
     watch(
         './mySite/static/mySite/scripts/*.js',
-        { ignoreInitial: false },
         series(minifyJS)
     );
      watch(
         './mySite/templates/mySite/*.html',
-        { ignoreInitial: false },
         series(minifyHTML)
     );
 };

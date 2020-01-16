@@ -1,0 +1,57 @@
+@import "modules/variables";
+@import "modules/mixins";
+
+#navBar{
+  background-color: $nav_color;
+  height: 100vh;
+  width: 85px;
+  left: -15px;
+  position: absolute;
+}
+
+// Navbar navigation buttons
+.nav-btns{
+  width: 84px;
+  margin: 0 -15px 0 -15px;
+  text-align: center;
+  vertical-align: center;
+  border-radius: 0;
+}
+
+.nav-btn{
+  @extend .nav-btns;
+  padding: 15px 2px 15px 2px;
+  font-size: 9px;
+  &:hover{
+    background-color: #242424;
+    &:after{
+      content: attr(data-hover);
+    }
+  }
+}
+.nav-btn-group{
+  padding-top: 200px;
+}
+
+// Navbar social media icons
+.nav-social-btn{
+  @extend .nav-btns;
+  padding: 8px 2px 8px 2px;
+  font-size: 15px;
+}
+.nav-social-btn-group{
+  padding-top: 150px;
+}
+
+// Font Awesome icons
+.fa-social-btn:hover{
+  color: #00acc1;
+}
+
+// Hamburger Bars
+#collapseBars{
+  padding: 0 7px 0 7px;
+  margin-top: 30px;
+  font-size: 30px;
+  display: none;
+}

@@ -1,6 +1,21 @@
 @import "modules/variables";
 @import "modules/mixins";
+@import "navbar";
 
-.test{
-  color: violet;
+body{
+  background-color: #1e1e1e;
+}
+ul, li{
+  list-style: none;
+}
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+p:hover, p:visited, p:active, a:hover, a:visited, a:link, a:active, li {
+    text-decoration: none !important;
+    outline: 0;
+}
+input::-moz-focus-inner {
+  border: 0;
 }
