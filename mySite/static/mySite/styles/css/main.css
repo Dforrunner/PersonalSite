@@ -71,4 +71,8 @@ input::-moz-focus-inner {
   border: 0;
 }
 
+#logo {
+  width: 50px;
+}
+
 /*# sourceMappingURL=main.css.map */

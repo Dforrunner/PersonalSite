@@ -19,3 +19,7 @@ p:hover, p:visited, p:active, a:hover, a:visited, a:link, a:active, li {
 input::-moz-focus-inner {
   border: 0;
 }
+
+#logo{
+  width: $logo_size;
+}
