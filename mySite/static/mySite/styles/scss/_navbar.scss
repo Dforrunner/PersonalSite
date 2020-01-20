@@ -1,36 +1,90 @@
 @import "modules/variables";
 @import "modules/mixins";
+@import 'modules/animations';
 
-#navBar{
+// Navbar
+#sidebar{
   background-color: $nav_color;
   height: 100vh;
-  width: 85px;
-  left: -15px;
-  position: absolute;
+  width: $nav_width_lg;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 9000;
+  transition: all 0.3s;
+   @include media-breakpoint-down(sm){
+     margin-left: -($nav_width_sm);
+     width: $nav_width_sm;
+   }
+}
+
+#sidebar.active{
+   @include media-breakpoint-down(sm) {
+     margin-left: 0;
+   }
+}
+
+//LOGO
+#logo{
+  width: $logo_size_lg;
+  padding-top: 10px;
+  transition-duration: 100ms;
+  &:hover{
+    @extend .heart-beat-animation;
+  }
+  @include media-breakpoint-down(sm){
+    width: $logo_size_sm/2;
+  }
+}
+.logo_wrapper{
+  width: $logo_size_sm;
+  text-align: center;
+  @include media-breakpoint-down(sm){
+    width: $logo_size_sm;
+  }
 }
 
 // Navbar navigation buttons
 .nav-btns{
-  width: 84px;
+  width: $nav_width_lg - 1;
   margin: 0 -15px 0 -15px;
-  text-align: center;
   vertical-align: center;
   border-radius: 0;
+  transition: all 0.3s;
+  @include media-breakpoint-down(sm){
+    width: $nav_width_sm - 1;
+  }
 }
 
 .nav-btn{
   @extend .nav-btns;
   padding: 15px 2px 15px 2px;
   font-size: 9px;
+  text-align: center;
   &:hover{
     background-color: #242424;
+  }
+  @include media-breakpoint-up(sm){
+     &:hover{
+      background-color: #242424;
+      &:after{
+        content: attr(data-hover);
+        margin-left: 2px;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(sm){
+    padding: 15px 2px 15px 40px;
+    text-align: left;
     &:after{
       content: attr(data-hover);
     }
   }
 }
+
 .nav-btn-group{
-  padding-top: 200px;
+  padding-top: 180px;
 }
 
 // Navbar social media icons
@@ -38,9 +92,11 @@
   @extend .nav-btns;
   padding: 8px 2px 8px 2px;
   font-size: 15px;
+  text-align: center;
 }
 .nav-social-btn-group{
-  padding-top: 150px;
+  padding-top: 130px;
+  text-align: center;
 }
 
 // Font Awesome icons
@@ -48,10 +104,51 @@
   color: #00acc1;
 }
 
+.nav_profile_img{
+  width: $nav_profile_img_size;
+  height: $nav_profile_img_size;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.23);
+    z-index: 998;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+//display .overlay when it has the .active class
+.overlay.active {
+    display: block;
+    opacity: 1;
+}
+
 // Hamburger Bars
 #collapseBars{
-  padding: 0 7px 0 7px;
-  margin-top: 30px;
-  font-size: 30px;
   display: none;
+  @include media-breakpoint-down(sm){
+    display: inline;
+    padding: 0 7px 0 7px;
+    margin-top: 30px;
+    font-size: 30px;
+  }
+}
+#collapseBars.hide{
+  display: none !important;
+}
+#dismiss {
+  display: none;
+}
+#dismiss.active{
+  @include media-breakpoint-down(sm){
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    color: white;
+    top: 10px;
+    left: 130px;
+  }
 }

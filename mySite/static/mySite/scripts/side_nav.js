@@ -1,38 +1,25 @@
-function collapse() {
-    const nav = document.querySelector('#navBar');
-    const colBars = document.querySelector('#collapseBars');
-    const w = window.innerWidth;
-    nav.style.marginLeft = '-85px';
-    colBars.style.display = 'inline';
-    nav.style.transitionDuration = "1s";
+function S(select) {
+    return document.querySelector(select)
+}
+function SA(select) {
+    return document.querySelectorAll(select)
 }
 
-
-function unCollapse() {
-    const nav = document.querySelector('#navBar');
-    const colBars = document.querySelector('#collapseBars');
-    const w = window.innerWidth;
-    click=1;
-    nav.style.marginLeft = '0';
-    colBars.style.display = 'none';
-    nav.style.transitionDuration = "1s";
-
-}
-function responsiveNav(){
-    const nav = document.querySelector('#navBar');
-    const colBars = document.querySelector('#collapseBars');
-    const w = window.innerWidth;
-    if(w < 768){
-        nav.style.marginLeft = '-85px';
-        colBars.style.display = 'inline';
-        nav.style.transitionDuration = "1s";
-    }else{
-        nav.style.marginLeft = '0';
-        colBars.style.display = 'none';
-        nav.style.transitionDuration = "1s";
-    }
-}
-
-window.addEventListener('resize', responsiveNav, false);
-window.addEventListener('load', responsiveNav, false);
-
+window.addEventListener('DOMContentLoaded',()=>{
+    const elements = ['#dismiss', '.overlay'];
+    // When dismiss or the overlay is clicked
+    elements.forEach(e => S(e).addEventListener('click', ()=>{
+        // hide overlay and sidebar
+        S('#sidebar').classList.remove('active');
+        S('.overlay').classList.remove('active');
+        S('#dismiss').classList.remove('active');
+        S('#collapseBars').classList.remove('hide');
+    }));
+    S('#collapseBars').addEventListener('click', () => {
+         // show sidebar and overlay
+         S('#dismiss').classList.add('active');
+         S('#sidebar').classList.add('active');
+         S('.overlay').classList.add('active');
+         S('#collapseBars').classList.add('hide');
+    });
+});

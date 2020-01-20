@@ -1,5 +1,6 @@
 @import "modules/variables";
 @import "modules/mixins";
+@import 'modules/animations';
 @import "navbar";
 
 body{
@@ -20,6 +21,3 @@ input::-moz-focus-inner {
   border: 0;
 }
 
-#logo{
-  width: $logo_size;
-}

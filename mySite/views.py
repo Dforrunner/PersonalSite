@@ -7,7 +7,7 @@ from .forms import ContactForm
 
 # Create your views here.
 def index(request):
-    return render(request, 'mySite/minHTML/base.html')
+    return render(request, 'mySite/base.html')
 
 
 def contact(request):
@@ -19,7 +19,7 @@ def contact(request):
     context = {
         'form': form,
     }
-    return render(request, 'mySite/minHTML/contact.html', context)
+    return render(request, 'mySite/contact.html', context)
 
 
 # Sending email
