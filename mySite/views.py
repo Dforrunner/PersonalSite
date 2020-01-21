@@ -1,18 +1,33 @@
 from django.shortcuts import render
 from django.core.mail import send_mail, BadHeaderError
 from django.http import JsonResponse, Http404
-from .models import Contact
 from .forms import ContactForm
+# TODO: make this api request
+from myApi.models import Contact
 
 
 # Create your views here.
 def index(request):
-    return render(request, 'mySite/base.html')
+    return render(request, 'mySite/index.html')
+
+
+def about(request):
+    return render(request, 'mySite/about.html')
+
+
+def experience(request):
+    return render(request, 'mySite/experience.html')
+
+
+def my_work(request):
+    return render(request, 'mySite/my_work.html')
+
+
+def skills(request):
+    return render(request, 'mySite/skills.html')
 
 
 def contact(request):
-    # Getting Current Language Code
-    lang_code = request.LANGUAGE_CODE
     # Initializing the form
     form = ContactForm()
     # Context that is sent to the template

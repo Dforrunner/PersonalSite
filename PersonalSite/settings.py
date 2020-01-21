@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -40,10 +39,12 @@ INSTALLED_APPS = [
 
     # My app
     'mySite',
+    'myApi',
 
     # Third Party apps
     'optimized_image',
     'django_cleanup.apps.CleanupConfig',
+    'rest_framework',
 
 ]
 
@@ -149,3 +150,11 @@ TINYPNG_KEY = os.getenv('TINYPNG_KEY')
 
 # Whitenoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}

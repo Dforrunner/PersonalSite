@@ -4,17 +4,28 @@
   "description": "Personal Website",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack --mode development --watch ./mySite/src/index.js --output ./mySite/static/mySite/scripts/main.js",
+    "build": "webpack --mode production ./mySite/src/index.js --output ./mySite/static/mySite/scripts/main.js"
   },
   "author": "Muhammet Barut",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "gulp": "^4.0.2",
     "gulp-rename": "^2.0.0",
-    "gulp-uglify-es": "^2.0.0"
+    "gulp-uglify-es": "^2.0.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   },
   "dependencies": {
     "gulp-htmlmin": "^5.0.1",
-    "gulp-uglifycss": "^1.1.0"
+    "gulp-uglifycss": "^1.1.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   }
 }
