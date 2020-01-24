@@ -1,3 +1,181 @@
 @import "modules/variables";
 @import "modules/mixins";
 @import 'modules/animations';
+
+// Intro header animation
+
+// Intro header letter indexes
+$letter_index:
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27,
+  28,
+  29,
+  30,
+  31,
+  32,
+  33,
+  34,
+  35,
+  36,
+  37,
+  38,
+  39,
+  40,
+  41,
+  42,
+  43,
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51,
+  52,
+  53,
+  54,
+  55,
+  56,
+  57,
+  58,
+  59,
+  60,
+  61,
+  62,
+  63,
+  64,
+  65,
+  66,
+  67;
+
+// SVG path size. Got these numbers with JS
+$letter_size:
+  296.96,
+  133.22,
+  58.48,
+  126.08,
+  51.68,
+  371.54,
+  419.40,
+  234.53,
+  265.42,
+  281.35,
+  371.54,
+  371.54,
+  286.25,
+  174.97,
+  58.48,
+  175.59,
+  234.53,
+  132.95,
+  132.95,
+  232.67,
+  174.97,
+  281.35,
+  221.62,
+  259.91,
+  311.88,
+  286.25,
+  197.36,
+  286.25,
+  132.96,
+  240.98,
+  322.91,
+  286.25,
+  136.68,
+  296.96,
+  133.22,
+  58.48,
+  126.08,
+  51.68,
+  371.55,
+  419.40,
+  234.53,
+  265.42,
+  281.35,
+  371.54,
+  371.54,
+  286.25,
+  174.97,
+  58.48,
+  175.59,
+  234.53,
+  132.95,
+  132.95,
+  232.67,
+  174.97,
+  281.35,
+  221.62,
+  259.91,
+  311.88,
+  286.25,
+  197.36,
+  286.25,
+  132.96,
+  240.98,
+  322.91,
+  286.25,
+  136.68;
+
+// Fill animation after the line drawing is complete
+#introHeader{
+  animation: fill 1s ease forwards 3.5s;
+  margin-top: 30%;
+  width: 600px;
+  height: auto;
+  > mask{
+    fill: white;
+  }
+}
+
+// Animating fill
+@keyframes fill{
+  from{
+    fill: transparent;
+  }
+  to{
+    fill: white;
+  }
+}
+
+// Looping through each letter and assigning stroke-dasharray and stroke-dashoffset with the exact
+// size of the letter. The stroke-dashoffset makes the letter disappear and we just animate the drawing effect
+// by using keyframes to set stroke-dashoffset to 0 making the letter appear again.
+@for $i from 1 through length($letter_index) {
+  #introHeader path:nth-child(#{nth($letter_index, $i)}) {
+    stroke-dasharray: nth($letter_size, $i);
+    stroke-dashoffset: nth($letter_size, $i);
+    animation: line-animation 2s ease forwards ($i * 0.065s);
+  }
+}
+// Setting stroke-dashoffset to 0
+@keyframes line-animation{
+  to {
+    stroke-dashoffset: 0;
+  }
+}

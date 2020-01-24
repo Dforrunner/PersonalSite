@@ -7,7 +7,7 @@ export default function Sidebar(props){
     const nav_link = (to, data_after, fa) => {
         let fontAwesome = `fas ${fa} fa-2x btn-content-change`;
         return (
-            <NavLink exact={true} to={to} activeStyle={{ backgroundColor: 'grey'}} className="btn shadow-none nav-btn white-text">
+            <NavLink exact={true} to={to} activeStyle={{ backgroundColor: '#1c1c1c'}} className="btn shadow-none nav-btn white-text">
                 <i className={fontAwesome}>
                     <span data-after={data_after}> </span>
                 </i>
@@ -38,10 +38,10 @@ export default function Sidebar(props){
                 <div className="row" role="group" aria-label="Vertical button group">
                     <div className="nav-btn-group">
                         {nav_link('/', 'Home', 'fa-home')}
-                        {nav_link('/about', 'About', 'fa-address-card')}
-                        {nav_link('/experience', 'Experience', 'fa-graduation-cap')}
+                        {nav_link('/about', 'About', 'fa-user-tie')}
+                        {nav_link('/experience', 'Experience', 'fa-laptop-code')}
                         {nav_link('/my-work', 'My Work', 'fa-folder-open')}
-                        {nav_link('/skills', 'Skills', 'fa-tools')}
+                        {nav_link('/skills', 'Skills', 'fa-cog')}
                         {nav_link('/contact', 'Contact', 'fa-address-book')}
                     </div>
 
