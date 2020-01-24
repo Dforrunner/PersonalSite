@@ -11,22 +11,6 @@ def index(request):
     return render(request, 'mySite/index.html')
 
 
-def about(request):
-    return render(request, 'mySite/about.html')
-
-
-def experience(request):
-    return render(request, 'mySite/experience.html')
-
-
-def my_work(request):
-    return render(request, 'mySite/my_work.html')
-
-
-def skills(request):
-    return render(request, 'mySite/skills.html')
-
-
 def contact(request):
     # Initializing the form
     form = ContactForm()

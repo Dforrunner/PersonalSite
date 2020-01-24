@@ -23,37 +23,37 @@ YEARS = [
 
 # Months dropdown choices
 MONTHS = [
-    (1, 'January'),
-    (2, 'February'),
-    (3, 'March'),
-    (4, 'May'),
-    (5, 'April'),
-    (6, "June"),
-    (7, 'July'),
-    (8, 'August'),
-    (9, 'September'),
-    (10, 'October'),
-    (11, 'November'),
-    (12, 'December'),
+    ('1', 'January'),
+    ('2', 'February'),
+    ('3', 'March'),
+    ('4', 'May'),
+    ('5', 'April'),
+    ('6', "June"),
+    ('7', 'July'),
+    ('8', 'August'),
+    ('9', 'September'),
+    ('10', 'October'),
+    ('11', 'November'),
+    ('12', 'December'),
 ]
 
 MONTHS_SHORT = [
-    (1, 'Jan'),
-    (2, 'Feb'),
-    (3, 'Mar'),
-    (4, 'May'),
-    (5, 'Apr'),
-    (6, "Jun"),
-    (7, 'Jul'),
-    (8, 'Aug'),
-    (9, 'Sep'),
-    (10, 'Oct'),
-    (11, 'Nov'),
-    (12, 'Dec'),
+    ('1', 'Jan'),
+    ('2', 'Feb'),
+    ('3', 'Mar'),
+    ('4', 'May'),
+    ('5', 'Apr'),
+    ('6', "Jun"),
+    ('7', 'Jul'),
+    ('8', 'Aug'),
+    ('9', 'Sep'),
+    ('10', 'Oct'),
+    ('11', 'Nov'),
+    ('12', 'Dec'),
 ]
 
 
-class Logo(models.Model):
+class Sidebar(models.Model):
     logo = OptimizedImageField(
         upload_to='logo',
         verbose_name='Logo'
@@ -62,13 +62,58 @@ class Logo(models.Model):
         upload_to='logo',
         verbose_name='Favicon 16x16'
     )
+    instagram = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name='Instagram Link'
+    )
+    linkedin = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name='LinkedIn Link'
+    )
+    github = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name='GitHub Link'
+    )
+    facebook = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name='Facebook Link'
+    )
+    youtube = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name='Youtube Link'
+    )
+    medium = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name='Medium Link'
+    )
+    slack = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name='Slack Link'
+    )
+    CodePen = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name='CodePen Link'
+    )
+    stack_overflow = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name='StackOverflow Link'
+    )
 
     def __str__(self):
-        return 'Logo & Favicon'
+        return 'Sidebar Content'
 
     class Meta:
-        verbose_name = 'Logo & Favicon'
-        verbose_name_plural = verbose_name
+        verbose_name = 'Sidebar Content'
+        verbose_name_plural = 'Sidebar Contents'
 
 
 class Home(models.Model):
@@ -124,29 +169,18 @@ class Education(models.Model):
         blank=True,
         verbose_name='Minor'
     )
-    start_month = models.IntegerField(
+    grad_month = models.CharField(
         choices=MONTHS_SHORT,
+        max_length=5,
         null=True,
         blank=True,
-        verbose_name='Start Month'
+        verbose_name='Graduation Month'
     )
-    start_year = models.IntegerField(
+    grad_year = models.IntegerField(
         choices=YEARS,
         null=True,
         blank=True,
-        verbose_name='Start Year'
-    )
-    end_month = models.IntegerField(
-        choices=MONTHS_SHORT,
-        null=True,
-        blank=True,
-        verbose_name='End Month'
-    )
-    end_year = models.IntegerField(
-        choices=YEARS,
-        null=True,
-        blank=True,
-        verbose_name='End Year'
+        verbose_name='Graduation Year'
     )
 
     def __str__(self):
@@ -163,24 +197,20 @@ class Skills(models.Model):
         verbose_name='Skill/Tool Name'
     )
     CATEGORY_LIST = [
-        (1, 'Language'),
-        (2, 'Frameworks'),
-        (3, 'Tools'),
-        (4, 'Design')
+        ('1', 'Language'),
+        ('2', 'Frameworks'),
+        ('3', 'Tools'),
+        ('4', 'Design'),
+        ('5', 'IDE'),
+        ('6', 'Softwares')
     ]
     category = models.CharField(
         choices=CATEGORY_LIST,
         max_length=15,
     )
-    skill_logo = OptimizedImageField(
-        upload_to='skill_logo',
-        null=True,
-        blank=True,
-        verbose_name='Skill Logo'
-    )
 
     def __str__(self):
-        return f"{self.skill_name} - {self.category}"
+        return f"{self.skill_name} - {self.get_category_display()}"
 
     class Meta:
         verbose_name = 'Skill'
@@ -222,12 +252,6 @@ class Projects(models.Model):
 
 
 class Contact(models.Model):
-    phone = models.CharField(
-        max_length=30,
-        null=True,
-        blank=True,
-        verbose_name='Phone Number',
-        help_text='(000)000-0000')
     email = models.EmailField(
         max_length=128,
         null=True,
@@ -236,56 +260,8 @@ class Contact(models.Model):
         help_text='example@email.com')
 
     def __str__(self):
-        return f'{self.phone}, {self.email}'
+        return self.email
 
     class Meta:
         verbose_name = 'Contact Info'
         verbose_name_plural = 'Contact Info'
-
-
-class SocialLinks(models.Model):
-    instagram = models.TextField(
-        null=True,
-        blank=True,
-        verbose_name='Instagram Link'
-    )
-    linkedin = models.TextField(
-        null=True,
-        blank=True,
-        verbose_name='LinkedIn Link'
-    )
-    github = models.TextField(
-        null=True,
-        blank=True,
-        verbose_name='GitHub Link'
-    )
-    facebook = models.TextField(
-        null=True,
-        blank=True,
-        verbose_name='Facebook Link'
-    )
-    youtube = models.TextField(
-        null=True,
-        blank=True,
-        verbose_name='Youtube Link'
-    )
-    medium = models.TextField(
-        null=True,
-        blank=True,
-        verbose_name='Medium Link'
-    )
-    slack = models.TextField(
-        null=True,
-        blank=True,
-        verbose_name='Slack Link'
-    )
-    CodePen = models.TextField(
-        null=True,
-        blank=True,
-        verbose_name='CodePen Link'
-    )
-    stack_overflow = models.TextField(
-        null=True,
-        blank=True,
-        verbose_name='StackOverflow Link'
-    )

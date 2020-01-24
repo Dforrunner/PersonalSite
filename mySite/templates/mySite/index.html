@@ -4,10 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %}</title>
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="#">
-    <link rel="icon" type="image/png" sizes="16x16" href="#">
+    <title>Muhammet Barut</title>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -24,14 +21,14 @@
     <div class="row">
         <div class="col-lg-1 col-md-1"></div>
         <div class="col-lg-11 col-md-1 col-sm-12">
-            {% include 'mySite/navbar.html' %}
-            {% block body %}{% endblock %}
             <div class="row">
                 <!--React div-->
                 <div id="app"></div>
             </div>
         </div>
     </div>
+    <!-- Dark Overlay element -->
+    <div class="overlay"></div>
 
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -45,7 +42,5 @@
     <script type="text/javascript" src="{% static 'mySite/scripts/contact_form.js' %}"></script>
     <script type="text/javascript" src="{% static 'mySite/scripts/side_nav.js' %}"></script>
     <script type="text/javascript" src="{% static 'mySite/scripts/main.js' %}"></script>
-    <!--page specific scripts-->
-    {% block scripts %}{% endblock %}
 </body>
 </html>

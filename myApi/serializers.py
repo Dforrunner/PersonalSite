@@ -1,11 +1,21 @@
 from rest_framework import serializers
-from .models import Logo, Home, About, Education, Skills, Projects, Contact, SocialLinks
+from .models import Sidebar, Home, About, Education, Skills, Projects, Contact
 
 
-class LogoSerializer(serializers.HyperlinkedModelSerializer):
+class SidebarSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Logo
-        fields = ('logo', 'favicon')
+        model = Sidebar
+        fields = ('logo',
+                  'favicon',
+                  'instagram',
+                  'linkedin',
+                  'github',
+                  'facebook',
+                  'youtube',
+                  'medium',
+                  'slack',
+                  'CodePen',
+                  'stack_overflow')
 
 
 class HomeSerializer(serializers.HyperlinkedModelSerializer):
@@ -26,16 +36,14 @@ class EducationSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('school_name',
                   'major',
                   'minor',
-                  'start_month',
-                  'start_year',
-                  'end_month',
-                  'end_year')
+                  'grad_month',
+                  'grad_year')
 
 
 class SkillsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Skills
-        fields = ('skill_name', 'category', 'skill_logo')
+        fields = ('skill_name', 'category')
 
 
 class ProjectsSerializer(serializers.HyperlinkedModelSerializer):
@@ -52,18 +60,4 @@ class ProjectsSerializer(serializers.HyperlinkedModelSerializer):
 class ContactSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Contact
-        fields = ('phone', 'email')
-
-
-class SocialLinksSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = SocialLinks
-        fields = ('instagram',
-                  'linkedin',
-                  'github',
-                  'facebook',
-                  'youtube',
-                  'medium',
-                  'slack',
-                  'CodePen',
-                  'stack_overflow')
+        fields = ('email', )

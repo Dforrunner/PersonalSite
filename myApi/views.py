@@ -1,12 +1,12 @@
-from rest_framework import viewsets, permissions
-from .serializers import LogoSerializer, HomeSerializer, AboutSerializer, EducationSerializer, \
-    SkillsSerializer, ProjectsSerializer, ContactSerializer, SocialLinksSerializer
-from .models import Logo, Home, About, Education, Skills, Projects, Contact, SocialLinks
+from rest_framework import viewsets
+from .serializers import SidebarSerializer, HomeSerializer, AboutSerializer, EducationSerializer, \
+    SkillsSerializer, ProjectsSerializer, ContactSerializer
+from .models import Sidebar, Home, About, Education, Skills, Projects, Contact
 
 
-class LogoViewSet(viewsets.ModelViewSet):
-    queryset = Logo.objects.all()
-    serializer_class = LogoSerializer
+class SidebarViewSet(viewsets.ModelViewSet):
+    queryset = Sidebar.objects.all()
+    serializer_class = SidebarSerializer
 
 
 class HomeViewSet(viewsets.ModelViewSet):
@@ -38,7 +38,3 @@ class ContactViewSet(viewsets.ModelViewSet):
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
 
-
-class SocialLinksViewSet(viewsets.ModelViewSet):
-    queryset = SocialLinks.objects.all()
-    serializer_class = SocialLinksSerializer

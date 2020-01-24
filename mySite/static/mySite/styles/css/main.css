@@ -89,7 +89,7 @@
 #sidebar {
   background-color: black;
   height: 100vh;
-  width: 88px;
+  width: 90px;
   top: 0;
   left: 0;
   position: fixed;
@@ -131,7 +131,8 @@
 }
 
 .nav-btns, .nav-social-btn, .nav-btn {
-  width: 87px;
+  width: 89px;
+  height: 50px;
   margin: 0 -15px 0 -15px;
   vertical-align: center;
   border-radius: 0;
@@ -147,26 +148,39 @@
   padding: 15px 2px 15px 2px;
   font-size: 9px;
   text-align: center;
+  transition: all 0.3s;
 }
 .nav-btn:hover {
   background-color: #242424;
-}
-@media (min-width: 576px) {
-  .nav-btn:hover {
-    background-color: #242424;
-  }
-  .nav-btn:hover:after {
-    content: attr(data-hover);
-    margin-left: 2px;
-  }
 }
 @media (max-width: 767.98px) {
   .nav-btn {
     padding: 15px 2px 15px 40px;
     text-align: left;
   }
-  .nav-btn:after {
-    content: attr(data-hover);
+}
+
+.nav-cont-on-hover, .nav-btn > i > span, .nav-btn:hover > i > span {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: lighter;
+  text-align: center;
+  font-size: 8px;
+}
+
+@media (min-width: 576px) {
+  .nav-btn:hover > i > span:after {
+    content: attr(data-after);
+    margin-left: 5px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .nav-btn > i > span {
+    text-align: left;
+    margin-left: 3px;
+  }
+  .nav-btn > i > span:after {
+    content: attr(data-after);
   }
 }
 
@@ -206,9 +220,11 @@
   transition: all 0.5s ease-in-out;
 }
 
-.overlay.active {
-  display: block;
-  opacity: 1;
+@media (max-width: 767.98px) {
+  .overlay.active {
+    display: block;
+    opacity: 1;
+  }
 }
 
 .collapseBarsWrapper {
@@ -247,7 +263,7 @@
 }
 
 body {
-  background-color: #1e1e1e;
+  background-color: rgba(30, 30, 30, 0.7);
 }
 
 ul, li {

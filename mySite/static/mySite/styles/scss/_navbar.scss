@@ -2,6 +2,8 @@
 @import "modules/mixins";
 @import 'modules/animations';
 
+// Sidebar is a React component. It can be found in mySite/src/components/base/sidebar.js
+
 // Navbar
 #sidebar{
   background-color: $nav_color;
@@ -47,6 +49,7 @@
 // Navbar navigation buttons
 .nav-btns{
   width: $nav_width_lg - 1;
+  height: 50px;
   margin: 0 -15px 0 -15px;
   vertical-align: center;
   border-radius: 0;
@@ -56,44 +59,64 @@
   }
 }
 
+// Main Navlink styling
 .nav-btn{
   @extend .nav-btns;
   padding: 15px 2px 15px 2px;
   font-size: 9px;
   text-align: center;
+  transition: all 0.3s;
   &:hover{
     background-color: #242424;
   }
-  @include media-breakpoint-up(sm){
-     &:hover{
-      background-color: #242424;
-      &:after{
-        content: attr(data-hover);
-        margin-left: 2px;
-      }
-    }
-  }
-
   @include media-breakpoint-down(sm){
     padding: 15px 2px 15px 40px;
     text-align: left;
+  }
+}
+
+// Shared styling for the sidebar nav buttons
+.nav-cont-on-hover{
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: lighter;
+  text-align: center;
+  font-size: 8px;
+}
+// Changing the span content when the nav button is hovered and window width is above sm
+.nav-btn:hover > i > span {
+  @extend .nav-cont-on-hover;
+  @include media-breakpoint-up(sm){
+    &:after {
+      content: attr(data-after);
+      margin-left: 5px;
+    }
+  }
+}
+// Changing the span content when the window width is below sm. Not paying attention to hover.
+.nav-btn > i > span {
+  @extend .nav-cont-on-hover;
+  @include media-breakpoint-down(sm){
+    text-align: left;
+    margin-left: 3px;
     &:after{
-      content: attr(data-hover);
+      content: attr(data-after);
     }
   }
 }
 
+// Sidebar nav button wrapper
 .nav-btn-group{
   padding-top: 180px;
 }
 
-// Navbar social media icons
+// Sidebar social media icons
 .nav-social-btn{
   @extend .nav-btns;
   padding: 8px 2px 8px 2px;
   font-size: 15px;
   text-align: center;
 }
+//Sidebar social media icon wrapper
 .nav-social-btn-group{
   padding-top: 130px;
   text-align: center;
@@ -109,6 +132,7 @@
   height: $nav_profile_img_size;
 }
 
+// Overlay that shows up when the window width is blow sm and sidebar is open
 .overlay {
     display: none;
     position: fixed;
@@ -122,15 +146,18 @@
 }
 //display .overlay when it has the .active class
 .overlay.active {
+  @include media-breakpoint-down(sm) {
     display: block;
     opacity: 1;
+  }
 }
 
-// Hamburger Bars
+// Hamburger bar wrapper. It has a fixed height to keep body content from moving up when the hamburger bars disappear
 .collapseBarsWrapper{
   height: $collapseBarsWrapper_height;
 }
 
+// The hambuger menu button that shows up when the window width is below sm
 #collapseBars{
   display: none;
   @include media-breakpoint-down(sm){
@@ -143,6 +170,8 @@
     font-size: 30px;
   }
 }
+
+// The X button that appears when the window width is below sm, and sidebar is open. It's used to close the sidebar
 #dismiss {
   display: none;
 }
