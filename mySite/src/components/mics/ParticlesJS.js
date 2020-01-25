@@ -14,7 +14,7 @@ export default class ParticleBackground extends Component{
                   params={{
                     particles: {
                       number: {
-                        value: 50,
+                        value: 40,
                         density: {
                           enable: true,
                           value_area: 1000
