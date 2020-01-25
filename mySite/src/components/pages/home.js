@@ -1,10 +1,12 @@
 import React from 'react';
-
+import ParticleBackground from '../mics/ParticlesJS'
 export default class Home extends React.Component{
     render() {
         return (
-            <div>
-                <svg id="introHeader" viewBox="0 0 778 326" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div className='vh-100'>
+                <ParticleBackground />
+                <div className="home-pg-text">
+                    <svg id="introHeader" viewBox="0 0 778 326" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <mask id="path-1-outside-1" maskUnits="userSpaceOnUse" x="0.839966" y="0.119995" width="777" height="326" fill="black">
                         <rect fill="white" x="0.839966" y="0.119995" width="777" height="326"/>
                         <path d="M50.12 7.24V63H42.84V37.72H14.44V63H7.15997V7.24H14.44V31.72H42.84V7.24H50.12Z"/>
@@ -75,7 +77,11 @@ export default class Home extends React.Component{
                     <path d="M744.504 279.4C744.504 280.787 744.424 282.253 744.264 283.8H709.224C709.49 288.12 710.957 291.507 713.624 293.96C716.344 296.36 719.624 297.56 723.464 297.56C726.61 297.56 729.224 296.84 731.304 295.4C733.437 293.907 734.93 291.933 735.784 289.48H743.624C742.45 293.693 740.104 297.133 736.584 299.8C733.064 302.413 728.69 303.72 723.464 303.72C719.304 303.72 715.57 302.787 712.264 300.92C709.01 299.053 706.45 296.413 704.584 293C702.717 289.533 701.784 285.533 701.784 281C701.784 276.467 702.69 272.493 704.504 269.08C706.317 265.667 708.85 263.053 712.104 261.24C715.41 259.373 719.197 258.44 723.464 258.44C727.624 258.44 731.304 259.347 734.504 261.16C737.704 262.973 740.157 265.48 741.864 268.68C743.624 271.827 744.504 275.4 744.504 279.4ZM736.984 277.88C736.984 275.107 736.37 272.733 735.144 270.76C733.917 268.733 732.237 267.213 730.104 266.2C728.024 265.133 725.704 264.6 723.144 264.6C719.464 264.6 716.317 265.773 713.704 268.12C711.144 270.467 709.677 273.72 709.304 277.88H736.984Z" stroke="white" stroke-width="4" mask="url(#path-1-outside-1)"/>
                     <path d="M761.393 266.28C762.673 263.773 764.486 261.827 766.833 260.44C769.233 259.053 772.14 258.36 775.553 258.36V265.88H773.633C765.473 265.88 761.393 270.307 761.393 279.16V303H754.113V259.16H761.393V266.28Z" stroke="white" stroke-width="4" mask="url(#path-1-outside-1)"/>
                 </svg>
+                    <p className="white-text text-muted">FRONTEND & BACKEND WEB DEVELOPMENT</p>
+                </div>
+
             </div>
         );
     }
 }
+

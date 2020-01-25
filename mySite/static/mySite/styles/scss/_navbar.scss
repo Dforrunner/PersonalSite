@@ -11,25 +11,25 @@
   width: $nav_width_lg;
   top: 0;
   left: 0;
-  position: fixed;
+  margin-left: -15px;
+  position: absolute;
   transition: all 0.3s;
-    @include media-breakpoint-down(sm){
-      margin-left: -($nav_width_sm);
-      width: $nav_width_sm;
-      z-index: 9000;
-    }
+  @include media-breakpoint-down(sm){
+    margin-left: -($nav_width_sm + 15);
+    width: $nav_width_sm;
+    z-index: 9000;
+  }
 }
 
 #sidebar.active{
    @include media-breakpoint-down(sm) {
-     margin-left: 0;
+     margin-left: -15px;
    }
 }
 
 //LOGO
 #logo{
   width: $logo_size_lg;
-  padding-top: 10px;
   transition-duration: 100ms;
   &:hover{
     @extend .heart-beat-animation;
@@ -41,13 +41,16 @@
 .logo_wrapper{
   width: $logo_size_sm;
   text-align: center;
+  position: sticky;
+  top: 5px;
+  margin-top: -40px;
   @include media-breakpoint-down(sm){
     width: $logo_size_sm;
   }
 }
 
 // Navbar navigation buttons
-.nav-btns{
+.nav-btn-common{
   width: $nav_width_lg - 1;
   height: 50px;
   margin: 0 -15px 0 -15px;
@@ -61,7 +64,7 @@
 
 // Main Navlink styling
 .nav-btn{
-  @extend .nav-btns;
+  @extend .nav-btn-common;
   padding: 15px 2px 15px 2px;
   font-size: 9px;
   text-align: center;
@@ -75,7 +78,7 @@
   }
 }
 
-// Shared styling for the sidebar nav buttons
+// Shared content styling for the sidebar nav buttons on hover
 .nav-cont-on-hover{
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: lighter;
@@ -106,20 +109,24 @@
 
 // Sidebar nav button wrapper
 .nav-btn-group{
-  padding-top: 180px;
+  position: sticky;
+  top: 0;
+  padding-top: 60px;
 }
 
 // Sidebar social media icons
 .nav-social-btn{
-  @extend .nav-btns;
+  @extend .nav-btn-common;
   padding: 8px 2px 8px 2px;
   font-size: 15px;
   text-align: center;
 }
 //Sidebar social media icon wrapper
 .nav-social-btn-group{
-  padding-top: 130px;
   text-align: center;
+  position: sticky;
+  top: 0;
+  margin-bottom: -30px;
 }
 
 // Font Awesome icons
@@ -161,7 +168,9 @@
 #collapseBars{
   display: none;
   @include media-breakpoint-down(sm){
-    display: inline;
+    position: absolute;
+    display: inline-block;
+    z-index: 1;
     padding: 0 7px 0 7px;
     top: 25px;
     left: 10px;

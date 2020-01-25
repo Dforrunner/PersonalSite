@@ -44,7 +44,7 @@ class App extends Component{
         const {error, isLoaded, items} = this.state;
         return (
             <BrowserRouter>
-                 <div>
+                <div className='row'>
                     <Favicon faviconPath={items.favicon}/>
                     <Sidebar sidebar={items}/>
                     <Switch>

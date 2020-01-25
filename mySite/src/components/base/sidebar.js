@@ -24,7 +24,7 @@ export default function Sidebar(props){
         )
     };
     return (
-        <div>
+        <div className="col-lg-1 col-md-1">
             <div className="row collapseBarsWrapper">
                 <button className="btn btn-outline-white rounded" id="collapseBars"><i className="fas fa-bars"> </i></button>
             </div>
@@ -35,23 +35,22 @@ export default function Sidebar(props){
                         <img src={props.sidebar.logo} alt='M' id="logo" />
                     </NavLink>
                 </div>
-                <div className="row" role="group" aria-label="Vertical button group">
-                    <div className="nav-btn-group">
-                        {nav_link('/', 'Home', 'fa-home')}
-                        {nav_link('/about', 'About', 'fa-user-tie')}
-                        {nav_link('/experience', 'Experience', 'fa-laptop-code')}
-                        {nav_link('/my-work', 'My Work', 'fa-folder-open')}
-                        {nav_link('/skills', 'Skills', 'fa-cog')}
-                        {nav_link('/contact', 'Contact', 'fa-address-book')}
-                    </div>
 
-                    <div className="nav-social-btn-group">
-                        {social_links(props.sidebar.github, "github")}
-                        {social_links(props.sidebar.linkedin, "linkedin")}
-                        {social_links(props.sidebar.instagram, "instagram")}
-                        <img src={"https://avatars1.githubusercontent.com/u/33268028?s=400&v=4"}
-                             className="rounded-circle nav_profile_img" alt="avatar image" height="35" />
-                    </div>
+                <div className="nav-btn-group">
+                    {nav_link('/', 'Home', 'fa-home')}
+                    {nav_link('/about', 'About', 'fa-user-tie')}
+                    {nav_link('/experience', 'Experience', 'fa-laptop-code')}
+                    {nav_link('/my-work', 'My Work', 'fa-folder-open')}
+                    {nav_link('/skills', 'Skills', 'fa-cog')}
+                    {nav_link('/contact', 'Contact', 'fa-address-book')}
+                </div>
+
+                <div className="nav-social-btn-group">
+                    {social_links(props.sidebar.github, "github")}
+                    {social_links(props.sidebar.linkedin, "linkedin")}
+                    {social_links(props.sidebar.instagram, "instagram")}
+                    <img src={"https://avatars1.githubusercontent.com/u/33268028?s=400&v=4"}
+                         className="rounded-circle nav_profile_img" alt="avatar image" height="35" />
                 </div>
             </div>
         </div>

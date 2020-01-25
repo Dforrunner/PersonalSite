@@ -2,6 +2,11 @@
 @import "modules/mixins";
 @import 'modules/animations';
 
+// Home page text content
+.home-pg-text{
+  position: sticky;
+  top: 30%;
+}
 // Intro header animation
 
 // Intro header letter indexes
@@ -145,7 +150,6 @@ $letter_size:
 // Fill animation after the line drawing is complete
 #introHeader{
   animation: fill 1s ease forwards 3.5s;
-  margin-top: 30%;
   width: 600px;
   height: auto;
   > mask{
