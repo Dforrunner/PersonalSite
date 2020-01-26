@@ -135,10 +135,26 @@ class Home(models.Model):
 
 
 class About(models.Model):
-    about = models.TextField(
+    p_title = models.CharField(
+        max_length= 64,
         null=True,
         blank=True,
-        verbose_name='About'
+        verbose_name='Paragraph 1 Title'
+    )
+    p1 = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name='Paragraph 1'
+    )
+    p2 = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name='Paragraph 2'
+    )
+    p3 = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name='Paragraph 3'
     )
     profile_img = OptimizedImageField(
         upload_to='about'
@@ -149,45 +165,6 @@ class About(models.Model):
 
     class Meta:
         verbose_name = 'About'
-        verbose_name_plural = verbose_name
-
-
-class Education(models.Model):
-    school_name = models.CharField(
-        max_length=64,
-        verbose_name='School Name'
-    )
-    major = models.CharField(
-        max_length=64,
-        null=True,
-        blank=True,
-        verbose_name='Major'
-    )
-    minor = models.CharField(
-        max_length=64,
-        null=True,
-        blank=True,
-        verbose_name='Minor'
-    )
-    grad_month = models.CharField(
-        choices=MONTHS_SHORT,
-        max_length=5,
-        null=True,
-        blank=True,
-        verbose_name='Graduation Month'
-    )
-    grad_year = models.IntegerField(
-        choices=YEARS,
-        null=True,
-        blank=True,
-        verbose_name='Graduation Year'
-    )
-
-    def __str__(self):
-        return self.school_name
-
-    class Meta:
-        verbose_name = 'Education'
         verbose_name_plural = verbose_name
 
 

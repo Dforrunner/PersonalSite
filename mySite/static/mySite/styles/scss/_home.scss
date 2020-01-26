@@ -168,7 +168,7 @@ $letter_size:
 
 // Fill animation after the line drawing is complete
 #introHeader{
-  animation: fill 1s ease forwards 3.5s;
+  animation: fill 1s ease forwards 2.5s;
   width: 600px;
   height: auto;
   > mask{
@@ -193,7 +193,7 @@ $letter_size:
   #introHeader path:nth-child(#{nth($letter_index, $i)}) {
     stroke-dasharray: nth($letter_size, $i);
     stroke-dashoffset: nth($letter_size, $i);
-    animation: line-animation 2s ease forwards ($i * 0.065s);
+    animation: line-animation 1.2s ease forwards ($i * 0.05s);
     &:hover{
       animation: fill 1s ease forwards;
     }

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Sidebar, Home, About, Education, Skills, Projects, Contact
+from .models import Sidebar, Home, About, Skills, Projects, Contact
 
 
 class SidebarSerializer(serializers.HyperlinkedModelSerializer):
@@ -27,17 +27,7 @@ class HomeSerializer(serializers.HyperlinkedModelSerializer):
 class AboutSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = About
-        fields = ('about', 'profile_img')
-
-
-class EducationSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Education
-        fields = ('school_name',
-                  'major',
-                  'minor',
-                  'grad_month',
-                  'grad_year')
+        fields = ('p_title', 'p1', 'p2', 'p3', 'profile_img')
 
 
 class SkillsSerializer(serializers.HyperlinkedModelSerializer):

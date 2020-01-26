@@ -24,7 +24,7 @@ export default function Sidebar(props){
         )
     };
     return (
-        <div className="col-lg-1 col-md-1">
+        <div>
             <div className="row collapseBarsWrapper">
                 <button className="btn btn-outline-white rounded" id="collapseBars"><i className="fas fa-bars"> </i></button>
             </div>

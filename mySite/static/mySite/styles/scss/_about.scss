@@ -1,0 +1,31 @@
+@import "modules/variables";
+@import "modules/mixins";
+@import 'modules/animations';
+
+.about-text-content{
+  position: sticky;
+  top: 0;
+  padding-top: 15%;
+  width: 500px;
+
+  > h1 {
+    font-family: $secondary-font;
+    margin-top: 25px;
+    color: cyan;
+  }
+
+  > p {
+    font-family: $primary-font;
+    font-size: 14px;
+    margin-top: 25px;
+    color: white;
+  }
+}
+
+.about-prof-img {
+  position: absolute;
+  float: right;
+  right: 40px;
+  top: 28%;
+  border-radius: 10px;
+}
