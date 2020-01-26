@@ -168,26 +168,35 @@ class About(models.Model):
         verbose_name_plural = verbose_name
 
 
-class Skills(models.Model):
+class SkillNames(models.Model):
     skill_name = models.CharField(
         max_length=64,
-        verbose_name='Skill/Tool Name'
-    )
-    CATEGORY_LIST = [
-        ('1', 'Language'),
-        ('2', 'Frameworks'),
-        ('3', 'Tools'),
-        ('4', 'Design'),
-        ('5', 'IDE'),
-        ('6', 'Softwares')
-    ]
-    category = models.CharField(
-        choices=CATEGORY_LIST,
-        max_length=15,
+        verbose_name='Skill/Tool Name',
+        null=True,
+        blank=True
     )
 
     def __str__(self):
-        return f"{self.skill_name} - {self.get_category_display()}"
+        return self.skill_name
+
+    class Meta:
+        verbose_name_plural = 'Skill Names'
+
+
+class Skills(models.Model):
+    skill_category = models.CharField(
+        max_length=64,
+        verbose_name='Skill Category',
+        null=True,
+        blank=True
+    )
+    skill_names = models.ManyToManyField(
+        SkillNames,
+        related_name='skills',
+        verbose_name="Skills that fit Category")
+
+    def __str__(self):
+        return f"{self.skill_category} "
 
     class Meta:
         verbose_name = 'Skill'
@@ -226,6 +235,13 @@ class Projects(models.Model):
         null=True,
         blank=True
     )
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Project'
+        verbose_name_plural = 'Projects'
 
 
 class Contact(models.Model):

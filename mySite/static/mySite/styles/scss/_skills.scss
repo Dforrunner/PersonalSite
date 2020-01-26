@@ -1,0 +1,15 @@
+@import "modules/variables";
+@import "modules/mixins";
+@import 'modules/animations';
+
+.skill-content{
+  padding-top: 10%;
+}
+
+.skill-list{
+  > li {
+    &:hover{
+      background-color: #111111;
+    }
+  }
+}

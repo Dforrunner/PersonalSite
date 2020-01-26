@@ -10,6 +10,7 @@ router.register('sidebar', views.SidebarViewSet)
 router.register('home-pg', views.HomeViewSet)
 router.register('about-pg', views.AboutViewSet)
 router.register('skills-pg', views.SkillsViewSet)
+router.register('skill-names', views.SkillNamesViewSet)
 router.register('projects-pg', views.ProjectsViewSet)
 router.register('contact-pg', views.ContactViewSet)
 

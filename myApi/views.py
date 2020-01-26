@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from .serializers import SidebarSerializer, HomeSerializer, AboutSerializer, \
-    SkillsSerializer, ProjectsSerializer, ContactSerializer
-from .models import Sidebar, Home, About, Skills, Projects, Contact
+    SkillsSerializer, ProjectsSerializer, ContactSerializer, SkillNamesSerializer
+from .models import Sidebar, Home, About, Skills, SkillNames, Projects, Contact
 
 
 class SidebarViewSet(viewsets.ModelViewSet):
@@ -22,6 +22,11 @@ class AboutViewSet(viewsets.ModelViewSet):
 class SkillsViewSet(viewsets.ModelViewSet):
     queryset = Skills.objects.all()
     serializer_class = SkillsSerializer
+
+
+class SkillNamesViewSet(viewsets.ModelViewSet):
+    queryset = SkillNames.objects.all()
+    serializer_class = SkillNamesSerializer
 
 
 class ProjectsViewSet(viewsets.ModelViewSet):

@@ -1,5 +1,8 @@
 from rest_framework import serializers
-from .models import Sidebar, Home, About, Skills, Projects, Contact
+from .models import Sidebar, Home, About, Skills, Projects, Contact, SkillNames
+
+
+# Serializer classes
 
 
 class SidebarSerializer(serializers.HyperlinkedModelSerializer):
@@ -30,10 +33,18 @@ class AboutSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('p_title', 'p1', 'p2', 'p3', 'profile_img')
 
 
-class SkillsSerializer(serializers.HyperlinkedModelSerializer):
+class SkillNamesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SkillNames
+        fields = ("pk", "skill_name", )
+
+
+class SkillsSerializer(serializers.ModelSerializer):
+    skill_names = SkillNamesSerializer(many=True)
+
     class Meta:
         model = Skills
-        fields = ('skill_name', 'category')
+        fields = ('pk', 'skill_category', "skill_names")
 
 
 class ProjectsSerializer(serializers.HyperlinkedModelSerializer):
