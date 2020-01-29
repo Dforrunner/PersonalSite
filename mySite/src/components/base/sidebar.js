@@ -29,6 +29,7 @@ export default function Sidebar(props){
             <button className="btn btn-outline-white rounded" id="collapseBars"><i className="fas fa-bars"> </i></button>
 
             <div id="dismiss"><i className="far fa-times-circle white-text fa-2x"> </i></div>
+
             <div className="p-2">
                 <div className=" d-flex flex-row justify-content-center ">
                     <NavLink to="/">
@@ -51,13 +52,11 @@ export default function Sidebar(props){
                 {social_links(props.sidebar.linkedin, "linkedin")}
                 {social_links(props.sidebar.instagram, "instagram")}
 
-
                 <div className=" d-flex flex-row justify-content-center">
                     <img src={"https://avatars1.githubusercontent.com/u/33268028?s=400&v=4"}
                      className="rounded-circle nav_profile_img" alt="avatar image" />
                 </div>
             </div>
-
         </div>
     )
 }

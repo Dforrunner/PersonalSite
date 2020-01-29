@@ -2,15 +2,35 @@ import React, {Component} from "react";
 import Particles from "react-particles-js";
 
 export default class ParticleBackground extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      window_width: window.innerWidth
+    }
+  }
+
+   // Calculate & Update state of new dimensions
+  updateDimensions() {
+    this.setState({ window_width: window.innerWidth});
+  }
+
+   // Add event listener
+  componentDidMount() {
+    this.updateDimensions();
+    window.addEventListener("resize", this.updateDimensions.bind(this));
+  }
+
+   // Remove event listener
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimensions.bind(this));
+  }
+
    render() {
        return (
-            <div style={{
-                    position: "absolute",
-                    marginLeft: '-25px',
-                }}>
+            <div id="ParticleJS">
                 <Particles
-                  width= "92vw"
-                  height= "98vh"
+                  width="100%"
+                  height="100vh"
                   params={{
                     particles: {
                       number: {
@@ -72,7 +92,7 @@ export default class ParticleBackground extends Component{
                       }
                     },
                     interactivity: {
-                      detect_on: "canvas",
+                      detect_on:  (this.state.window_width < 990 ? "window" : "canvas"),
                       events: {
                         onhover: {
                           enable: true,
@@ -86,7 +106,7 @@ export default class ParticleBackground extends Component{
                       },
                       modes: {
                         grab: {
-                          distance: 140,
+                          distance: 150,
                           line_linked: {
                             opacity: 1
                           }

@@ -1,4 +1,4 @@
-.heart-beat-animation, .big-logo:hover, #logo:hover {
+.heart-beat-animation, #logo:hover {
   display: inline-block;
   transform: rotate(45deg);
   animation: heart-beat-animation 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -42,7 +42,7 @@
     transform: rotate(720deg);
   }
 }
-.heart-beat-animation, .big-logo:hover, #logo:hover {
+.heart-beat-animation, #logo:hover {
   display: inline-block;
   transform: rotate(45deg);
   animation: heart-beat-animation 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -89,6 +89,7 @@
 #sidebar {
   background-color: black;
   height: 100%;
+  z-index: 9000;
 }
 @media (max-width: 767.98px) {
   #sidebar {
@@ -98,7 +99,6 @@
     top: 0;
     left: 0;
     margin-left: -160px;
-    z-index: 9000;
   }
 }
 
@@ -257,7 +257,7 @@
   }
 }
 
-.heart-beat-animation, .big-logo:hover, #logo:hover {
+.heart-beat-animation, #logo:hover {
   display: inline-block;
   transform: rotate(45deg);
   animation: heart-beat-animation 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -301,11 +301,6 @@
     transform: rotate(720deg);
   }
 }
-.home-pg-text {
-  position: sticky;
-  top: 30%;
-}
-
 .introSubtitle {
   color: grey;
   font-size: 12px;
@@ -313,14 +308,26 @@
   font-family: "Raleway", sans-serif;
   margin-top: 10px;
 }
-
-.big-logo {
-  width: 400px;
-  height: auto;
-  right: 50px;
-  top: 180px;
-  position: absolute;
+@media (max-width: 767.98px) {
+  .introSubtitle {
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
 }
+
+#ParticleJS {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 91vw;
+}
+@media (max-width: 991.98px) {
+  #ParticleJS {
+    z-index: -1;
+    width: 100vw;
+  }
+}
+
 #introHeader {
   animation: fill 1s ease forwards 2.5s;
   width: 600px;
@@ -328,6 +335,11 @@
 }
 #introHeader > mask {
   fill: white;
+}
+@media (max-width: 767.98px) {
+  #introHeader {
+    width: 350px;
+  }
 }
 
 @keyframes fill {
@@ -937,7 +949,7 @@
     stroke-dashoffset: 0;
   }
 }
-.heart-beat-animation, #logo:hover, .big-logo:hover {
+.heart-beat-animation, #logo:hover {
   display: inline-block;
   transform: rotate(45deg);
   animation: heart-beat-animation 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -1007,7 +1019,7 @@
   border-radius: 10px;
 }
 
-.heart-beat-animation, #logo:hover, .big-logo:hover {
+.heart-beat-animation, #logo:hover {
   display: inline-block;
   transform: rotate(45deg);
   animation: heart-beat-animation 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -1059,7 +1071,7 @@
   background-color: #111111;
 }
 
-.heart-beat-animation, #logo:hover, .big-logo:hover {
+.heart-beat-animation, #logo:hover {
   display: inline-block;
   transform: rotate(45deg);
   animation: heart-beat-animation 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -1103,9 +1115,13 @@
     transform: rotate(720deg);
   }
 }
+#ContactFormWrapper {
+  width: 450px;
+}
+
 #GoogleMapWrapper {
-  height: 100%;
   width: 100%;
+  height: 100%;
 }
 
 body {
@@ -1124,9 +1140,9 @@ body {
 }
 @media (min-width: 576px) and (max-width: 991.98px) {
   #MainWrapper {
-    grid-template-columns: 100vw;
-    grid-template-rows: 70px auto;
-    grid-template-areas: "sidebar main";
+    grid-template-columns: 100%;
+    grid-template-rows: 10% auto;
+    grid-template-areas: "sidebar" "main";
   }
 }
 @media (max-width: 767.98px) {
@@ -1149,9 +1165,13 @@ body {
 
 #MainWrapper > #ContentBodyWrapper {
   grid-area: main;
-  background-color: #008fc1;
 }
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 991.98px) {
+  #MainWrapper > #ContentBodyWrapper {
+    min-height: 90vh;
+  }
+}
+@media (max-width: 767.98px) {
   #MainWrapper > #ContentBodyWrapper {
     min-height: 100vh;
   }

@@ -46,23 +46,25 @@ class App extends Component{
         return (
             <BrowserRouter>
                 <div id="MainWrapper">
+
                     <Favicon faviconPath={items.favicon}/>
+
                     <div id='SidebarWrapper'>
                         <Sidebar sidebar={items}/>
                     </div>
 
                     <div id='ContentBodyWrapper'>
-                {/*    <Switch>*/}
-                {/*        <Route exact path="/" component={Home} />*/}
-                {/*        <Redirect path="/home" to="/" />*/}
-                {/*        <Route exact path="/about" component={About} />*/}
-                {/*        <Route exact path="/experience" component={Experience} />*/}
-                {/*        <Route exact path="/my-work" component={MyWork} />*/}
-                {/*        <Route exact path="/skills" component={Skills} />*/}
-                {/*        <Route exact path="/contact" component={Contact} />*/}
-                {/*        <Route exact path="/page-not-found-404" component={Error404} />*/}
-                {/*        <Route component={Error404} />*/}
-                {/*    </Switch>*/}
+                        <Switch>
+                            <Route exact path="/" component={Home} />
+                            <Redirect path="/home" to="/" />
+                            <Route exact path="/about" component={About} />
+                            <Route exact path="/experience" component={Experience} />
+                            <Route exact path="/my-work" component={MyWork} />
+                            <Route exact path="/skills" component={Skills} />
+                            <Route exact path="/contact" component={Contact} />
+                            <Route exact path="/page-not-found-404" component={Error404} />
+                            <Route component={Error404} />
+                        </Switch>
                     </div>
                 </div>
             </BrowserRouter>
