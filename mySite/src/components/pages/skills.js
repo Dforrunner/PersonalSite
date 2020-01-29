@@ -33,19 +33,19 @@ export default class Skills extends React.Component{
         const {error, isLoaded, items} = this.state;
 
         return (
-            <div className="h-100 w-100">
-                    {
-                        items.map((item) =>
-                            <div key={item.pk} className="pt-5">
-                                <ul className="skill-list">
-                                    <h4 className="black p-3 rounded-top">{item.skill_category}</h4>
-                                    {item.skill_names.map(skill =>
-                                        <li className="pl-3 pt-1" key={skill.pk}>{skill.skill_name}</li>
-                                    )}
-                                </ul>
-                            </div>
-                        )
-                    }
+            <div id='SkillsPageWrapper'>
+                {
+                    items.map((item) =>
+                        <div key={item.pk} className="pt-5 pr-5">
+                            <ul className="skill-list">
+                                <h4 className="white-text black p-3 rounded-top">{item.skill_category}</h4>
+                                {item.skill_names.map(skill =>
+                                    <li className="white-text pl-3 pt-1" key={skill.pk}>{skill.skill_name}</li>
+                                )}
+                            </ul>
+                        </div>
+                    )
+                }
             </div>
         );
     }

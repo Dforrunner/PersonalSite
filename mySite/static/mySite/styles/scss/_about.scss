@@ -1,31 +1,37 @@
 @import "modules/variables";
 @import "modules/mixins";
-@import 'modules/animations';
+
+#AboutPageWrapper{
+  display: grid;
+  grid-template-rows: 100%;
+  grid-template-columns: repeat(2, 1fr);
+  @include media-breakpoint-down(sm){
+      grid-template-columns: 1fr;
+  }
+}
 
 .about-text-content{
-  position: sticky;
-  top: 0;
-  padding-top: 15%;
   width: 500px;
 
   > h1 {
     font-family: $secondary-font;
-    margin-top: 25px;
     color: cyan;
   }
 
   > p {
     font-family: $primary-font;
-    font-size: 14px;
+    font-size: 0.9em;
     margin-top: 25px;
     color: white;
   }
 }
 
 .about-prof-img {
-  position: absolute;
-  float: right;
-  right: 40px;
-  top: 28%;
   border-radius: 10px;
+  width: 80%;
+  height: auto;
+
+  @include media-breakpoint-down(sm){
+      display: none;
+  }
 }

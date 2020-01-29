@@ -1,12 +1,11 @@
 @import "modules/variables";
 @import "modules/mixins";
 @import 'modules/animations';
-@import "navbar";
+@import "sidebar";
 @import "home";
 @import "about";
 @import "skills";
 @import "contact";
-@import "sidebar";
 
 body{
   background-color: #1c1c1c;
