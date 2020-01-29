@@ -35,7 +35,6 @@ body{
 
 #MainWrapper > #SidebarWrapper{
   grid-area: sidebar;
-  background-color: #00c131;
   @include media-breakpoint-up(lg){
     min-height: 100vh;
   }
@@ -43,7 +42,6 @@ body{
 
 #MainWrapper >  #ContentBodyWrapper{
   grid-area: main;
-  //background-color: #008fc1;
   @include media-breakpoint-only(md){
     min-height: 90vh;
   }

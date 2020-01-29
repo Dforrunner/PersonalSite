@@ -58,7 +58,7 @@ function Map() {
 const WrappedMap = withScriptjs(withGoogleMap(Map));
 
 export default function MyGoogleMap() {
-    const apikey = 123;//process.env.REACT_APP_GOOGLE_KEY
+    const apikey = process.env.REACT_APP_GOOGLE_KEY;
     return(
 
         <div id="GoogleMapWrapper">

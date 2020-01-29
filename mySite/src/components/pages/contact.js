@@ -17,139 +17,131 @@ export default class Contact extends React.Component{
     render() {
         const {is_errors, res_errors, is_sent, req_status, msg_color} = this.state;
         return (
-            <div className="d-flex flex-row h-100 white-text">
-                <div className="p-2 w-100" id="ContactFormWrapper">
-                    <div className="d-flex flex-column h-100 justify-content-center">
-                        <h1 className="ml-lg-4">Contact me</h1>
-                        <Formik
-                            initialValues={{ name: '', email: '', subject: '', message: '' }}
-                            validate={values => {
-                                const errors = {};
-                                if(!values.name){
-                                    errors.name = 'Name is Required'
-                                }else if(values.name.length > 20){
-                                    errors.name = 'Must be 20 characters or less'
-                                }
+            <div className="h-100 white-text" id="ContactPageWrapper">
 
-                                if (!values.email) {
-                                  errors.email = 'Email Required';
-                                } else if (
-                                  !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i.test(values.email)
-                                ) {
-                                  errors.email = 'Invalid email address';
-                                }
-                                if(!values.subject){
-                                    errors.subject = 'Subject is Required'
+                <div className="d-flex flex-md-column flex-row h-100 justify-content-center" id="ContactFormWrapper">
+                    <Formik
+                        initialValues={{ name: '', email: '', subject: '', message: '' }}
+                        validate={values => {
+                            const errors = {};
+                            if(!values.name){
+                                errors.name = 'Name is Required'
+                            }else if(values.name.length > 20){
+                                errors.name = 'Must be 20 characters or less'
+                            }
 
-                                }else if(values.subject.length > 64){
-                                    errors.subject = 'Must be 64 characters or less'
-                                }
-                                if(!values.message){
-                                    errors.message = 'Message is Required'
-                                }else if(values.message.length > 1500){
-                                    errors.message = 'Must be 1500 characters or less'
-                                }
-                                return errors;
-                            }}
-                            onSubmit={(values, { setSubmitting }) => {
-                                fetch('/ajax/send_email/', {
-                                    method: 'POST',
-                                    headers: {
-                                      'Content-Type': 'application/json',
-                                      'X-CSRFToken': csrftoken,
-                                    },
-                                    body:  JSON.stringify(values)
-                                }).then(res => res.json())
-                                    .then((data) =>{
-                                        if(data.success){
-                                            this.setState({
-                                                is_sent: true,
-                                                req_status: "Successfully Sent!",
-                                                msg_color: "green-text",
-                                                is_errors: false,
-                                            })
-                                        }else{
-                                            console.log(data.errors);
-                                            this.setState({
-                                                is_errors: true,
-                                                is_sent: true,
-                                                res_errors: JSON.parse(data.errors),
-                                                req_status: "Error sending",
-                                                msg_color: "red-text",
-                                            })
-                                        }
-                                    }).catch((error) =>{
-                                        console.log(error)
-                                    });
-                                setSubmitting(false);
-                            }}
-                            >
-                            {({ isSubmitting }) => (
+                            if (!values.email) {
+                              errors.email = 'Email Required';
+                            } else if (
+                              !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i.test(values.email)
+                            ) {
+                              errors.email = 'Invalid email address';
+                            }
+                            if(!values.subject){
+                                errors.subject = 'Subject is Required'
+
+                            }else if(values.subject.length > 64){
+                                errors.subject = 'Must be 64 characters or less'
+                            }
+                            if(!values.message){
+                                errors.message = 'Message is Required'
+                            }else if(values.message.length > 1500){
+                                errors.message = 'Must be 1500 characters or less'
+                            }
+                            return errors;
+                        }}
+                        onSubmit={(values, { setSubmitting }) => {
+                            fetch('/ajax/send_email/', {
+                                method: 'POST',
+                                headers: {
+                                  'Content-Type': 'application/json',
+                                  'X-CSRFToken': csrftoken,
+                                },
+                                body:  JSON.stringify(values)
+                            }).then(res => res.json())
+                                .then((data) =>{
+                                    if(data.success){
+                                        this.setState({
+                                            is_sent: true,
+                                            req_status: "Successfully Sent!",
+                                            msg_color: "green-text",
+                                            is_errors: false,
+                                        })
+                                    }else{
+                                        console.log(data.errors);
+                                        this.setState({
+                                            is_errors: true,
+                                            is_sent: true,
+                                            res_errors: JSON.parse(data.errors),
+                                            req_status: "Error sending",
+                                            msg_color: "red-text",
+                                        })
+                                    }
+                                }).catch((error) =>{
+                                    console.log(error)
+                                });
+                            setSubmitting(false);
+                        }}
+                        >
+                        {({ isSubmitting }) => (
+                            <Form className="p-4" id="contact-form" method="POST">
+                                <h1 className="mt-md-0 mt-5 text-center">Contact me</h1>
+                                <input type="hidden" name="csrfmiddlewaretoken" value={csrftoken} />
                                 <div className="row">
-                                    <div className="col-md-9 mb-md-0 mb-5">
-                                        <Form id="contact-form" method="POST">
-                                            <input type="hidden" name="csrfmiddlewaretoken" value={csrftoken} />
-                                            <div className="row">
-                                                <div className="col-md-6">
-                                                    <div className="md-form mb-0">
-                                                        <Field type="text" name="name" className="form-control white-text" placeholder="Your name"/>
-                                                        <ErrorMessage name="name">
-                                                            {errorMessage => <div className="red-text text-muted font-small">{errorMessage}</div>}
-                                                        </ErrorMessage>
-                                                        {/*Server side errors will display here*/}
-                                                        <p className="red-text text-muted font-small">{is_errors ? res_errors.name : " "}</p>
-                                                     </div>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <div className="md-form mb-0">
-                                                        <Field type="email" name="email" className="form-control white-text" placeholder="Your email"/>
-                                                        <ErrorMessage name="email">
-                                                            {errorMessage => <div className="red-text text-muted font-small">{errorMessage}</div>}
-                                                        </ErrorMessage>
-                                                         {/*Server side errors will display here*/}
-                                                        <p className="red-text text-muted font-small">{is_errors ? res_errors.email : ' '}</p>
-                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-md-12">
-                                                    <div className="md-form mb-0">
-                                                        <Field name="subject" className="form-control white-text" placeholder="Subject" />
-                                                        <ErrorMessage name="subject">
-                                                            {errorMessage => <div className="red-text text-muted font-small">{errorMessage}</div>}
-                                                        </ErrorMessage>
-                                                         {/*Server side errors will display here*/}
-                                                        <p className="red-text text-muted font-small">{is_errors ? res_errors.subject : ' '}</p>
-                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-md-12">
-                                                    <div className="md-form">
-                                                        <Field name="message" component="textarea" className="form-control md-textarea white-text" placeholder="Your message" rows={2}/>
-                                                        <ErrorMessage name="message">
-                                                            {errorMessage => <div className="red-text text-muted font-small">{errorMessage}</div>}
-                                                        </ErrorMessage>
-                                                         {/*Server side errors will display here*/}
-                                                        <p className="red-text text-muted font-small">{is_errors ? res_errors.message : ' '}</p>
-                                                     </div>
-                                                </div>
-
-                                            </div>
-                                            <div className="text-center text-md-left">
-                                                <button className="btn btn-primary" type="submit" disabled={isSubmitting}>
-                                                    Submit
-                                                </button>
-
-                                            </div>
-                                        </Form>
-                                        <h6 className={`${msg_color} pl-2`}>{is_sent ? req_status : " "}</h6>
+                                    <div className="col-md-6">
+                                        <div className="md-form mb-0">
+                                            <Field type="text" name="name" className="form-control white-text" placeholder="Your name"/>
+                                            <ErrorMessage name="name">
+                                                {errorMessage => <div className="red-text text-muted font-small">{errorMessage}</div>}
+                                            </ErrorMessage>
+                                            {/*Server side errors will display here*/}
+                                            <p className="red-text text-muted font-small">{is_errors ? res_errors.name : " "}</p>
+                                         </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="md-form mb-0">
+                                            <Field type="email" name="email" className="form-control white-text" placeholder="Your email"/>
+                                            <ErrorMessage name="email">
+                                                {errorMessage => <div className="red-text text-muted font-small">{errorMessage}</div>}
+                                            </ErrorMessage>
+                                             {/*Server side errors will display here*/}
+                                            <p className="red-text text-muted font-small">{is_errors ? res_errors.email : ' '}</p>
+                                         </div>
                                     </div>
                                 </div>
-                            )}
-                        </Formik>
-                    </div>
-
+                                <div className="row">
+                                    <div className="col-md-12">
+                                        <div className="md-form mb-0">
+                                            <Field name="subject" className="form-control white-text" placeholder="Subject" />
+                                            <ErrorMessage name="subject">
+                                                {errorMessage => <div className="red-text text-muted font-small">{errorMessage}</div>}
+                                            </ErrorMessage>
+                                             {/*Server side errors will display here*/}
+                                            <p className="red-text text-muted font-small">{is_errors ? res_errors.subject : ' '}</p>
+                                         </div>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-12">
+                                        <div className="md-form">
+                                            <Field name="message" component="textarea" className="form-control md-textarea white-text" placeholder="Your message" rows={2}/>
+                                            <ErrorMessage name="message">
+                                                {errorMessage => <div className="red-text text-muted font-small">{errorMessage}</div>}
+                                            </ErrorMessage>
+                                             {/*Server side errors will display here*/}
+                                            <p className="red-text text-muted font-small">{is_errors ? res_errors.message : ' '}</p>
+                                         </div>
+                                    </div>
+                                </div>
+                                <div className="text-center text-md-left">
+                                    <button className="btn btn-primary" type="submit" disabled={isSubmitting}>
+                                        Submit
+                                    </button>
+                                </div>
+                                <h6 className={`${msg_color} pl-2`}>{is_sent ? req_status : " "}</h6>
+                            </Form>
+                        )}
+                    </Formik>
                 </div>
 
                 <MyGoogleMap />
