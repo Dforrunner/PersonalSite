@@ -13,11 +13,13 @@ window.addEventListener('DOMContentLoaded',()=>{
         S('#sidebar').classList.remove('active');
         S('.overlay').classList.remove('active');
         S('#dismiss').classList.remove('active');
+        S('#collapseBars').classList.remove('hidden');
     }));
     S('#collapseBars').addEventListener('click', () => {
          // show sidebar and overlay
          S('#dismiss').classList.add('active');
          S('#sidebar').classList.add('active');
          S('.overlay').classList.add('active');
+         S('#collapseBars').classList.add('hidden');
     });
 });

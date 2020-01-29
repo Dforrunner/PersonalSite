@@ -18,41 +18,46 @@ export default function Sidebar(props){
     const social_links = (link_to, fa) => {
         let fontAwesome = `fab fa-${fa} fa-social-btn`;
         return (
-            <a className="btn shadow-none nav-social-btn text-muted" href={link_to} target="_blank">
+            <a className="btn shadow-none nav-social-btn text-muted " href={link_to} target="_blank">
                 <i className={fontAwesome}> </i>
             </a>
         )
     };
     return (
-        <div>
-            <div className="row collapseBarsWrapper">
-                <button className="btn btn-outline-white rounded" id="collapseBars"><i className="fas fa-bars"> </i></button>
-            </div>
-            <div className="navbar" id="sidebar">
-                <div id="dismiss"><i className="far fa-times-circle white-text fa-2x"> </i></div>
-                <div className="logo_wrapper">
+        <div className="d-flex flex-lg-column flex-md-row flex-sm-column flex-column justify-content-between" id="sidebar">
+
+            <button className="btn btn-outline-white rounded" id="collapseBars"><i className="fas fa-bars"> </i></button>
+
+            <div id="dismiss"><i className="far fa-times-circle white-text fa-2x"> </i></div>
+            <div className="p-2">
+                <div className=" d-flex flex-row justify-content-center ">
                     <NavLink to="/">
                         <img src={props.sidebar.logo} alt='M' id="logo" />
                     </NavLink>
                 </div>
+            </div>
 
-                <div className="nav-btn-group">
-                    {nav_link('/', 'Home', 'fa-home')}
-                    {nav_link('/about', 'About', 'fa-user-tie')}
-                    {nav_link('/experience', 'Experience', 'fa-laptop-code')}
-                    {nav_link('/my-work', 'My Work', 'fa-folder-open')}
-                    {nav_link('/skills', 'Skills', 'fa-cog')}
-                    {nav_link('/contact', 'Contact', 'fa-address-book')}
-                </div>
+            <div className="p-2">
+                {nav_link('/', 'Home', 'fa-home')}
+                {nav_link('/about', 'About', 'fa-user-tie')}
+                {nav_link('/experience', 'Experience', 'fa-laptop-code')}
+                {nav_link('/my-work', 'My Work', 'fa-folder-open')}
+                {nav_link('/skills', 'Skills', 'fa-cog')}
+                {nav_link('/contact', 'Contact', 'fa-address-book')}
+            </div>
 
-                <div className="nav-social-btn-group">
-                    {social_links(props.sidebar.github, "github")}
-                    {social_links(props.sidebar.linkedin, "linkedin")}
-                    {social_links(props.sidebar.instagram, "instagram")}
+            <div className="p-2">
+                {social_links(props.sidebar.github, "github")}
+                {social_links(props.sidebar.linkedin, "linkedin")}
+                {social_links(props.sidebar.instagram, "instagram")}
+
+
+                <div className=" d-flex flex-row justify-content-center">
                     <img src={"https://avatars1.githubusercontent.com/u/33268028?s=400&v=4"}
-                         className="rounded-circle nav_profile_img" alt="avatar image" height="35" />
+                     className="rounded-circle nav_profile_img" alt="avatar image" />
                 </div>
             </div>
+
         </div>
     )
 }

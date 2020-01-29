@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Sidebar, Home, About, Skills, Projects, Contact, SkillNames
+from .models import Sidebar, Home, About, Skills, Projects, Contact, SkillNames, GoogleMap
 
 
 # Serializer classes
@@ -62,3 +62,9 @@ class ContactSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Contact
         fields = ('email', )
+
+
+class GoogleMapSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = GoogleMap
+        fields = ('latitude', 'longitude', "marker")

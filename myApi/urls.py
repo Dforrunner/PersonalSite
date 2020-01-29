@@ -13,6 +13,7 @@ router.register('skills-pg', views.SkillsViewSet)
 router.register('skill-names', views.SkillNamesViewSet)
 router.register('projects-pg', views.ProjectsViewSet)
 router.register('contact-pg', views.ContactViewSet)
+router.register('google-map', views.GoogleMapSerializerViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

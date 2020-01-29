@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Sidebar, Home, About, Skills, Projects, Contact, SkillNames
+from .models import Sidebar, Home, About, Skills, Projects, Contact, SkillNames, GoogleMap
 
 
 class ProjectsAdmin(admin.ModelAdmin):
@@ -18,3 +18,4 @@ admin.site.register(About)
 admin.site.register(Skills, SkillsAdmin)
 admin.site.register(SkillNames)
 admin.site.register(Projects, ProjectsAdmin)
+admin.site.register(GoogleMap)

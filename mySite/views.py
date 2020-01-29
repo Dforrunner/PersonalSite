@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.core.mail import send_mail, BadHeaderError
 from django.http import JsonResponse, Http404
+from django.http.request import QueryDict
 from .forms import ContactForm
+import os
+import json
 # TODO: make this api request
 from myApi.models import Contact
 
@@ -11,33 +14,25 @@ def index(request):
     return render(request, 'mySite/index.html')
 
 
-def contact(request):
-    # Initializing the form
-    form = ContactForm()
-    # Context that is sent to the template
-    context = {
-        'form': form,
-    }
-    return render(request, 'mySite/contact.html', context)
-
-
 # Sending email
 def send_email(request):
     # Validating request type and form
-    if request.is_ajax() and request.method == 'POST':
-        form = ContactForm(request.POST)
+    data = {}
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        form = ContactForm(data)
         if form.is_valid():
             # Getting form field inputs from the request
-            name = request.POST.get('name')
-            subject = request.POST.get('subject')
-            message = request.POST.get('message')
-            from_email = request.POST.get('email')
+            name = data['name']
+            subject = data['subject']
+            message = data['message']
+            from_email = data['email']
             # Getting the contact email from the database
-            to_email = Contact.objects.values_list('email').first()[0]
+            to_email = os.getenv('EMAIL_USERNAME')
             # Constructing the email body
-            email_body = f"İsim: {name}\n" \
-                         f"Gönderen İmeil: {from_email}\n" \
-                         f"Mesaj: \n\n {message}"
+            email_body = f"Name: {name}\n" \
+                         f"Email: {from_email}\n" \
+                         f"Messsage: \n\n {message}"
 
             # Sending email + error handling
             try:
@@ -64,12 +59,11 @@ def send_email(request):
                         'message': 'Successfully Sent!',
                         'msg_color': 'success'}
         else:
-            print(form.errors)
+            print(json.dumps(form.errors))
             response = {'success': False,
                         'message': "Couldn't send message for the following error(s):",
-                        'errors': str(form.errors),
+                        'errors': json.dumps(form.errors),
                         'msg_color': 'error'}
         return JsonResponse(response)
-    else:
-        return Http404
+    return JsonResponse({'success': True, 'data': data})
 

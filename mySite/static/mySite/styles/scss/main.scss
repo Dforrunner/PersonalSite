@@ -5,11 +5,50 @@
 @import "home";
 @import "about";
 @import "skills";
-
+@import "contact";
+@import "sidebar";
 
 body{
   background-color: #1c1c1c;
+  margin: 0;
 }
+
+//**** MAIN GRID LAYOUT ****///
+#MainWrapper{
+  display: grid;
+  @include media-breakpoint-up(md){
+    grid-template-columns: $nav_width_lg auto;
+    grid-template-areas: "sidebar main";
+  }
+  @include media-breakpoint-between(sm, md){
+    grid-template-columns: 100vw;
+    grid-template-rows: ($nav_width_lg - 20px) auto;
+    grid-template-areas: "sidebar main";
+  }
+  @include media-breakpoint-down(sm){
+    grid-template-columns: 100vw;
+    grid-template-rows: auto;
+    grid-template-areas: "main";
+  }
+}
+
+#MainWrapper > #SidebarWrapper{
+  grid-area: sidebar;
+  background-color: #00c131;
+  @include media-breakpoint-up(lg){
+    min-height: 100vh;
+  }
+}
+
+#MainWrapper >  #ContentBodyWrapper{
+  grid-area: main;
+  background-color: #008fc1;
+  @include media-breakpoint-up(md){
+    min-height: 100vh;
+  }
+}
+//**** MAIN GRID LAYOUT ****///
+
 ul, li{
   list-style: none;
 }
@@ -25,7 +64,7 @@ input::-moz-focus-inner {
   border: 0;
 }
 
-// Font classes
+//*** Font classes ***//
 .primary-font{
   font-family: $primary-font;
 }
@@ -37,5 +76,9 @@ input::-moz-focus-inner {
 .third-font{
   font-family: $third-font;
 }
+
+
+
+
 
 

@@ -33,11 +33,10 @@ export default class Skills extends React.Component{
         const {error, isLoaded, items} = this.state;
 
         return (
-            <div className="white-text vh-100">
-                <div className="row skill-content">
+            <div className="h-100 w-100">
                     {
                         items.map((item) =>
-                            <div key={item.pk} className="col-4 pt-5">
+                            <div key={item.pk} className="pt-5">
                                 <ul className="skill-list">
                                     <h4 className="black p-3 rounded-top">{item.skill_category}</h4>
                                     {item.skill_names.map(skill =>
@@ -47,7 +46,6 @@ export default class Skills extends React.Component{
                             </div>
                         )
                     }
-                </div>
             </div>
         );
     }

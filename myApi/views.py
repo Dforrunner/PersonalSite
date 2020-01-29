@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from .serializers import SidebarSerializer, HomeSerializer, AboutSerializer, \
-    SkillsSerializer, ProjectsSerializer, ContactSerializer, SkillNamesSerializer
-from .models import Sidebar, Home, About, Skills, SkillNames, Projects, Contact
+    SkillsSerializer, ProjectsSerializer, ContactSerializer, SkillNamesSerializer, GoogleMapSerializer
+from .models import Sidebar, Home, About, Skills, SkillNames, Projects, Contact, GoogleMap
 
 
 class SidebarViewSet(viewsets.ModelViewSet):
@@ -38,3 +38,7 @@ class ContactViewSet(viewsets.ModelViewSet):
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
 
+
+class GoogleMapSerializerViewSet(viewsets.ModelViewSet):
+    queryset = GoogleMap.objects.all()
+    serializer_class = GoogleMapSerializer

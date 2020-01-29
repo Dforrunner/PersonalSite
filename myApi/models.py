@@ -258,3 +258,16 @@ class Contact(models.Model):
     class Meta:
         verbose_name = 'Contact Info'
         verbose_name_plural = 'Contact Info'
+
+
+class GoogleMap(models.Model):
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+    marker = OptimizedImageField(upload_to='map_marker')
+
+    def __str__(self):
+        return f'Location {self.latitude} x {self.longitude}'
+
+    class Meta:
+        verbose_name = 'Google Map Info'
+        verbose_name_plural = 'Google Map Info'
