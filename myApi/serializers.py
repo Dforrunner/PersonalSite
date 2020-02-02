@@ -47,13 +47,16 @@ class SkillsSerializer(serializers.ModelSerializer):
         fields = ('pk', 'skill_category', "skill_names")
 
 
-class ProjectsSerializer(serializers.HyperlinkedModelSerializer):
+class ProjectsSerializer(serializers.ModelSerializer):
+    tools_used = SkillNamesSerializer(many=True, read_only=True)
+
     class Meta:
         model = Projects
         fields = ('title',
                   'description',
                   'tools_used',
                   'desktop_img',
+                  'tablet_img',
                   'mobile_img',
                   'video')
 

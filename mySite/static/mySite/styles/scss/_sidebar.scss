@@ -9,6 +9,16 @@
   background-color: $nav_color;
   height: 100%;
   z-index: 9000;
+
+  @include media-breakpoint-up(lg){
+    height: 100vh;
+    position: sticky;
+    bottom: 0;
+    top: 0;
+  }
+  @include media-breakpoint-only(md){
+    height: $nav_width_lg - 20px;
+  }
   @include media-breakpoint-down(sm){
     display: block;
     width: $nav_width_sm;

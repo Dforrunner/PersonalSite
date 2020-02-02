@@ -216,12 +216,18 @@ class Projects(models.Model):
         verbose_name='Project Description'
     )
     tools_used = models.ManyToManyField(
-        Skills,
+        SkillNames,
         related_name='projects'
     )
     desktop_img = OptimizedImageField(
         upload_to='project',
         verbose_name='Project Desktop Image',
+        null=True,
+        blank=True
+    )
+    tablet_img = OptimizedImageField(
+        upload_to='project',
+        verbose_name='Project Tablet Image',
         null=True,
         blank=True
     )
