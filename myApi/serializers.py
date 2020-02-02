@@ -58,6 +58,8 @@ class ProjectsSerializer(serializers.ModelSerializer):
                   'desktop_img',
                   'tablet_img',
                   'mobile_img',
+                  'github',
+                  'site_link',
                   'video')
 
 

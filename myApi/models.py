@@ -237,6 +237,14 @@ class Projects(models.Model):
         null=True,
         blank=True
     )
+    github = models.TextField(
+        null=True,
+        blank=True
+    )
+    site_link = models.TextField(
+        null=True,
+        blank=True
+    )
     video = models.TextField(
         null=True,
         blank=True

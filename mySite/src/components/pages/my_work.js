@@ -33,6 +33,7 @@ export default class MyWork extends React.Component{
         const {error, isLoaded, items} = this.state;
         return (
             <div className="white-text pt-lg-5 pb-lg-5 p-lg-5">
+                <h1 className="secondary-font">My Work</h1>
                 {
                     items.map((item) =>
                         <div key={item.pk} className="">
@@ -43,11 +44,34 @@ export default class MyWork extends React.Component{
                             </div>
 
                             <div className='p-5'>
-                                <h2>{item.title}</h2>
+                                <div className="d-flex flex-row justify-content-between">
+                                    <h2>{item.title}</h2>
+                                    <div>
+                                        {!item.site_link ? " " :
+                                            <a className="pl-2 pr-2" href={item.site_link}
+                                               target="_blank">
+                                                <i className="fas fa-external-link-alt">{console.log(item.video)} </i>
+                                            </a>
+                                        }
+                                        {!item.github ? " " :
+                                            <a className="pl-2 pr-2" href={item.github}
+                                               target="_blank">
+                                                <i className="fab fa-github"> </i>
+                                            </a>
+                                        }
+                                        {!item.video ? " ":
+                                            <a className="pl-2 pr-2" href={item.video}
+                                               target="_blank">
+                                                <i className="fab fa-youtube"> </i>
+                                            </a>
+                                        }
+                                    </div>
+                                </div>
+
                                 <p className="font-small primary-font">{item.description}</p>
-                                <div className="d-flex flex-row flex-nowrap">
+                                <div className="row">
                                     {item.tools_used.map(tools =>
-                                        <span className="p-1 tools-used waves-effect" key={tools.pk}>{tools.skill_name}</span>
+                                        <span className=" tools-used waves-effect" key={tools.pk}>{tools.skill_name}</span>
                                     )}
                                 </div>
                             </div>
