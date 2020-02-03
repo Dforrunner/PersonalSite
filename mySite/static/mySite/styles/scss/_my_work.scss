@@ -1,19 +1,21 @@
 @import "modules/variables";
 @import "modules/mixins";
 
-#MockupImageGroup{
-  text-align: center;
-  margin-left: 50px;
-
+#MyWorkPgWrapper{
+  margin-left: 30px;
   @include media-breakpoint-down(xs){
     margin-left: 20px;
+    padding-top: 100px;
   }
+}
+#MockupImageGroup{
+  text-align: center;
 }
 .project-img-common{
   vertical-align: bottom;
   margin-left: -5%;
   box-shadow: -5px -6px 10px 1px black;
-  margin-top: 10%;
+  margin-top: 8%;
 }
 
 .desktop-img{

@@ -52,7 +52,8 @@ class ProjectsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Projects
-        fields = ('title',
+        fields = ('pk',
+                  'title',
                   'description',
                   'tools_used',
                   'desktop_img',

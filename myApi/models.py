@@ -136,7 +136,7 @@ class Home(models.Model):
 
 class About(models.Model):
     p_title = models.CharField(
-        max_length= 64,
+        max_length=64,
         null=True,
         blank=True,
         verbose_name='Paragraph 1 Title'
@@ -166,6 +166,40 @@ class About(models.Model):
     class Meta:
         verbose_name = 'About'
         verbose_name_plural = verbose_name
+
+
+class ResponsibilityList(models.Model):
+    responsibility = models.CharField(
+        max_length=255,
+    )
+
+
+class Experience(models.Model):
+    title = models.CharField(
+        max_length=64,
+    )
+    company_name = models.CharField(
+        max_length=64,
+    )
+    start_month = models.CharField(
+        choices=MONTHS,
+        max_length=64,
+    )
+    start_year = models.IntegerField(
+        choices=YEARS,
+    )
+    end_month = models.CharField(
+        choices=MONTHS,
+        max_length=64,
+    )
+    end_year = models.IntegerField(
+        choices=YEARS
+    )
+    responsibilities = models.ForeignKey(
+        ResponsibilityList,
+        related_name='experience',
+        on_delete=models.CASCADE
+    )
 
 
 class SkillNames(models.Model):

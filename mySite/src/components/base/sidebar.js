@@ -28,8 +28,6 @@ export default function Sidebar(props){
 
             <button className="btn btn-outline-white rounded" id="collapseBars"><i className="fas fa-bars"> </i></button>
 
-            <div id="dismiss"><i className="far fa-times-circle white-text fa-2x"> </i></div>
-
             <div className="p-2">
                 <div className=" d-flex flex-row justify-content-center ">
                     <NavLink to="/">

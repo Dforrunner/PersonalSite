@@ -173,21 +173,3 @@
 #collapseBars.hidden{
   display: none;
 }
-
-
-// The X button that appears when the window width is below sm, and sidebar is open. It's used to close the sidebar
-#dismiss {
-  display: none;
-}
-
-#dismiss.active{
-  @include media-breakpoint-down(sm){
-    display: inline-block;
-    width: 35px;
-    height: 35px;
-    position: absolute;
-    color: white;
-    top: 10px;
-    left: 130px;
-  }
-}

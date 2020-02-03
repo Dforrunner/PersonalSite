@@ -32,7 +32,7 @@ export default class MyWork extends React.Component{
     render() {
         const {error, isLoaded, items} = this.state;
         return (
-            <div className="white-text pt-lg-5 pb-lg-5 p-lg-5">
+            <div className="white-text pt-lg-5 pb-lg-5 p-lg-5" id='MyWorkPgWrapper'>
                 <h1 className="secondary-font">My Work</h1>
                 {
                     items.map((item) =>
@@ -43,25 +43,22 @@ export default class MyWork extends React.Component{
                                 <img src={item.mobile_img} alt="Mobile Image" className="mobile-img" />
                             </div>
 
-                            <div className='p-5'>
+                            <div className='pt-5 pr-5'>
                                 <div className="d-flex flex-row justify-content-between">
                                     <h2>{item.title}</h2>
                                     <div>
-                                        {!item.site_link ? " " :
-                                            <a className="pl-2 pr-2" href={item.site_link}
-                                               target="_blank">
-                                                <i className="fas fa-external-link-alt">{console.log(item.video)} </i>
-                                            </a>
-                                        }
                                         {!item.github ? " " :
-                                            <a className="pl-2 pr-2" href={item.github}
-                                               target="_blank">
+                                            <a className="pl-2 pr-2" href={item.github} target="_blank">
                                                 <i className="fab fa-github"> </i>
                                             </a>
                                         }
-                                        {!item.video ? " ":
-                                            <a className="pl-2 pr-2" href={item.video}
-                                               target="_blank">
+                                        {!item.site_link ? " " :
+                                            <a className="pl-2 pr-2" href={item.site_link} target="_blank">
+                                                <i className="fas fa-external-link-alt"> </i>
+                                            </a>
+                                        }
+                                        {!item.video ? " " :
+                                            <a className="pl-2 pr-2" href={item.video} target="_blank">
                                                 <i className="fab fa-youtube"> </i>
                                             </a>
                                         }
