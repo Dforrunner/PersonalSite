@@ -173,6 +173,9 @@ class ResponsibilityList(models.Model):
         max_length=255,
     )
 
+    def __str__(self):
+        return self.responsibility
+
 
 class Experience(models.Model):
     title = models.CharField(
@@ -195,11 +198,17 @@ class Experience(models.Model):
     end_year = models.IntegerField(
         choices=YEARS
     )
-    responsibilities = models.ForeignKey(
+    responsibilities = models.ManyToManyField(
         ResponsibilityList,
-        related_name='experience',
-        on_delete=models.CASCADE
+        related_name='experience'
     )
+
+    def __str__(self):
+        return f"{self.title} at {self.company_name}"
+
+    class Meta:
+        verbose_name = "Experience"
+        verbose_name_plural = "Experiences"
 
 
 class SkillNames(models.Model):

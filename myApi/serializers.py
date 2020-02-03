@@ -1,10 +1,8 @@
 from rest_framework import serializers
-from .models import Sidebar, Home, About, Skills, Projects, Contact, SkillNames, GoogleMap
+from .models import Sidebar, Home, About, Experience, ResponsibilityList,  Skills, Projects, Contact, SkillNames, GoogleMap
 
 
 # Serializer classes
-
-
 class SidebarSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Sidebar
@@ -31,6 +29,31 @@ class AboutSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = About
         fields = ('p_title', 'p1', 'p2', 'p3', 'profile_img')
+
+
+class ResponsibilityListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ResponsibilityList
+        fields = ('pk', 'responsibility')
+
+
+class ExperienceSerializer(serializers.ModelSerializer):
+    responsibilities = ResponsibilityListSerializer(many=True, read_only=True)
+    start_month = serializers.CharField(source='get_start_month_display')
+    start_year = serializers.CharField(source='get_start_year_display')
+    end_month = serializers.CharField(source='get_end_month_display')
+    end_year = serializers.CharField(source='get_end_year_display')
+
+    class Meta:
+        model = Experience
+        fields = ('pk',
+                  'title',
+                  'company_name',
+                  'start_month',
+                  'start_year',
+                  'end_month',
+                  'end_year',
+                  'responsibilities')
 
 
 class SkillNamesSerializer(serializers.ModelSerializer):
