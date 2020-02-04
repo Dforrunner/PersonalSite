@@ -13,6 +13,5 @@ urlpatterns = [
     re_path(r'my-work/?$', views.index),
     re_path(r'skills/?$', views.index),
     re_path(r'contact/?$', views.index),
-    re_path(r'page-not-found-404/?$', views.index),
-    path('ajax/send_email/', views.send_email, name='send_email'),
+    re_path(r'page-not-found-404/?$', views.index)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

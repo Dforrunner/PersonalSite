@@ -11,4 +11,11 @@
   @include media-breakpoint-down(sm){
     padding-top: 100px;
   }
+
+  div {
+    color: #eeeeee;
+  }
+  div > ul {
+    color: $main-text-color;
+  }
 }

@@ -34,7 +34,8 @@ export default class Skills extends React.Component{
 
         return (
             <div className="animated slideInLeft" id='SkillsPageWrapper'>
-                <h1 className="secondary-font white-text">Skills/Tools</h1>
+                <h1 className="secondary-font white-text pl-5">Skills/Tools</h1>
+                <div className='skill-categories'>
                 {
                     items.map((item) =>
                         <div key={item.pk} className="pt-5 pr-5">
@@ -47,6 +48,7 @@ export default class Skills extends React.Component{
                         </div>
                     )
                 }
+                </div>
             </div>
         );
     }

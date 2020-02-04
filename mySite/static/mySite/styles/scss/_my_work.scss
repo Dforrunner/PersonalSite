@@ -46,6 +46,12 @@
   margin: 2px;
 
   &:hover{
-    color: rgba(255, 0, 89, 0.94);
+    color: cyan;
   }
+}
+
+.project-description{
+  font-family: $primary-font;
+  color: $main-text-color;
+
 }

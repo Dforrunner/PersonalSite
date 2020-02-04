@@ -33,7 +33,7 @@ export default class MyWork extends React.Component{
         const {error, isLoaded, items} = this.state;
         return (
             <div className="white-text pt-lg-5 pb-lg-5 p-lg-5 animated fadeIn" id='MyWorkPgWrapper'>
-                <h1 className="secondary-font">My Work</h1>
+                <h1 className="pg-header">My Work</h1>
                 {
                     items.map((item) =>
                         <div key={item.pk} className="animated slideInLeft">
@@ -65,7 +65,7 @@ export default class MyWork extends React.Component{
                                     </div>
                                 </div>
 
-                                <p className="font-small primary-font">{item.description}</p>
+                                <p className="project-description">{item.description}</p>
                                 <div className="row">
                                     {item.tools_used.map(tools =>
                                         <span className=" tools-used waves-effect" key={tools.pk}>{tools.skill_name}</span>

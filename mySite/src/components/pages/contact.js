@@ -134,7 +134,7 @@ export default class Contact extends React.Component{
                                     </div>
                                 </div>
                                 <div className="text-center text-md-left">
-                                    <button className="btn btn-primary" type="submit" disabled={isSubmitting}>
+                                    <button className="btn btn-outline-cyan" type="submit" disabled={isSubmitting}>
                                         Submit
                                     </button>
                                 </div>

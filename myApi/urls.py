@@ -20,6 +20,7 @@ router.register('google-map', views.GoogleMapSerializerViewSet)
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('api/', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('ajax/send_email/', views.send_email, name='send_email'),
 ]
 

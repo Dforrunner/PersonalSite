@@ -4,7 +4,7 @@
   display: grid;
   grid-area: main;
   @include media-breakpoint-up(sm){
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 40% auto;
     grid-template-rows: 100%;
     grid-template-areas: "form map";
   }

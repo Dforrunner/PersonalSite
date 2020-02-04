@@ -82,10 +82,8 @@ input::-moz-focus-inner {
 }
 
 .pg-header{
-  border-bottom: 3px solid cyan;
-  padding-bottom: 5px;
-  width: 20%;
+  font-family: $secondary-font;
+  color: $header-text-color;
 }
-
 
 

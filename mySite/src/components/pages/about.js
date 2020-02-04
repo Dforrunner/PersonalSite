@@ -33,7 +33,7 @@ export default class About extends React.Component{
         return (
             <div className="h-100 animated slideInLeft" id="AboutPageWrapper">
                 <div className="d-flex flex-column justify-content-center p-4 about-text-content">
-                    <h1>{items.p_title}</h1>
+                    <h1 className="pg-header">{items.p_title}</h1>
                     <p>{items.p1}</p>
                     <p>{items.p2}</p>
                     <p>{items.p3}</p>

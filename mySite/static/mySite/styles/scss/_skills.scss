@@ -3,13 +3,24 @@
 
 #SkillsPageWrapper{
   display: grid;
-  grid-template-rows: 100%;
-  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  grid-template-rows: 10% auto;
+  grid-template-areas: 'header'
+                       'main';
   padding-top: 70px;
 
   @include media-breakpoint-only(md){
     padding-top: 5px;
   }
+
+  h1 {
+    grid-area: header;
+  }
+}
+
+.skill-categories {
+  grid-area: main;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
 }
 
 .skill-list{
