@@ -12,17 +12,15 @@
 
 .about-text-content{
   width: 500px;
-
+  color: white;
   > h1 {
     font-family: $secondary-font;
-    color: cyan;
   }
 
   > p {
     font-family: $primary-font;
     font-size: 0.9em;
     margin-top: 25px;
-    color: white;
   }
 }
 

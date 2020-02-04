@@ -31,7 +31,7 @@ export default class Experience extends React.Component{
     render() {
         const {error, isLoaded, items} = this.state;
         return (
-            <div className="white-text p-5 ml-5 mr-5 primary-font" id="ExperiencePageWrapper">
+            <div className="animated slideInLeft" id="ExperiencePageWrapper">
                 <h1 className="secondary-font">My Experience</h1>
                 {
                     items.map(item =>

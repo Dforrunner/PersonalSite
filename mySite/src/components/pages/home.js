@@ -28,6 +28,7 @@ export default class Home extends React.Component{
                         isLoaded: true,
                         error
                     });
+                    console.log(error);
                 }
             )
     }
@@ -35,7 +36,7 @@ export default class Home extends React.Component{
     render() {
         const {error, isLoaded, items} = this.state;
         return (
-            <div className='d-flex flex-column justify-content-center h-100'>
+            <div className='d-flex flex-column justify-content-center h-100 animated fadeIn'>
                 <ParticleBackground />
                 <div className="p-2 ml-2">
                     <svg id="introHeader" viewBox="0 0 778 326" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -112,7 +113,7 @@ export default class Home extends React.Component{
                     <h6 className="animated fadeInUp delay-1s primary-font introSubtitle">{items.intro}</h6>
                     <Link to="contact" className="btn btn-outline-cyan mt-5 animated fadeInUp delay-2s"> Contact me </Link>
                 </div>
-             </div>
+            </div>
         );
     }
 }

@@ -33,7 +33,8 @@ export default class Skills extends React.Component{
         const {error, isLoaded, items} = this.state;
 
         return (
-            <div id='SkillsPageWrapper'>
+            <div className="animated slideInLeft" id='SkillsPageWrapper'>
+                <h1 className="secondary-font white-text">Skills/Tools</h1>
                 {
                     items.map((item) =>
                         <div key={item.pk} className="pt-5 pr-5">

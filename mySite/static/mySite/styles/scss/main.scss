@@ -8,6 +8,7 @@
 @import "contact";
 @import "my_work";
 @import "experience";
+@import "loader";
 
 body{
   background-color: #1c1c1c;
@@ -23,7 +24,7 @@ body{
   }
   @include media-breakpoint-between(sm, md){
     grid-template-columns: 100%;
-    grid-template-rows: 10% auto;
+    grid-template-rows: ($nav_width_lg - 20px) auto;
     grid-template-areas: "sidebar"
                           "main";
   }
@@ -85,7 +86,6 @@ input::-moz-focus-inner {
   padding-bottom: 5px;
   width: 20%;
 }
-
 
 
 

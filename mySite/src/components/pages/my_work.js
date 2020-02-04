@@ -32,11 +32,11 @@ export default class MyWork extends React.Component{
     render() {
         const {error, isLoaded, items} = this.state;
         return (
-            <div className="white-text pt-lg-5 pb-lg-5 p-lg-5" id='MyWorkPgWrapper'>
+            <div className="white-text pt-lg-5 pb-lg-5 p-lg-5 animated fadeIn" id='MyWorkPgWrapper'>
                 <h1 className="secondary-font">My Work</h1>
                 {
                     items.map((item) =>
-                        <div key={item.pk} className="">
+                        <div key={item.pk} className="animated slideInLeft">
                             <div id='MockupImageGroup'>
                                 <img src={item.desktop_img} alt="Desktop Image" className="desktop-img" />
                                 <img src={item.tablet_img} alt="Tablet Image" className="tablet-img" />

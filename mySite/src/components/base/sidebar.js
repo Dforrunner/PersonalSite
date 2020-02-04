@@ -24,7 +24,7 @@ export default function Sidebar(props){
         )
     };
     return (
-        <div className="d-flex flex-lg-column flex-md-row flex-sm-column flex-column justify-content-between" id="sidebar">
+        <nav id="sidebar">
 
             <button className="btn btn-outline-white rounded" id="collapseBars"><i className="fas fa-bars"> </i></button>
 
@@ -55,6 +55,6 @@ export default function Sidebar(props){
                      className="rounded-circle nav_profile_img" alt="avatar image" />
                 </div>
             </div>
-        </div>
+        </nav>
     )
 }

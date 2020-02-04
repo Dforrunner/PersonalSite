@@ -2,5 +2,13 @@
 @import "modules/mixins";
 
 #ExperiencePageWrapper{
+  color: white;
+  font-family: $secondary-font;
+  font-size: 0.9rem;
+  letter-spacing: 0.2px;
+  padding: 5% 15% 5% 5%;
 
+  @include media-breakpoint-down(sm){
+    padding-top: 100px;
+  }
 }
