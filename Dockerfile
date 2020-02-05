@@ -6,7 +6,7 @@ RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
 
 # Add current directory code to working directory
-#ADD . /usr/src/app
+ADD . /usr/src/app
 
 # set default environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -22,22 +22,6 @@ RUN pip install --upgrade pip
 ADD ./requirements.txt /usr/src/app/requirements.txt
 RUN pip install -r requirements.txt
 
-ENV NODE_VERSION=12.14.1
-RUN apt install -y curl
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
-ENV NVM_DIR=/root/.nvm
-RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
-RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
-RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
-ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
-RUN node --version
-RUN npm --version
-
-COPY package.json .
-RUN npm install
-
-# copy project
-COPY . /usr/src/app/
 
 EXPOSE 8000
 CMD gunicorn PersonalSite.wsgi:application --bind 0.0.0.0:$PORT
