@@ -23,11 +23,11 @@ ADD ./requirements.txt /usr/src/app/requirements.txt
 RUN pip install -r requirements.txt
 
 # Intall Node
-FROM node:12.14.1-alpine
-
-# Install node dependencies
-COPY package.json .
-RUN npm install
+#FROM node:12.14.1-alpine
+#
+## Install node dependencies
+#COPY package.json .
+#RUN npm install
 
 
 EXPOSE 8000
