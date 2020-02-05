@@ -15,9 +15,7 @@ services:
       build:
         context: .
         dockerfile: Dockerfile
-      command:
-        - gunicorn PersonalSite.wsgi:application --bind 0.0.0.0:8000  # python manage.py runserver 0.0.0.0:8000
-        - npm run build
+      command: python3 manage.py runserver 0.0.0.0:8000 # gunicorn PersonalSite.wsgi:application --bind 0.0.0.0:8000  #
       volumes:
         - .:/usr/src/app
       env_file: .env

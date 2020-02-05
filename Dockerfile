@@ -1,5 +1,5 @@
 # Base Image
-FROM python:3.7
+FROM python:3.7-alpine
 
 # create and set working directory
 RUN mkdir /usr/src/app
@@ -23,10 +23,10 @@ ADD ./requirements.txt /usr/src/app/requirements.txt
 RUN pip install -r requirements.txt
 
 # Intall Node
-FROM node:12.14.1
+FROM node:12.14.1-alpine
 
 # Install node dependencies
-ADD ./package.json /usr/src/app/package.json
+COPY package.json .
 RUN npm install
 
 
