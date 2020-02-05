@@ -22,13 +22,5 @@ RUN pip install --upgrade pip
 ADD ./requirements.txt /usr/src/app/requirements.txt
 RUN pip install -r requirements.txt
 
-# Intall Node
-FROM node:12.14.1
-
-# Install node dependencies
-ADD ./package.json /usr/src/app/package.json
-RUN npm install
-
-
 EXPOSE 8000
 CMD gunicorn PersonalSite.wsgi:application --bind 0.0.0.0:$PORT
