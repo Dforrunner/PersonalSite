@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+    db:
+        image: postgres
+    migration:
+        build: .
+        command: python3 manage.py migrate
+        volumes:
+          - .:/usr/src/app
+        env_file: .env
+        depends_on:
+          - db
+    web:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      command:
+        - gunicorn PersonalSite.wsgi:application --bind 0.0.0.0:8000  # python manage.py runserver 0.0.0.0:8000
+        - npm run build
+      volumes:
+        - .:/usr/src/app
+      env_file: .env
+      expose:
+        - "8000"
+      depends_on:
+        - db
+        - migration

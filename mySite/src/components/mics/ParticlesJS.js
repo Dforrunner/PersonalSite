@@ -20,11 +20,6 @@ export default class ParticleBackground extends Component{
     window.addEventListener("resize", this.updateDimensions.bind(this));
   }
 
-  //  // Remove event listener
-  // componentWillUnmount() {
-  //   window.removeEventListener("resize", this.updateDimensions.bind(this));
-  // }
-
    render() {
        return (
             <div id="ParticleJS">
