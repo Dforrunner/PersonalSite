@@ -7,7 +7,7 @@
   grid-template-columns: repeat(2, 1fr);
 
   @include media-breakpoint-down(sm){
-    margin-top: 90px;
+    margin-top: 60px;
     grid-template-columns: 1fr;
   }
 }

@@ -46,7 +46,7 @@ export default class Experience extends React.Component{
                             <ul className="pt-2">
                                 {
                                     item.responsibilities.map(r =>
-                                        <li className="pt-2" key={r.pk}><i className="fas fa-caret-right cyan-ic mr-1"> </i> {r.responsibility}</li>
+                                        <li className="pt-2" key={r.pk}><i className="fas fa-caret-right cyan-ic mr-md-1"> </i> {r.responsibility}</li>
                                     )
                                 }
                             </ul>

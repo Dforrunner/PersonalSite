@@ -25,8 +25,7 @@ export default function Sidebar(props){
     };
     return (
         <nav id="sidebar">
-
-            <button className="btn btn-outline-white rounded" id="collapseBars"><i className="fas fa-bars"> </i></button>
+            <button className="btn btn-black rounded" id="collapseBars"><i className="fas fa-bars"> </i></button>
 
             <div className="p-2">
                 <div className=" d-flex flex-row justify-content-center ">
@@ -34,7 +33,7 @@ export default function Sidebar(props){
                         <img src={props.sidebar.logo} alt='M' id="logo" />
                     </NavLink>
                 </div>
-            </div>
+             </div>
 
             <div className="p-2">
                 {nav_link('/', 'Home', 'fa-home')}
