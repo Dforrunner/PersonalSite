@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Route, Switch, BrowserRouter, Redirect} from 'react-router-dom';
 import Sidebar from "./base/sidebar";
-import Favicon from "./base/favicon";
 import Home from "./pages/home";
 import About from "./pages/about";
 import Experience from "./pages/experience";
@@ -46,8 +45,6 @@ class App extends Component{
         return (
             <BrowserRouter>
                 <div id="MainWrapper">
-
-                    <Favicon faviconPath={items.favicon}/>
 
                     <div id='SidebarWrapper'>
                         <Sidebar sidebar={items}/>
