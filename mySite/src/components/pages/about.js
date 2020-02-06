@@ -38,7 +38,7 @@ export default class About extends React.Component{
                     <p>{items.p2}</p>
                     <p>{items.p3}</p>
                 </div>
-                <div className="d-flex flex-column justify-content-center pl-5">
+                <div className="d-flex flex-column justify-content-center pl-md-5">
                     <img className="about-prof-img" src={items.profile_img} alt="Profile Image" />
                 </div>
             </div>

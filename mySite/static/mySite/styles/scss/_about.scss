@@ -7,12 +7,14 @@
   grid-template-columns: repeat(2, 1fr);
 
   @include media-breakpoint-down(sm){
-      grid-template-columns: 1fr;
+    margin-top: 90px;
+    grid-template-columns: 1fr;
   }
 }
 
 .about-text-content{
   width: 500px;
+
   color: $main-text-color;
   > h1 {
     font-family: $secondary-font;
