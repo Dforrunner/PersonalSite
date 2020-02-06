@@ -309,17 +309,40 @@
     transform: rotate(720deg);
   }
 }
+#HomePageWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+#HomePageWrapper div {
+  align-content: center;
+}
+
 .introSubtitle {
   color: grey;
   font-size: 12px;
   letter-spacing: 4px;
   font-family: "Raleway", sans-serif;
   margin-top: 10px;
+  margin-left: 1%;
 }
-@media (max-width: 767.98px) {
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .introSubtitle {
+    font-size: 12px;
+    letter-spacing: 1.2px;
+  }
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .introSubtitle {
+    font-size: 0.9em;
+    letter-spacing: 1px;
+  }
+}
+@media (max-width: 575.98px) {
   .introSubtitle {
     font-size: 10px;
-    letter-spacing: 0.5px;
+    letter-spacing: 1.1px;
   }
 }
 
@@ -338,15 +361,21 @@
 
 #introHeader {
   animation: fill 1s ease forwards 2.5s;
-  width: 600px;
+  width: 58%;
   height: auto;
+  margin-left: 1%;
 }
 #introHeader > mask {
   fill: white;
 }
+@media (min-width: 768px) and (max-width: 991.98px) {
+  #introHeader {
+    width: 62%;
+  }
+}
 @media (max-width: 767.98px) {
   #introHeader {
-    width: 350px;
+    width: 75%;
   }
 }
 
@@ -1173,7 +1202,7 @@ body {
     grid-template-areas: "sidebar main";
   }
 }
-@media (min-width: 576px) and (max-width: 991.98px) {
+@media (min-width: 768px) and (max-width: 991.98px) {
   #MainWrapper {
     grid-template-columns: 100%;
     grid-template-rows: 70px auto;

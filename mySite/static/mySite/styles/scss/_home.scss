@@ -3,6 +3,16 @@
 @import 'modules/animations';
 
 // Home page text content
+#HomePageWrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+
+  div{
+    align-content: center;
+  }
+}
 
 .introSubtitle{
   color: grey;
@@ -10,10 +20,19 @@
   letter-spacing: 4px;
   font-family: $third-font;
   margin-top: 10px;
+  margin-left: 1%;
 
-  @include media-breakpoint-down(sm){
+  @include media-breakpoint-only(md){
+     font-size: 12px;
+     letter-spacing: 1.2px;
+  }
+  @include media-breakpoint-only(sm){
+    font-size: 0.9em;
+    letter-spacing: 1px;
+  }
+  @include media-breakpoint-down(xs){
     font-size: 10px;
-    letter-spacing: 0.5px;
+    letter-spacing: 1.1px;
   }
 }
 
@@ -170,14 +189,18 @@ $letter_size:
 // Fill animation after the line drawing is complete
 #introHeader{
   animation: fill 1s ease forwards 2.5s;
-  width: 600px;
+  width: 58%;
   height: auto;
+  margin-left: 1%;
   > mask{
     fill: white;
   }
 
+  @include media-breakpoint-only(md){
+    width: 62%;
+  }
   @include media-breakpoint-down(sm){
-    width: 350px;
+    width: 75%;
   }
 }
 

@@ -22,7 +22,7 @@ body{
     grid-template-columns: $nav_width_lg auto;
     grid-template-areas: "sidebar main";
   }
-  @include media-breakpoint-between(sm, md){
+  @include media-breakpoint-only(md){
     grid-template-columns: 100%;
     grid-template-rows: ($nav_width_lg - 20px) auto;
     grid-template-areas: "sidebar"

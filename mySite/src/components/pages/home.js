@@ -36,7 +36,7 @@ export default class Home extends React.Component{
     render() {
         const {error, isLoaded, items} = this.state;
         return (
-            <div className='d-flex flex-column justify-content-center h-100 animated fadeIn'>
+            <div className='animated fadeIn' id="HomePageWrapper">
                 <ParticleBackground />
                 <div className="p-2 ml-2">
                     <svg id="introHeader" viewBox="0 0 778 326" fill="none" xmlns="http://www.w3.org/2000/svg">
