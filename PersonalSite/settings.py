@@ -24,7 +24,12 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = FileExistsError
 
-ALLOWED_HOSTS = ['127.0.0.1', '127.0.0.1:8000', '0.0.0.0', '0.0.0.0:8000', 'muhammetbarut.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1',
+                 '127.0.0.1:8000',
+                 'muhammetbarut.herokuapp.com',
+                 'www.muhammetbarut.herokuapp.com',
+                 'muhammetbarut.com',
+                 'www.muhammetbarut.com']
 
 
 # Application definition
