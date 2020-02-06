@@ -11,7 +11,7 @@ export default class MyWork extends React.Component{
     }
 
     componentDidMount() {
-        fetch("/api/projects-pg/")
+        fetch(`${process.env.REACT_APP_HOST}/api/projects-pg/`)
             .then(res => res.json())
             .then(
                 (result) => {

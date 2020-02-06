@@ -11,7 +11,7 @@ export default class Skills extends React.Component{
     }
 
     componentDidMount() {
-        fetch("/api/skills-pg/")
+        fetch(`${process.env.REACT_APP_HOST}/api/skills-pg/`)
             .then(res => res.json())
             .then(
                 (result) => {

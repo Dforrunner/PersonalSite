@@ -51,7 +51,7 @@ export default class Contact extends React.Component{
                             return errors;
                         }}
                         onSubmit={(values, { setSubmitting }) => {
-                            fetch('/ajax/send_email/', {
+                            fetch(`${process.env.REACT_APP_HOST}/ajax/send_email/`, {
                                 method: 'POST',
                                 headers: {
                                   'Content-Type': 'application/json',

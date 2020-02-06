@@ -23,7 +23,7 @@ class App extends Component{
     }
 
     componentDidMount() {
-        fetch("/api/sidebar/")
+        fetch(`${process.env.REACT_APP_HOST}/api/sidebar/`)
             .then(res => res.json())
             .then(
                 (result) => {

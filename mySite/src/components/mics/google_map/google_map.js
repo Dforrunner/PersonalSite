@@ -42,7 +42,7 @@ export default class MyGoogleMap extends React.Component{
     }
 
     componentDidMount() {
-       fetch("/api/google-map/")
+       fetch(`${process.env.REACT_APP_HOST}/api/google-map/`)
             .then(res => res.json())
             .then(
                 (result) => {

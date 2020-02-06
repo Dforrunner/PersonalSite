@@ -11,7 +11,7 @@ export default class Experience extends React.Component{
     }
 
     componentDidMount() {
-        fetch("/api/experience-list/")
+        fetch(`${process.env.REACT_APP_HOST}/api/experience-list/`)
             .then(res => res.json())
             .then(
                 (result) => {

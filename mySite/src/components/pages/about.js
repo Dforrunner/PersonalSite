@@ -11,7 +11,7 @@ export default class About extends React.Component{
     }
 
     componentDidMount() {
-        fetch("/api/about-pg/")
+        fetch(`${process.env.REACT_APP_HOST}/api/about-pg/`)
             .then(res => res.json())
             .then(
                 (result) => {

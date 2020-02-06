@@ -14,7 +14,7 @@ export default class Home extends React.Component{
     }
 
     componentDidMount() {
-        fetch("/api/home-pg/")
+        fetch(`${process.env.REACT_APP_HOST}/api/home-pg/`)
             .then(res => res.json())
             .then(
                 (result) => {
