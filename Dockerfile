@@ -1,5 +1,5 @@
 # Base Image
-FROM python:3.7-alpine
+FROM python:3.7
 
 # create and set working directory
 RUN mkdir /usr/src/app
@@ -24,4 +24,4 @@ RUN pip install -r requirements.txt
 
 
 EXPOSE 8000
-CMD gunicorn PersonalSite.wsgi:application
+CMD gunicorn PersonalSite.wsgi:application --bind 0.0.0.0:$PORT
