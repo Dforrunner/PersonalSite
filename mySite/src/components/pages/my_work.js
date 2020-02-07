@@ -43,7 +43,7 @@ export default class MyWork extends React.Component{
                                 <img src={item.mobile_img} alt="Mobile Image" className="mobile-img" />
                             </div>
 
-                            <div className='pt-5 pr-5'>
+                            <div className='pt-5 pr-md-5'>
                                 <div className="d-flex flex-row justify-content-between">
                                     <h2>{item.title}</h2>
                                     <div>
