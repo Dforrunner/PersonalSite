@@ -35,15 +35,15 @@ export default class Experience extends React.Component{
                 <h1 className="pg-header">My Experience</h1>
                 {
                     items.map(item =>
-                        <div className="pt-4" key={item.pk}>
-                            <h4>
+                        <div className="pt-3" key={item.pk}>
+                            <h6 className="primary-font">
                                 {item.title}
                                 <span className="cyan-text"> @{item.company_name}</span>
-                            </h4>
-                            <h6 className="text-muted">
-                                {item.start_month}, {item.start_year} - {item.end_month}, {item.end_year}
                             </h6>
-                            <ul className="pt-2">
+                            <p className="font-small primary-font text-muted">
+                                {item.start_month}, {item.start_year} - {item.end_month}, {item.end_year}
+                            </p>
+                            <ul className="pt-1">
                                 {
                                     item.responsibilities.map(r =>
                                         <li className="pt-2" key={r.pk}><i className="fas fa-caret-right cyan-ic mr-md-1"> </i> {r.responsibility}</li>
