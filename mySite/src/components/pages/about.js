@@ -31,15 +31,15 @@ export default class About extends React.Component{
     render() {
         const {error, isLoaded, items} = this.state;
         return (
-            <div className="h-100 animated slideInLeft" id="AboutPageWrapper">
-                <div className="d-flex flex-column justify-content-center p-4 about-text-content">
+            <div className="animated slideInLeft" id="AboutPageWrapper">
+                <div className="about-left-content p-md-4 p-5">
                     <h1 className="pg-header">{items.p_title}</h1>
                     <p>{items.p1}</p>
                     <p>{items.p2}</p>
                     <p>{items.p3}</p>
                 </div>
-                <div className="d-flex flex-column justify-content-center pl-md-5">
-                    <img className="about-prof-img" src={items.profile_img} alt="Profile Image" />
+                <div className="about-right-content">
+                    <img className="about-prof-img ml-md-5" src={items.profile_img} alt="Profile Image" />
                 </div>
             </div>
         );

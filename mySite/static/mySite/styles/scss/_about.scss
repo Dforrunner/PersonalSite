@@ -3,19 +3,46 @@
 
 #AboutPageWrapper{
   display: grid;
-  grid-template-rows: 100%;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: minmax(100vh, auto);
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: 'text-content image';
 
   @include media-breakpoint-down(sm){
-    margin-top: 60px;
-    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: auto;
+    grid-template-areas: 'text-content'
+                         'image';
   }
 }
 
-.about-text-content{
-  width: 500px;
+.about-right-content {
+  grid-area: image;
 
+  @include media-breakpoint-up(lg){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  @include media-breakpoint-down(sm){
+    text-align: center;
+  }
+}
+
+.about-left-content{
+  grid-area: text-content;
   color: $main-text-color;
+
+  @include media-breakpoint-up(lg){
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @include media-breakpoint-down(md){
+    margin-top: 70px;
+  }
+
   > h1 {
     font-family: $secondary-font;
   }
@@ -32,7 +59,10 @@
   width: 80%;
   height: auto;
 
+  @include media-breakpoint-only(md){
+    margin-top: 150px;
+  }
   @include media-breakpoint-down(sm){
-      display: none;
+    width: 70%;
   }
 }

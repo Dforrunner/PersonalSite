@@ -35,20 +35,18 @@ body{
   }
 }
 
-#MainWrapper > #SidebarWrapper{
+#SidebarWrapper{
   grid-area: sidebar;
   @include media-breakpoint-up(lg){
     min-height: 100vh;
   }
 }
 
-#MainWrapper >  #ContentBodyWrapper{
+#ContentBodyWrapper{
   grid-area: main;
+  min-height: 100vh;
   @include media-breakpoint-only(md){
     min-height: 90vh;
-  }
-  @include media-breakpoint-down(sm){
-    min-height: 100vh;
   }
 }
 //**** MAIN GRID LAYOUT ****///
