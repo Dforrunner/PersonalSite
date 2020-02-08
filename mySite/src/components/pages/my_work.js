@@ -37,7 +37,7 @@ export default class MyWork extends React.Component{
                 {
                     items.map((item) =>
                         <div key={item.pk} className="animated slideInLeft">
-                            <div id='MockupImageGroup'>
+                            <div className='mockup-image-group'>
                                 {!item.desktop_img ? ' ' :
                                     <img src={item.desktop_img} alt="Desktop Image" className="desktop-img" />
                                 }{!item.tablet_img ? ' ' :
