@@ -3,8 +3,11 @@
 #ContactPageWrapper{
   display: grid;
   grid-area: main;
-  @include media-breakpoint-up(sm){
-    grid-template-columns: 40% auto;
+  height: 100%;
+  color: white;
+
+  @include media-breakpoint-up(md){
+    grid-template-columns: 45% auto;
     grid-template-rows: 100%;
     grid-template-areas: "form map";
   }
@@ -18,11 +21,74 @@
 }
 
 // Contact Form
-#ContactPageWrapper > #ContactFormWrapper{
+#ContactFormWrapper{
   grid-area: form;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100%;
+
+  @include media-breakpoint-up(md){
+    flex-direction: column;
+  }
+}
+
+#ContactForm{
+  padding: 30px;
+}
+
+#ContactFormFields{
+  display: grid;
+  grid-template-rows: repeat(2, 40px) 150px;
+  grid-template-columns: repeat(2, minmax(auto, 1fr));
+  grid-gap: 25px;
+}
+
+.field-common{
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  font-family: $third-font;
+  font-size: 16px;
+}
+.name-field{
+  @extend .field-common;
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+.email-field{
+  @extend .field-common;
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+
+.subject-field{
+  @extend .field-common;
+  grid-column: 1/3;
+  grid-row: 2/3;
+}
+
+.message-field{
+  @extend .field-common;
+  grid-column: 1/3;
+  grid-row: 3/4;
+}
+
+.submit-btn{
+  margin-top: 30px;
+  width: 100px;
+  color: $cyan !important;
+  border: 2px $cyan solid;
+  border-radius: 3px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.87);
+  &:hover{
+    background-color: rgba(0, 172, 193, 0.14);
+    color: $cyan;
+  }
 }
 
 // Google Map
-#ContactPageWrapper > #GoogleMapWrapper{
+#GoogleMapWrapper{
   grid-area: map;
 }

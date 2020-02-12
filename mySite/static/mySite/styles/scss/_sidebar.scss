@@ -28,7 +28,6 @@
     height: $nav_width_lg - 20px;
   }
   @include media-breakpoint-down(sm){
-    display: block;
     transition-duration: 0.1s;
     width: $nav_width_sm;
     position: fixed;
@@ -59,85 +58,94 @@
 
 // Navbar navigation buttons
 .nav-btn-common{
-  width: $nav_width_lg - 1;
-  height: 50px;
-  margin: 0 0 0 -7px;
-  border-radius: 0;
+  width: $nav_width_lg;
   text-align: center;
   @include media-breakpoint-down(sm){
-    width: $nav_width_sm - 1;
+    width: $nav_width_sm;
   }
 }
 
 // Main Navlink styling
 .nav-btn{
   @extend .nav-btn-common;
-  padding: 15px 2px 15px 2px;
-  font-size: 9px;
+  font-size: 13px;
+  height: 20px !important;
+  padding: 15px 0 15px 0;
   &:hover{
     background-color: #242424;
   }
-  @include media-breakpoint-between(sm, md){
-    padding: 20px 2px 15px 2px;
-    margin: -5px 1px 0 0;
-    height: $nav_width_lg - 23px;
+  @include media-breakpoint-only(md){
+    padding: 25px 0 25px 0;
   }
   @include media-breakpoint-down(sm){
-    padding: 15px 2px 15px 35px;
-    margin-left: -7px;
-    text-align: left;
+    padding: 15px 0 15px 0;
   }
-}
 
-// Shared content styling for the sidebar nav buttons on hover
-.nav-cont-on-hover{
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: lighter;
-  text-align: center;
-  font-size: 8px;
-}
+  i {
+    font-size: 18px;
+  }
+  span {
+    font-family: $primary-font;
 
-// Changing the span content when the nav button is hovered and window width is above sm
-.nav-btn:hover > i > span {
-  @extend .nav-cont-on-hover;
-  @include media-breakpoint-up(md){
-    &:after {
-      content: attr(data-after);
-      margin-left: 5px;
+    @include media-breakpoint-down(sm) {
+      &:after {
+        content: attr(data-after);
+        margin-left: 5px;
+      }
     }
   }
 }
 
-// Changing the span content when the window width is below sm. Not paying attention to hover.
-.nav-btn > i > span {
-  @extend .nav-cont-on-hover;
-  @include media-breakpoint-down(md){
-    text-align: left;
-    margin-left: 3px;
-    &:after{
-      content: attr(data-after);
+.nav-btn:hover {
+  i {
+    @include media-breakpoint-up(md){
+      display: none;
+    }
+  }
+  span {
+    color: $cyan;
+    @include media-breakpoint-up(md) {
+      &:after {
+        content: attr(data-after);
+      }
     }
   }
 }
 
 // Sidebar social media icons
+.social-btn-group{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  color: white;
+  @include media-breakpoint-up(lg){
+    flex-direction: column;
+    height: 100px;
+  }
+  @include media-breakpoint-only(md){
+    width: 100px;
+    margin-right: 20px;
+  }
+  @include media-breakpoint-down(sm){
+    width: $nav_width_sm;
+  }
+}
 .nav-social-btn{
   @extend .nav-btn-common;
   font-size: 15px;
-  @include media-breakpoint-down(md){
-    padding: 0 0 10px 5px;
-    width: 50px;
-  }
+  padding: 5px 0 5px 0;
 }
 
 // Font Awesome icons
-.fa-social-btn:hover{
-  color: #00acc1;
+.social-btn:hover{
+  color: $cyan;
 }
 
 .nav_profile_img{
   width: $nav_profile_img_size;
   height: $nav_profile_img_size;
+  border-radius: 100px;
+  margin-bottom: 25px;
   @include media-breakpoint-only(md){
     display: none;
   }
@@ -172,12 +180,14 @@
     position: fixed;
     display: inline-block;
     z-index: 1;
-    padding: 0 7px 0 7px;
     top: 10px;
     left: 15px;
     width: 50px;
     height: 50px;
-    font-size: 30px;
+    font-size: 25px;
+    border-radius: 3px;
+    background-color: #212121;
+    color: white;
   }
 }
 

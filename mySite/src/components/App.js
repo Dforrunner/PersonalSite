@@ -1,25 +1,28 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import {Route, Switch, BrowserRouter, Redirect} from 'react-router-dom';
+import {Route, Switch, Redirect} from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import { createBrowserHistory } from 'history';
-import { Router } from 'react-router-dom';
 import Sidebar from "./base/sidebar";
-import Home from "./pages/home";
-import About from "./pages/about";
-import Experience from "./pages/experience";
-import MyWork from "./pages/my_work";
-import Skills from "./pages/skills";
-import Contact from "./pages/contact";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Experience from "./pages/Experience";
+import MyWork from "./pages/MyWork";
+import Skills from "./pages/Skills";
+import Contact from "./pages/Contact";
 import Error404 from "./pages/Error404";
+
 
 const history = createBrowserHistory();
 
 // Initialize google analytics page view tracking
+ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS);
 history.listen(location => {
   ReactGA.set({ page: location.pathname }); // Update the user's current page
-  ReactGA.pageview(location.pathname); // Record a pageview for the given page
+  ReactGA.pageview(location.pathname + location.search); // Record a pageview for the given page
 });
+
 
 class App extends Component{
     constructor(props) {
@@ -53,7 +56,7 @@ class App extends Component{
         const {error, isLoaded, items} = this.state;
 
         return (
-            <BrowserRouter history={history}>
+            <Router history={history}>
                 <div id="MainWrapper">
 
                     <div id='SidebarWrapper'>
@@ -74,7 +77,7 @@ class App extends Component{
                         </Switch>
                     </div>
                 </div>
-            </BrowserRouter>
+            </Router>
         )
     }
 }

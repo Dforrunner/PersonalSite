@@ -1,0 +1,43 @@
+// Icons
+@font-face {
+  font-family: 'fontello';
+  src: url('../../font/fontello.eot?30454894');
+  src: url('../../font/fontello.eot?30454894#iefix') format('embedded-opentype'),
+       url('../../font/fontello.woff?30454894') format('woff'),
+       url('../../font/fontello.ttf?30454894') format('truetype'),
+       url('../../font/fontello.svg?30454894#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  font-size: 120%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-user:before { content: '\e800'; }
+.icon-folder-open:before { content: '\e801'; }
+.icon-home:before { content: '\e802'; }
+.icon-cog:before { content: '\e803'; }
+.icon-github-circled:before { content: '\f09b'; }
+.icon-laptop:before { content: '\f109'; }
+.icon-instagram-1:before { content: '\f16d'; }
+.icon-address-book:before { content: '\f2b9'; }
+.icon-linkedin-squared:before { content: '\f30c'; }
+.icon-right-dir:before { content: '\e804'; }
+.icon-youtube-play:before { content: '\f16a'; }
+.icon-link-ext:before { content: '\f08e'; }
+.icon-menu:before { content: '\f0c9'; }

@@ -1,6 +1,8 @@
 @import "modules/variables";
 @import "modules/mixins";
 @import 'modules/animations';
+@import "icons";
+@import "modules/global";
 @import "sidebar";
 @import "home";
 @import "about";
@@ -54,10 +56,6 @@ body{
 ul, li{
   list-style: none;
 }
-.row {
-    margin-left: 0;
-    margin-right: 0;
-}
 p:hover, p:visited, p:active, a:hover, a:visited, a:link, a:active, li {
     text-decoration: none !important;
     outline: 0;
@@ -66,26 +64,4 @@ input::-moz-focus-inner {
   border: 0;
 }
 
-//*** Font classes ***//
-.primary-font{
-  font-family: $primary-font;
-}
-
-.secondary-font{
-  font-family: $secondary-font;
-}
-
-.third-font{
-  font-family: $third-font;
-}
-
-.pg-header{
-  font-family: $secondary-font;
-  color: $header-text-color;
-}
-
-.mt-100{
-  margin-top: 200px;
-  background-color: #00acc1;
-}
 

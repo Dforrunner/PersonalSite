@@ -47,6 +47,20 @@
   }
 }
 
+.home-contact-btn{
+  font-family: $primary-font;
+  font-size: 16px;
+  border: 2px $cyan solid;
+  border-radius: 3px;
+  color: $cyan;
+  height: 20px !important;
+  padding: 10px 25px 10px 25px;
+  margin-left: 5px;
+
+  &:hover{
+    background-color: rgba(0, 172, 193, 0.28);
+  }
+}
 //// Intro header animation /////
 // Intro header letter indexes
 $letter_index:

@@ -47,22 +47,20 @@ INSTALLED_APPS = [
     'myApi',
 
     # Third Party apps
-    'optimized_image',
     'django_cleanup.apps.CleanupConfig',
     'rest_framework',
-
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.middleware.gzip.GZipMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.gzip.GZipMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'PersonalSite.urls'
@@ -150,10 +148,6 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD')
 EMAIL_PORT = '465'
 EMAIL_USE_SSL = True
 EMAIL_TIMEOUT = 15
-
-# Image Optimization TinyPNG
-OPTIMIZED_IMAGE_METHOD = 'tinypng'
-TINYPNG_KEY = os.getenv('TINYPNG_KEY')
 
 # Whitenoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

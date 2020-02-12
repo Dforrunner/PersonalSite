@@ -3,7 +3,7 @@
 
 #ExperiencePageWrapper{
   color: white;
-  font-family: $secondary-font;
+  font-family: $primary-font;
   font-size: 0.9em;
   letter-spacing: 0.2px;
   padding: 5% 10% 5% 5%;
@@ -15,10 +15,10 @@
   div {
     color: #eeeeee;
   }
-  div > ul {
+  div ul{
     color: $main-text-color;
 
-    > li {
+    li {
       font-size: 0.9em;
       font-family: $primary-font;
     }

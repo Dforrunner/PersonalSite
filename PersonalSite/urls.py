@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include, re_path
-from django.views.generic import RedirectView
+from django.views.generic import RedirectView, TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -11,5 +11,5 @@ urlpatterns = [
     #  redirecting to custom 404 page that is handled by React.
     #  This is placed as the last path because otherwise it'll
     #  catch api routes and point to 404 page, which we don't want
-    re_path('^(?:.*)/?$',  RedirectView.as_view(url='/page-not-found-404/')),
+    re_path('^(?:.*)/?$',  TemplateView.as_view(template_name="mySite/index.html")),
 ]

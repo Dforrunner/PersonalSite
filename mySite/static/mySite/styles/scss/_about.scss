@@ -26,12 +26,18 @@
   @include media-breakpoint-down(sm){
     text-align: center;
   }
+
+  img {
+    @include media-breakpoint-up(md){
+      margin-left: 10%;
+    }
+  }
 }
 
 .about-left-content{
   grid-area: text-content;
   color: $main-text-color;
-
+  padding: 30px;
   @include media-breakpoint-up(lg){
     display: flex;
     flex-flow: column;
@@ -43,11 +49,11 @@
     margin-top: 70px;
   }
 
-  > h1 {
+  h1 {
     font-family: $secondary-font;
   }
 
-  > p {
+  p {
     font-family: $primary-font;
     font-size: 0.9em;
     margin-top: 25px;

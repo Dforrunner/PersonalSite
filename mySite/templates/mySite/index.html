@@ -2,7 +2,7 @@
 {% load static %}
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Muhammet Barut">
     <meta name="description"
@@ -11,7 +11,6 @@
     order and I also stand for quality. I love spending time on fixing tough problems and the little details.">
 
     <!--Favicon items -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'mySite/images/favicon/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'mySite/images/favicon/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'mySite/images/favicon/favicon-16x16.png' %}">
     <link rel="shortcut icon" href="{% static 'mySite/images/favicon/favicon.ico' %}" />
@@ -20,16 +19,10 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
+    <!-- Title-->
     <title>Muhammet Barut | Full Stack Web Developer</title>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins|Raleway|Source+Sans+Pro:300&display=swap" rel="stylesheet">
+    <!--My CSS -->
     <link rel="stylesheet" href="{% static 'mySite/styles/css/main.min.css' %}">
 </head>
 <body>
@@ -40,17 +33,8 @@
     </div>
     <!-- Dark Overlay element -->
     <div class="overlay"></div>
-
-    <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/js/mdb.min.js"></script>
     <!-- My scripts -->
     <script type="text/javascript" src="{% static 'mySite/scripts/minJS/side_nav.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'mySite/scripts/minJS/main.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'mySite/scripts/main.js' %}"></script>
 </body>
 </html>
