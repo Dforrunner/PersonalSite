@@ -7,37 +7,37 @@ var BundleTracker = require('webpack-bundle-tracker');
 
 
 module.exports = {
-  context: __dirname,
+    context: __dirname,
 
-  entry: './mySite/src/index.js',
+    entry: './mySite/src/index.js',
 
-  output: {
-      path: path.join(__dirname, '/mySite/static/mySite/scripts/dist'),
-      filename: "[name]-[hash].js",
-      publicPath: '/static/mySite/scripts/dist/'
-  },
-  plugins: [
-      new Dotenv(),
-      new UglifyJsPlugin(),
-      new BundleTracker({
-          filename: './webpack-stats.json'
-      }),
-      new CleanWebpackPlugin(),
-      new BundleAnalyzerPlugin()
-  ],
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-            loader: "babel-loader"
-        }
-      }
-    ]
-  },
-  resolve: {
-    extensions: ['*', '.js', '.jsx']
-  }
+    output: {
+        path: path.join(__dirname, '/mySite/static/mySite/scripts/dist'),
+        filename: "[name]-[hash].js",
+        publicPath: '/static/mySite/scripts/dist/'
+    },
+    plugins: [
+        new Dotenv(),
+        new UglifyJsPlugin(),
+        new BundleTracker({
+            filename: './webpack-stats.json'
+        }),
+        new CleanWebpackPlugin(),
+        new BundleAnalyzerPlugin()
+    ],
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader"
+                }
+            }
+        ]
+    },
+    resolve: {
+        extensions: ['*', '.js', '.jsx']
+    }
 
 };

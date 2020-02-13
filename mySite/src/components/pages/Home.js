@@ -1,5 +1,5 @@
-import React from 'react';
-import ParticleBackground from '../mics/ParticlesJS'
+import React, {Suspense, lazy} from 'react';
+const ParticleBackground  = lazy(()=> import(/* webpackChunkName: "ParticleBackground" */ '../mics/ParticlesJS'));
 import {Link} from "react-router-dom";
 
 export default class Home extends React.Component{
@@ -30,14 +30,13 @@ export default class Home extends React.Component{
                     });
                     console.log(error);
                 }
-            )
+            );
     }
 
     render() {
         const {error, isLoaded, items} = this.state;
         return (
             <div className='animated fadeIn' id="HomePageWrapper">
-                <ParticleBackground />
                 <div className="p-2 ml-2">
                     <svg id="introHeader" viewBox="0 0 778 326" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <mask id="path-1-outside-1" maskUnits="userSpaceOnUse" x="0.839966" y="0.119995" width="777" height="326" fill="black">
@@ -113,6 +112,7 @@ export default class Home extends React.Component{
                     <h6 className="animated fadeInUp delay-1s primary-font introSubtitle">{items.intro}</h6>
                     <Link to="contact" className="home-contact-btn animated fadeInUp delay-2s"> Contact me </Link>
                 </div>
+                <ParticleBackground />
             </div>
         );
     }
