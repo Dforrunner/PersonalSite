@@ -32,12 +32,18 @@ def get_extension(filename):
 # Helper functions that check if the height or the width have been set to auto
 # If so the image is resized according to it's aspect radio
 # Else if new_width and new_height are set to hard numbers, then the image is resized according to that
+# If either values are set to original then return it's original size
 def resize_img(img, new_width, new_height):
     org_width, org_height = img.size
     if new_width == 'auto':
         new_width = new_height/(org_height/org_width)
     if new_height == 'auto':
         new_height = (org_height/org_width) * new_width
+    if new_width == 'original':
+        new_width = org_width
+    if new_height == 'original':
+        new_height = org_height
+
     return img.resize((int(new_width), int(new_height)))
 
 

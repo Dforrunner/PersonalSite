@@ -56,11 +56,15 @@ MONTHS_SHORT = [
 class Sidebar(models.Model):
     logo = models.FileField(
         upload_to='logo',
-        verbose_name='Logo'
+        verbose_name='Logo',
+        blank=True,
+        null=True
     )
     favicon = models.FileField(
         upload_to='logo',
-        verbose_name='Favicon 16x16'
+        verbose_name='Favicon 16x16',
+        blank=True,
+        null=True
     )
     instagram = models.TextField(
         null=True,
@@ -107,6 +111,12 @@ class Sidebar(models.Model):
         blank=True,
         verbose_name='StackOverflow Link'
     )
+
+    # Converting images to Webp format and resizing
+    def save(self, *args, **kwargs):
+        if self.logo:
+            self.logo = to_webp_resized(field=self.logo, width=250, height='auto')
+        super(Sidebar, self).save(*args, **kwargs)
 
     def __str__(self):
         return 'Sidebar Content'
@@ -157,8 +167,16 @@ class About(models.Model):
         verbose_name='Paragraph 3'
     )
     profile_img = models.FileField(
-        upload_to='about'
+        upload_to='',
+        blank=True,
+        null=True
     )
+
+    # Converting images to Webp format and resizing
+    def save(self, *args, **kwargs):
+        if self.profile_img:
+            self.profile_img = to_webp_resized(field=self.profile_img, width=500, height='auto')
+        super(About, self).save(*args, **kwargs)
 
     def __str__(self):
         return 'About'
