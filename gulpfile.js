@@ -3,6 +3,8 @@ const rename = require('gulp-rename');
 const uglifycss = require('gulp-uglifycss');
 const uglify = require('gulp-uglify-es').default;
 const htmlmin = require('gulp-htmlmin');
+const imagemin = require('gulp-imagemin');
+const webp = require('gulp-webp');
 
 // Minify CSS
 function minifyCSS() {
@@ -29,7 +31,34 @@ function minifyHTML(){
     .pipe(dest('./mySite/templates/mySite/minHTML'));
 }
 
-exports.build = series(minifyCSS, minifyJS, minifyHTML);
+function ConvertToWebp() {
+    return src('./mySite/static/mySite/media/**/*')
+        .pipe(webp())
+        .pipe(dest(function (file) {
+            return file.base;
+        }))
+}
+
+function minifyIMG(){
+
+    return src('./mySite/static/mySite/media/**/*')
+        .pipe(imagemin([
+            imagemin.gifsicle({interlaced: true}),
+            imagemin.mozjpeg({quality: 50, progressive: true}),
+            imagemin.optipng({optimizationLevel: 8}),
+            imagemin.svgo({
+                plugins: [
+                    {removeViewBox: true},
+                    {cleanupIDs: true}
+                ]
+            })
+        ]))
+        .pipe(dest(function (file) {
+            return file.base;
+        }))
+}
+
+exports.build = series(minifyCSS, minifyJS, minifyHTML, ConvertToWebp, minifyIMG);
 exports.default = function (){
     watch(
         './mySite/static/mySite/styles/scss/*.scss',

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     # Third Party apps
     'optimized_image',
     'rest_framework',
+    'webpack_loader',
     'django_cleanup.apps.CleanupConfig',
 ]
 
@@ -163,4 +164,15 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
+}
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'CACHE': not DEBUG,
+        'BUNDLE_DIR_NAME': 'dist/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+        'POLL_INTERVAL': 0.1,
+        'TIMEOUT': None,
+        'LOADER_CLASS': 'webpack_loader.loader.WebpackLoader',
+    }
 }

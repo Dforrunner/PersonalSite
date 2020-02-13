@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {GoogleMap, withScriptjs, withGoogleMap, Marker} from "react-google-maps";
 import map_styles from "./map_styles";
 

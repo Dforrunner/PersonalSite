@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load render_bundle from webpack_loader %}
 <html lang="en">
 <head>
     <meta content="charset=UTF-8">
@@ -33,8 +34,10 @@
     </div>
     <!-- Dark Overlay element -->
     <div class="overlay"></div>
+
     <!-- My scripts -->
     <script type="text/javascript" src="{% static 'mySite/scripts/minJS/side_nav.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'mySite/scripts/main.js' %}"></script>
+    <!--Webpack main bundle -->
+    {% render_bundle 'main' 'js' %}
 </body>
 </html>
