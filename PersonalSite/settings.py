@@ -47,8 +47,9 @@ INSTALLED_APPS = [
     'myApi',
 
     # Third Party apps
-    'django_cleanup.apps.CleanupConfig',
+    'optimized_image',
     'rest_framework',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
@@ -148,6 +149,10 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD')
 EMAIL_PORT = '465'
 EMAIL_USE_SSL = True
 EMAIL_TIMEOUT = 15
+
+# Image Optimization TinyPNG
+OPTIMIZED_IMAGE_METHOD = 'tinypng'
+TINYPNG_KEY = os.getenv('TINYPNG_KEY')
 
 # Whitenoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

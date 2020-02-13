@@ -1,5 +1,5 @@
 from django.db import models
-from optimized_image.fields import OptimizedImageField
+from .image_handlers import to_webp_resized
 
 # Year dropdown choices
 YEARS = [
@@ -54,11 +54,11 @@ MONTHS_SHORT = [
 
 
 class Sidebar(models.Model):
-    logo = OptimizedImageField(
+    logo = models.FileField(
         upload_to='logo',
         verbose_name='Logo'
     )
-    favicon = OptimizedImageField(
+    favicon = models.FileField(
         upload_to='logo',
         verbose_name='Favicon 16x16'
     )
@@ -156,7 +156,7 @@ class About(models.Model):
         blank=True,
         verbose_name='Paragraph 3'
     )
-    profile_img = OptimizedImageField(
+    profile_img = models.FileField(
         upload_to='about'
     )
 
@@ -262,20 +262,20 @@ class Projects(models.Model):
         SkillNames,
         related_name='projects'
     )
-    desktop_img = OptimizedImageField(
-        upload_to='project',
+    desktop_img = models.FileField(
+        upload_to='',
         verbose_name='Project Desktop Image',
         null=True,
         blank=True
     )
-    tablet_img = OptimizedImageField(
-        upload_to='project',
+    tablet_img = models.FileField(
+        upload_to='',
         verbose_name='Project Tablet Image',
         null=True,
         blank=True
     )
-    mobile_img = OptimizedImageField(
-        upload_to='project',
+    mobile_img = models.FileField(
+        upload_to='',
         verbose_name='Project Mobile Image',
         null=True,
         blank=True
@@ -328,6 +328,16 @@ class Projects(models.Model):
 
     list_order = models.IntegerField(choices=ORDER_CHOICES, null=True, blank=True)
 
+    # Converting images to Webp format and resizing
+    def save(self, *args, **kwargs):
+        if self.desktop_img:
+            self.desktop_img = to_webp_resized(field=self.desktop_img, width=1000, height='auto')
+        if self.tablet_img:
+            self.tablet_img = to_webp_resized(field=self.tablet_img, width=500, height='auto')
+        if self.mobile_img:
+            self.mobile_img = to_webp_resized(field=self.mobile_img, width=350, height='auto')
+        super(Projects, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.title
 
@@ -356,7 +366,7 @@ class Contact(models.Model):
 class GoogleMap(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
-    marker = OptimizedImageField(upload_to='map_marker')
+    marker = models.FileField(upload_to='map_marker')
 
     def __str__(self):
         return f'Location {self.latitude} x {self.longitude}'
