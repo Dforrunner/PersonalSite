@@ -60,9 +60,9 @@ class Sidebar(models.Model):
         blank=True,
         null=True
     )
-    favicon = models.FileField(
-        upload_to='logo',
-        verbose_name='Favicon 16x16',
+    avatar = models.FileField(
+        upload_to='',
+        verbose_name='Avatar',
         blank=True,
         null=True
     )
@@ -116,6 +116,8 @@ class Sidebar(models.Model):
     def save(self, *args, **kwargs):
         if self.logo:
             self.logo = to_webp_resized(field=self.logo, width=250, height='auto')
+        if self.avatar:
+            self.avatar = to_webp_resized(field=self.avatar, width=200, height='auto')
         super(Sidebar, self).save(*args, **kwargs)
 
     def __str__(self):

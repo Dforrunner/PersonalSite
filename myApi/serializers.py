@@ -7,7 +7,7 @@ class SidebarSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Sidebar
         fields = ('logo',
-                  'favicon',
+                  'avatar',
                   'instagram',
                   'linkedin',
                   'github',
