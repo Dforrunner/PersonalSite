@@ -4,14 +4,7 @@
 
 // Home page text content
 #HomePageWrapper{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100vh;
-
-  div{
-    align-content: center;
-  }
+  height: 100%;
 }
 
 .introSubtitle{
