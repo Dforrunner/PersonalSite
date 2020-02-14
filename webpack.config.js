@@ -12,9 +12,9 @@ module.exports = {
     entry: './mySite/src/index.js',
 
     output: {
-        path: path.join(__dirname, '/mySite/static/mySite/scripts/dist'),
+        path: path.join(__dirname, '/mySite/static/mySite/scripts'),
         filename: "[name]-[hash].js",
-        publicPath: '/static/mySite/scripts/dist/'
+        publicPath: '/static/mySite/scripts/'
     },
     plugins: [
         new Dotenv(),

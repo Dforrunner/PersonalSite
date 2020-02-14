@@ -31,7 +31,28 @@ constructor(props) {
         };
     }
 
+    /**
+     * Event listeners that are used to control the collapse sidebar
+     */
+    eventListeners = () => {
+        // When dismiss or the overlay is clicked
+        document.querySelector('.overlay').addEventListener('click', ()=>{
+            // hide overlay and sidebar
+            document.querySelector('#sidebar').classList.remove('active');
+            document.querySelector('.overlay').classList.remove('active');
+            document.querySelector('#collapseBars').classList.remove('hidden');
+        });
+        document.querySelector('#collapseBars').addEventListener('click', () => {
+             // show sidebar and overlay
+             document.querySelector('#sidebar').classList.add('active');
+             document.querySelector('.overlay').classList.add('active');
+             document.querySelector('#collapseBars').classList.add('hidden');
+        });
+    };
+
     componentDidMount() {
+        this.eventListeners();
+
         fetch(`${process.env.REACT_APP_HOST}/api/sidebar/`)
             .then(res => res.json())
             .then(
