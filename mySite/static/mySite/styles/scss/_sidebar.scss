@@ -58,6 +58,7 @@
 
 // Navbar navigation buttons
 .nav-btn-common{
+  display: inline-block;
   width: $nav_width_lg;
   text-align: center;
   @include media-breakpoint-down(sm){
@@ -112,33 +113,20 @@
   }
 }
 
-// Sidebar social media icons
-.social-btn-group{
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  color: white;
-  @include media-breakpoint-up(lg){
-    flex-direction: column;
-    height: 100px;
-  }
-  @include media-breakpoint-only(md){
-    width: 100px;
-    margin-right: 20px;
-  }
-  @include media-breakpoint-down(sm){
-    width: $nav_width_sm;
-  }
-}
 .nav-social-btn{
   @extend .nav-btn-common;
   font-size: 15px;
   padding: 5px 0 5px 0;
-}
+  color: $text-muted;
 
-// Font Awesome icons
-.social-btn:hover{
-  color: $cyan;
+  @include media-breakpoint-only(md){
+    width: 30px;
+    margin-top: 20px;
+    margin-right: 13px;
+  }
+  &:hover{
+    color: $cyan;
+  }
 }
 
 .nav_profile_img{
@@ -148,6 +136,10 @@
   margin-bottom: 25px;
   @include media-breakpoint-only(md){
     display: none;
+  }
+  @include media-breakpoint-down(sm){
+    margin-bottom: 60px;
+    margin-top: 10px;
   }
 }
 
@@ -180,14 +172,17 @@
     position: fixed;
     display: inline-block;
     z-index: 1;
-    top: 10px;
-    left: 15px;
+    top: 20px;
+    left: 20px;
     width: 50px;
     height: 50px;
-    font-size: 25px;
+    font-size: 33px;
+    border: 1px #676767 solid;
     border-radius: 3px;
-    background-color: #212121;
+    background-color: #171717;
     color: white;
+    cursor: pointer;
+    padding: 3px;
   }
 }
 

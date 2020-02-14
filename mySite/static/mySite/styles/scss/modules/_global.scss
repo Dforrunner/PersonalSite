@@ -54,7 +54,11 @@
 }
 
 .text-muted{
-  color: rgba(180, 180, 180, 0.69);
+  color: $text-muted;
+}
+
+.text-center{
+  text-align: center;
 }
 
 // Error Msg

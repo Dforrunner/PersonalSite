@@ -15,7 +15,7 @@ const nav_link = (to, data_after, icon) => {
 const social_links = (link_to, icon) => {
     icon = `icon-${icon}`;
     return (
-        <a className="nav-social-btn text-muted social-btn" href={link_to} target="_blank">
+        <a className="nav-social-btn" href={link_to} target="_blank">
             <i className={icon}> </i>
         </a>
     )
@@ -53,7 +53,7 @@ constructor(props) {
     componentDidMount() {
         this.eventListeners();
 
-        fetch(`${process.env.REACT_APP_HOST}/api/sidebar/`)
+        fetch('/api/sidebar/')
             .then(res => res.json())
             .then(
                 (result) => {
@@ -75,7 +75,7 @@ constructor(props) {
     const {error, isLoaded, items} = this.state;
         return (
             <nav id="sidebar">
-                <button className="btn btn-black rounded" id="collapseBars"><i className="icon-menu"> </i></button>
+                <button id="collapseBars"><i className="icon-menu"> </i></button>
 
                 <div className="f-row-center p-2">
                     <NavLink to="/">
@@ -93,12 +93,11 @@ constructor(props) {
                 </div>
 
                 <div>
-                    <div className="social-btn-group">
-                        {social_links(items.github, "github-circled")}
-                        {social_links(items.linkedin, "linkedin-squared")}
-                        {social_links(items.instagram, "instagram-1")}
-                    </div>
-                    <div className="f-row-center">
+                    {social_links(items.github, "github-circled")}
+                    {social_links(items.linkedin, "linkedin-rect")}
+                    {social_links(items.instagram, "instagram-1")}
+
+                    <div className="f-row-center pt-3">
                         <img src={items.avatar} className="nav_profile_img" alt="avatar image"/>
                     </div>
                 </div>

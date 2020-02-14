@@ -115,7 +115,7 @@ class Sidebar(models.Model):
     # Converting images to Webp format and resizing
     def save(self, *args, **kwargs):
         if self.logo:
-            self.logo = to_webp_resized(field=self.logo, width=250, height='auto')
+            self.logo = to_webp_resized(field=self.logo, width=200, height='auto')
         if self.avatar:
             self.avatar = to_webp_resized(field=self.avatar, width=200, height='auto')
         super(Sidebar, self).save(*args, **kwargs)
