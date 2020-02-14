@@ -1,62 +1,12 @@
-from rest_framework import viewsets
-from .serializers import SidebarSerializer, HomeSerializer, AboutSerializer, ExperienceSerializer, \
-    SkillsSerializer, ProjectsSerializer, ContactSerializer, SkillNamesSerializer, GoogleMapSerializer
-from .models import Sidebar, Home, About, Experience, Skills, SkillNames, Projects, Contact, GoogleMap
 from django.core.mail import send_mail, BadHeaderError
 from django.http import JsonResponse
-from .forms import ContactForm
+from myApi.forms import ContactForm
 import os
 import json
-from myApi.models import Contact
-
-
-class SidebarViewSet(viewsets.ModelViewSet):
-    queryset = Sidebar.objects.all()
-    serializer_class = SidebarSerializer
-
-
-class HomeViewSet(viewsets.ModelViewSet):
-    queryset = Home.objects.all()
-    serializer_class = HomeSerializer
-
-
-class AboutViewSet(viewsets.ModelViewSet):
-    queryset = About.objects.all()
-    serializer_class = AboutSerializer
-
-
-class ExperienceViewSet(viewsets.ModelViewSet):
-    queryset = Experience.objects.all()
-    serializer_class = ExperienceSerializer
-
-
-class SkillsViewSet(viewsets.ModelViewSet):
-    queryset = Skills.objects.all()
-    serializer_class = SkillsSerializer
-
-
-class SkillNamesViewSet(viewsets.ModelViewSet):
-    queryset = SkillNames.objects.all()
-    serializer_class = SkillNamesSerializer
-
-
-class ProjectsViewSet(viewsets.ModelViewSet):
-    queryset = Projects.objects.all()
-    serializer_class = ProjectsSerializer
-
-
-class ContactViewSet(viewsets.ModelViewSet):
-    queryset = Contact.objects.all()
-    serializer_class = ContactSerializer
-
-
-class GoogleMapSerializerViewSet(viewsets.ModelViewSet):
-    queryset = GoogleMap.objects.all()
-    serializer_class = GoogleMapSerializer
 
 
 # Sending email
-def send_email(request):
+def send_email_method(request):
     # Validating request type and form
     data = {}
     if request.method == 'POST':
@@ -107,4 +57,3 @@ def send_email(request):
                         'msg_color': 'error'}
         return JsonResponse(response)
     return JsonResponse({'success': True, 'data': data})
-

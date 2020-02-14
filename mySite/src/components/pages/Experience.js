@@ -28,6 +28,7 @@ export default class Experience extends React.Component{
                 }
             )
     }
+    
     render() {
         const {error, isLoaded, items} = this.state;
         return (
@@ -53,6 +54,7 @@ export default class Experience extends React.Component{
                         </div>
                     )
                 }
+                {error && <div>{error}</div>}
             </div>
         );
     }

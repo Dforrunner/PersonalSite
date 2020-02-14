@@ -5,7 +5,6 @@ import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import Sidebar from "./base/sidebar";
 import Home from "./pages/Home";
-import Loader from "./mics/loader";
 
 /**
  * Dynamic Imports. All the pages get imported dynamically
