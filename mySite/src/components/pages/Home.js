@@ -1,4 +1,4 @@
-import React, {Suspense, lazy} from 'react';
+import React, {lazy} from 'react';
 const ParticleBackground  = lazy(()=> import(/* webpackChunkName: "ParticleBackground" */ '../mics/ParticlesJS'));
 import {Link} from "react-router-dom";
 
