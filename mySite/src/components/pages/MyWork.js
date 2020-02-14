@@ -39,7 +39,7 @@ export default class MyWork extends React.Component{
     loadProjects = () =>{
         this.setState({loading:true}, () => {
             const {offset, limit} = this.state;
-            fetch(`${process.env.REACT_APP_HOST}/lazy-load-projects/?limit=${limit}&offset=${offset}`)
+            fetch(`/lazy-load-projects/?limit=${limit}&offset=${offset}`)
                 .then(res => res.json())
                 .then(
                     (result) => {
