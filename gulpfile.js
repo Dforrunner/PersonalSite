@@ -58,7 +58,7 @@ function minifyIMG(){
         }))
 }
 
-exports.build = series(minifyCSS, minifyJS, minifyHTML, ConvertToWebp, minifyIMG);
+exports.build = series(minifyCSS, minifyJS, minifyHTML);
 exports.default = function (){
     watch(
         './mySite/static/mySite/styles/scss/*.scss',

@@ -34,15 +34,15 @@ export default class Skills extends React.Component{
 
         return (
             <div className="animated slideInLeft" id='SkillsPageWrapper'>
-                <h1 className="secondary-font white-text pl-5">Skills/Tools</h1>
+                <h1 className="pg-header">Skills/Tools</h1>
                 <div className='skill-categories'>
                 {
                     items.map((item) =>
-                        <div key={item.pk} className="pt-5 pr-5">
+                        <div key={item.pk}>
                             <ul className="skill-list">
-                                <h4 className="white-text black p-3 rounded-top">{item.skill_category}</h4>
+                                <h4 className="skill-category-title">{item.skill_category}</h4>
                                 {item.skill_names.map(skill =>
-                                    <li className="white-text pl-3 pt-1" key={skill.pk}>{skill.skill_name}</li>
+                                    <li key={skill.pk}><i className="icon-right-dir cyan-text"> </i>{skill.skill_name}</li>
                                 )}
                             </ul>
                         </div>

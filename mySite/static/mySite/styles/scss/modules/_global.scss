@@ -38,6 +38,12 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+.f-column-center{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
 // Text Colors
 .white-text{
   color: white;
@@ -104,6 +110,17 @@
   padding-top: 15px;
 }
 
+.pr-1{
+  padding-right: 5px;
+}
+
+.pr-2{
+  padding-right: 10px;
+}
+
+.pr-3{
+  padding-right: 15px;
+}
 // Row
 .row{
   display: flex;
