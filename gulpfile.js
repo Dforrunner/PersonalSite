@@ -58,17 +58,13 @@ function minifyIMG(){
         }))
 }
 
-exports.build = series(minifyCSS, minifyJS, minifyHTML);
+exports.build = series(minifyCSS, minifyHTML);
 exports.default = function (){
     watch(
         './mySite/static/mySite/styles/scss/*.scss',
         series(minifyCSS)
     );
     watch(
-        './mySite/static/mySite/scripts/*.js',
-        series(minifyJS)
-    );
-     watch(
         './mySite/templates/mySite/*.html',
         series(minifyHTML)
     );
