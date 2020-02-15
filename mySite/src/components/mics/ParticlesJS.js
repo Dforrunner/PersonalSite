@@ -2,24 +2,6 @@ import React, {Component} from "react";
 import Particles from "react-particles-js";
 
 export default class ParticleBackground extends Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-      window_width: window.innerWidth
-    }
-  }
-
-   // Calculate & Update state of new dimensions
-  updateDimensions() {
-    this.setState({ window_width: window.innerWidth});
-  }
-
-   // Add event listener
-  componentDidMount() {
-    this.updateDimensions();
-    window.addEventListener("resize", this.updateDimensions.bind(this));
-  }
-
    render() {
        return (
             <div id="ParticleJS">
@@ -87,7 +69,7 @@ export default class ParticleBackground extends Component{
                       }
                     },
                     interactivity: {
-                      detect_on:  (this.state.window_width < 990 ? "window" : "canvas"),
+                      detect_on:  "canvas",
                       events: {
                         onhover: {
                           enable: true,
