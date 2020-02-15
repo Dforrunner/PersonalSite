@@ -1093,6 +1093,9 @@
 }
 
 .home-contact-btn {
+  display: inline-block;
+  position: absolute;
+  z-index: 2;
   font-family: Arial, sans-serif;
   font-size: 16px;
   border: 2px #00bcd4 solid;
@@ -1101,6 +1104,7 @@
   height: 20px !important;
   padding: 10px 25px 10px 25px;
   margin-left: 5px;
+  cursor: pointer;
 }
 .home-contact-btn:hover {
   background-color: rgba(0, 172, 193, 0.28);
