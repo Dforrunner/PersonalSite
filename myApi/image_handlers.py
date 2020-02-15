@@ -59,3 +59,14 @@ def to_webp_resized(field, width, height):
     # Returning the new name of the file
     return change_extension(filename=field, extension='.webp')
 
+
+# Helper function that resizes images and converts them to webp using libwebp
+def png_compressed_resized(field):
+    # Using PIL to open the image and then resizing it
+    img = Image.open(field)
+    # Getting the file path we want to save the webp image to and setting the right extension
+    file_path = change_extension_of_path(path=field.path, extension=".png")
+    # Using webp module to convert and save the image
+    webp.save_image(img, file_path, quality=60)
+    # Returning the new name of the file
+    return change_extension(filename=field, extension='.png')

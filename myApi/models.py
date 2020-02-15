@@ -1,5 +1,5 @@
 from django.db import models
-from .image_handlers import to_webp_resized
+from .image_handlers import to_webp_resized, png_compressed_resized
 
 # Year dropdown choices
 YEARS = [
@@ -54,13 +54,13 @@ MONTHS_SHORT = [
 
 
 class Sidebar(models.Model):
-    logo = models.ImageField(
+    logo = models.FileField(
         upload_to='',
         verbose_name='Logo',
         blank=True,
         null=True
     )
-    avatar = models.ImageField(
+    avatar = models.FileField(
         upload_to='',
         verbose_name='Avatar',
         blank=True,
@@ -113,12 +113,12 @@ class Sidebar(models.Model):
     )
 
     # Converting images to Webp format and resizing
-    # def save(self, *args, **kwargs):
-    #     if self.logo:
-    #         self.logo = png_compressed_resized(field=self.logo)
-    #     if self.avatar:
-    #         self.avatar = png_compressed_resized(field=self.avatar)
-    #     super(Sidebar, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if self.logo:
+            self.logo = png_compressed_resized(field=self.logo)
+        if self.avatar:
+            self.avatar = png_compressed_resized(field=self.avatar)
+        super(Sidebar, self).save(*args, **kwargs)
 
     def __str__(self):
         return 'Sidebar Content'
