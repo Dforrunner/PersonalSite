@@ -1,8 +1,8 @@
 import React, {Component, Suspense, lazy} from 'react';
-import ReactDOM from 'react-dom';
 import {Route, Switch, Redirect} from 'react-router-dom';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
+import check_webp_support from "./mics/check_webp_support";
 import Sidebar from "./base/sidebar";
 import Home from "./pages/Home";
 
@@ -22,8 +22,20 @@ const Error404 = lazy(() => import(/* webpackChunkName: "Error404" */ "./pages/E
 var history = createBrowserHistory();
 
 export default class App extends Component{
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            useWebp: false
+        }
+    }
     componentDidMount(){
+
+        check_webp_support('lossy', (feature, result) => {
+            this.setState({
+                useWebp: result
+            }, ()=>{console.log(`Webp supported: ${this.state.useWebp}`)});
+        });
+
         /**
          *  Dynamically importing google analytics module after the component has mounted
          */
@@ -38,12 +50,13 @@ export default class App extends Component{
     }
 
     render() {
+        const {useWebp} = this.state;
         return (
             <Router history={history}>
                 <div id="MainWrapper">
 
                     <div id='SidebarWrapper'>
-                        <Sidebar/>
+                        <Sidebar useWebp={useWebp}/>
                     </div>
 
                     <div id='ContentBodyWrapper'>

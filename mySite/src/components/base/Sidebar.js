@@ -73,13 +73,14 @@ constructor(props) {
 
     render() {
     const {error, isLoaded, items} = this.state;
+    console.log(this.props.useWebp);
         return (
             <nav id="sidebar">
                 <button id="collapseBars"><i className="icon-menu"> </i></button>
 
                 <div className="f-row-center p-2">
                     <NavLink to="/">
-                        <img src={items.logo} alt='M' id="logo"/>
+                        <img src={this.props.useWebp === true ? items.logo_webp : items.logo} alt='M' id="logo"/>
                     </NavLink>
                 </div>
 
@@ -98,7 +99,7 @@ constructor(props) {
                     {social_links(items.instagram, "instagram-1")}
 
                     <div className="f-row-center pt-3">
-                        <img src={items.avatar} className="nav_profile_img" alt="avatar image"/>
+                        <img src={this.props.useWebp === true ? items.avatar_webp : items.avatar} className="nav_profile_img" alt="avatar image"/>
                     </div>
                 </div>
             </nav>

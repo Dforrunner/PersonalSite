@@ -1,5 +1,5 @@
 from django.db import models
-from .image_handlers import to_webp_resized, png_compressed_resized
+from .image_handlers import to_webp_resized, optimize_image
 
 # Year dropdown choices
 YEARS = [
@@ -60,9 +60,21 @@ class Sidebar(models.Model):
         blank=True,
         null=True
     )
+    logo_webp = models.FileField(
+        upload_to='',
+        verbose_name='Logo (Will be converted to Webp)',
+        blank=True,
+        null=True
+    )
     avatar = models.FileField(
         upload_to='',
         verbose_name='Avatar',
+        blank=True,
+        null=True
+    )
+    avatar_webp = models.FileField(
+        upload_to='',
+        verbose_name='Avatar (Will be converted to Webp)',
         blank=True,
         null=True
     )
@@ -114,10 +126,19 @@ class Sidebar(models.Model):
 
     # Converting images to Webp format and resizing
     def save(self, *args, **kwargs):
+        width = 200
+        height = 'auto'
+
+        # Optimizing the image in original format and then making another copy and optimizing it in
+        # Webp format. This is so that we have a version in both formats.
         if self.logo:
-            self.logo = png_compressed_resized(field=self.logo)
+            self.logo = optimize_image(self.logo, width=width, height=height)
         if self.avatar:
-            self.avatar = png_compressed_resized(field=self.avatar)
+            self.avatar = optimize_image(self.avatar, width=width, height=height)
+        if self.logo_webp:
+            self.logo_webp = to_webp_resized(field=self.logo_webp, width=width, height=height)
+        if self.avatar_webp:
+            self.avatar_webp = to_webp_resized(field=self.avatar_webp, width=width, height=height)
         super(Sidebar, self).save(*args, **kwargs)
 
     def __str__(self):
