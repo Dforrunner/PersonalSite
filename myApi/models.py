@@ -55,7 +55,7 @@ MONTHS_SHORT = [
 
 class Sidebar(models.Model):
     logo = models.FileField(
-        upload_to='logo',
+        upload_to='',
         verbose_name='Logo',
         blank=True,
         null=True
