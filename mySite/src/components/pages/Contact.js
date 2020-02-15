@@ -9,9 +9,9 @@ function FormField(class_name, type, name, placeholder, res_field, component=und
         <div className={class_name}>
             <Field className={class_name} type={type} name={name} placeholder={placeholder} component={component} rows={rows}/>
             <ErrorMessage name={name}>
-                {errorMessage => <div className="error-msg">{errorMessage}</div>}
+                {errorMessage => <div className="error">{errorMessage}</div>}
             </ErrorMessage>
-            <p className="error-msg">{is_errors ? res_field : " "}</p>
+            <p className="error">{is_errors ? res_field : " "}</p>
         </div>
     )
 }
@@ -22,6 +22,7 @@ export default class Contact extends React.Component{
         this.state = {
             is_errors: false,
             res_errors: [],
+            sending: false,
             is_sent: false,
             req_status: null,
             msg_color: null
@@ -29,7 +30,7 @@ export default class Contact extends React.Component{
     }
 
     render() {
-        const {is_errors, res_errors, is_sent, req_status, msg_color} = this.state;
+        const {is_errors, res_errors, is_sent, sending, req_status, msg_color} = this.state;
         return (
             <div id="ContactPageWrapper">
                 <div id="ContactFormWrapper">
@@ -64,35 +65,38 @@ export default class Contact extends React.Component{
                             return errors;
                         }}
                         onSubmit={(values, { setSubmitting }) => {
-                            fetch('/ajax/send_email/', {
-                                method: 'POST',
-                                headers: {
-                                  'Content-Type': 'application/json',
-                                  'X-CSRFToken': csrftoken,
-                                },
-                                body:  JSON.stringify(values)
-                            }).then(res => res.json())
-                                .then((data) =>{
-                                    if(data.success){
-                                        this.setState({
-                                            is_sent: true,
-                                            req_status: "Successfully Sent!",
-                                            msg_color: "green-text",
-                                            is_errors: false,
-                                        })
-                                    }else{
-                                        console.log(data.errors);
-                                        this.setState({
-                                            is_errors: true,
-                                            is_sent: true,
-                                            res_errors: JSON.parse(data.errors),
-                                            req_status: "Error sending",
-                                            msg_color: "red-text",
-                                        })
-                                    }
-                                }).catch((error) =>{
-                                    console.log(error)
-                                });
+                            this.setState({sending: true}, () => {
+                                fetch('/ajax/send_email/', {
+                                    method: 'POST',
+                                    headers: {
+                                      'Content-Type': 'application/json',
+                                      'X-CSRFToken': csrftoken,
+                                    },
+                                    body:  JSON.stringify(values)
+                                }).then(res => res.json())
+                                    .then((data) =>{
+                                        if(data.success){
+                                            this.setState({
+                                                sending: false,
+                                                is_sent: true,
+                                                req_status: "Successfully Sent!",
+                                                msg_color: "success",
+                                                is_errors: false,
+                                            })
+                                        }else{
+                                            console.log(data.errors);
+                                            this.setState({
+                                                is_errors: true,
+                                                is_sent: true,
+                                                res_errors: JSON.parse(data.errors),
+                                                req_status: "Error sending",
+                                                msg_color: "error",
+                                            })
+                                        }
+                                    }).catch((error) =>{
+                                        console.log(error)
+                                    });
+                            });
                             setSubmitting(false);
                         }}
                         >
@@ -107,13 +111,15 @@ export default class Contact extends React.Component{
                                     {FormField("email-field","email", "email", "Your email", res_errors.email)}
                                     {FormField("subject-field","text", "subject", "Subject", res_errors.subject)}
                                     {FormField("message-field","text", "message", "Your message", res_errors.message, "textarea", 4)}
+
+                                    <div id="ContactFormSubGrid">
+                                        <button className="btn submit-btn" type="submit" disabled={isSubmitting}>
+                                            {sending ? "Sending.." : "Submit"}
+                                        </button>
+
+                                        <p className={msg_color}>{is_sent ? req_status : " "}</p>
+                                    </div>
                                 </div>
-
-                                <button className="btn submit-btn" type="submit" disabled={isSubmitting}>
-                                    Submit
-                                </button>
-
-                                <h6 className={msg_color}>{is_sent ? req_status : " "}</h6>
                             </Form>
                         )}
                     </Formik>
