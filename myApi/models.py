@@ -1,5 +1,5 @@
 from django.db import models
-from .image_handlers import to_webp_resized
+from .image_handlers import to_webp_resized, png_compressed_resized
 
 # Year dropdown choices
 YEARS = [
@@ -115,9 +115,9 @@ class Sidebar(models.Model):
     # Converting images to Webp format and resizing
     def save(self, *args, **kwargs):
         if self.logo:
-            self.logo = to_webp_resized(field=self.logo, width=200, height='auto')
+            self.logo = png_compressed_resized(field=self.logo, width=200, height='auto')
         if self.avatar:
-            self.avatar = to_webp_resized(field=self.avatar, width=200, height='auto')
+            self.avatar = png_compressed_resized(field=self.avatar, width=200, height='auto')
         super(Sidebar, self).save(*args, **kwargs)
 
     def __str__(self):
