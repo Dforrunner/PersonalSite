@@ -110,7 +110,7 @@ export default class Home extends React.Component{
                     <path d="M761.393 266.28C762.673 263.773 764.486 261.827 766.833 260.44C769.233 259.053 772.14 258.36 775.553 258.36V265.88H773.633C765.473 265.88 761.393 270.307 761.393 279.16V303H754.113V259.16H761.393V266.28Z" stroke="white" strokeWidth="4" mask="url(#path-1-outside-1)"/>
                 </svg>
                     <h6 className="animated fadeInUp delay-1s primary-font introSubtitle">{items.intro}</h6>
-                    <Link to="contact" className="home-contact-btn animated fadeInUp delay-2s"> Contact me </Link>
+                    <Link to="contact" className="home-contact-btn animated fadeInUp delay-2s">Contact me</Link>
                 </div>
                 <ParticleBackground />
             </div>

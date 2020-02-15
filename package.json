@@ -41,6 +41,7 @@
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {
+    "core-js": "^3.6.4",
     "dotenv-webpack": "^1.7.0",
     "formik": "^2.1.4",
     "history": "^4.10.1",

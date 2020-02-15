@@ -21,7 +21,7 @@ const Error404 = lazy(() => import(/* webpackChunkName: "Error404" */ "./pages/E
  */
 var history = createBrowserHistory();
 
-class App extends Component{
+export default class App extends Component{
 
     componentDidMount(){
         /**
@@ -73,5 +73,3 @@ class App extends Component{
         )
     }
 }
-
-ReactDOM.render(<App />, document.getElementById('App'));
