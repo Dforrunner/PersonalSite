@@ -67,4 +67,4 @@ def png_compressed_resized(field):
     # Using webp module to convert and save the image
     webp.save_image(img, field.path, quality=60)
     # Returning the new name of the file
-    return field.path
+    return change_extension(filename=field, extension='.png')
