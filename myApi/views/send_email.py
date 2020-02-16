@@ -6,7 +6,7 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 import json
 
 
-@ensure_csrf_cookie
+
 def send_email_method(request):
 
     # Validating request type and form
