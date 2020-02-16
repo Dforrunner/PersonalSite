@@ -2,6 +2,24 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import MyGoogleMap from "../mics/google_map/google_map";
 
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+
 export default class Contact extends React.Component{
     constructor(pros) {
         super(pros);
@@ -11,7 +29,7 @@ export default class Contact extends React.Component{
             sending: false,
             is_sent: false,
             req_status: null,
-            msg_color: null
+            msg_color: null,
         }
     }
 
@@ -27,23 +45,6 @@ export default class Contact extends React.Component{
                 <p className="error" style={{marginTop: "2px"}}>{this.state.is_errors && res_field}</p>
             </div>
         )
-    };
-
-    CSRF = () =>{
-        var cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            var cookies = document.cookie.split(';');
-            for (var i = 0; i < cookies.length; i++) {
-                var cookie = cookies[i].trim();
-                // Does this cookie string begin with the name we want?
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        console.log(cookieValue);
-        return cookieValue;
     };
 
     render() {
@@ -83,11 +84,12 @@ export default class Contact extends React.Component{
                         }}
                         onSubmit={(values, { setSubmitting }) => {
                             this.setState({sending: true}, () => {
+                                {csrftoken && console.log("1")}
                                 fetch('/ajax/send_email/', {
                                     method: 'POST',
                                     headers: {
                                       'Content-Type': 'application/json',
-                                      'X-CSRFToken': this.CSRF,
+                                      'X-CSRFToken': csrftoken,
                                     },
                                     body: JSON.stringify(values)
                                 }).then(res => res.json())
@@ -120,8 +122,6 @@ export default class Contact extends React.Component{
                             <Form className="p-4" id="ContactForm" method="POST">
                                 <h1 className="pg-header">Contact me</h1>
 
-                                <input type="hidden" name="csrfmiddlewaretoken" value={this.CSRF} />
-
                                 <div id="ContactFormFields">
                                     {this.FormField("name-field","text", "name", "Your name", String(res_errors.name))}
                                     {this.FormField("email-field","email", "email", "Your email", res_errors.email)}
@@ -146,5 +146,3 @@ export default class Contact extends React.Component{
         );
     }
 }
-
-
