@@ -30,7 +30,13 @@ class HomeSerializer(serializers.HyperlinkedModelSerializer):
 class AboutSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = About
-        fields = ('p_title', 'p1', 'p2', 'p3', 'profile_img')
+        fields = ('p_title',
+                  'p1',
+                  'p2',
+                  'p3',
+                  'profile_img',
+                  'profile_img_webp'
+                  )
 
 
 class ResponsibilityListSerializer(serializers.ModelSerializer):
@@ -82,8 +88,11 @@ class ProjectsSerializer(serializers.ModelSerializer):
                   'description',
                   'tools_used',
                   'desktop_img',
+                  'desktop_img_webp',
                   'tablet_img',
+                  'tablet_img_webp',
                   'mobile_img',
+                  'mobile_img_webp',
                   'github',
                   'site_link',
                   'video')
