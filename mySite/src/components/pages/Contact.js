@@ -19,7 +19,7 @@ function getCookie(name) {
 
 var csrftoken = getCookie('csrftoken');
 
-console.log(csrftoken);
+
 export default class Contact extends React.Component{
     constructor(pros) {
         super(pros);
