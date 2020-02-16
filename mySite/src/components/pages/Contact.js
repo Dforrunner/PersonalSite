@@ -2,20 +2,6 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import MyGoogleMap from "../mics/google_map/google_map";
 
-// Form field macro function
-function FormField(class_name, type, name, placeholder, res_field, component=undefined, rows=undefined) {
-    let is_errors = null;
-    return(
-        <div className={class_name}>
-            <Field className={class_name} type={type} name={name} placeholder={placeholder} component={component} rows={rows}/>
-            <ErrorMessage name={name}>
-                {errorMessage => <div className="error">{errorMessage}</div>}
-            </ErrorMessage>
-            <p className="error">{is_errors && res_field}</p>
-        </div>
-    )
-}
-
 export default class Contact extends React.Component{
     constructor(pros) {
         super(pros);
@@ -28,6 +14,20 @@ export default class Contact extends React.Component{
             msg_color: null
         }
     }
+
+    // Form field macro function
+    FormField = (class_name, type, name, placeholder, res_field, component=undefined, rows=undefined) => {
+        return(
+            <div className={class_name}>
+                <Field className={class_name} type={type} name={name} placeholder={placeholder} component={component} rows={rows}/>
+
+                <ErrorMessage name={name}>
+                    {errorMessage => <div className="error">{errorMessage}</div>}
+                </ErrorMessage>
+                <p className="error" style={{marginTop: "2px"}}>{this.state.is_errors && res_field}</p>
+            </div>
+        )
+    };
 
     render() {
         const {is_errors, res_errors, is_sent, sending, req_status, msg_color} = this.state;
@@ -75,7 +75,6 @@ export default class Contact extends React.Component{
                                     body: JSON.stringify(values)
                                 }).then(res => res.json())
                                     .then((data) =>{
-                                        console.log(data);
                                         if(data.success){
                                             this.setState({
                                                 sending: false,
@@ -85,11 +84,10 @@ export default class Contact extends React.Component{
                                                 is_errors: false,
                                             })
                                         }else{
-                                            console.log(data.errors);
                                             this.setState({
                                                 is_errors: true,
                                                 is_sent: true,
-                                                res_errors: data.errors,
+                                                res_errors: JSON.parse(data.errors),
                                                 req_status: "Error sending",
                                                 msg_color: "error",
                                             })
@@ -108,10 +106,10 @@ export default class Contact extends React.Component{
                                 <input type="hidden" name="csrfmiddlewaretoken" value={csrftoken} />
 
                                 <div id="ContactFormFields">
-                                    {FormField("name-field","text", "name", "Your name", res_errors.name)}
-                                    {FormField("email-field","email", "email", "Your email", res_errors.email)}
-                                    {FormField("subject-field","text", "subject", "Subject", res_errors.subject)}
-                                    {FormField("message-field","text", "message", "Your message", res_errors.message, "textarea", 4)}
+                                    {this.FormField("name-field","text", "name", "Your name", String(res_errors.name))}
+                                    {this.FormField("email-field","email", "email", "Your email", res_errors.email)}
+                                    {this.FormField("subject-field","text", "subject", "Subject", res_errors.subject)}
+                                    {this.FormField("message-field","text", "message", "Your message", res_errors.message, "textarea", 4)}
 
                                     <div id="ContactFormSubGrid">
                                         <button className="btn submit-btn" type="submit" disabled={isSubmitting}>
