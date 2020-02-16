@@ -1,6 +1,7 @@
 from django.core.mail import send_mail, BadHeaderError
 from django.http import JsonResponse
 from myApi.forms import ContactForm
+from django.conf import settings
 import os
 import json
 
@@ -19,7 +20,7 @@ def send_email_method(request):
             message = data['message']
             from_email = data['email']
             # Getting the contact email from the database
-            to_email = os.getenv('EMAIL_USERNAME')
+            to_email = settings.EMAIL_HOST_USER
             # Constructing the email body
             email_body = f"Name: {name}\n" \
                          f"Email: {from_email}\n" \
