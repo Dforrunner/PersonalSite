@@ -1890,7 +1890,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 700px;
+  height: 100vh;
 }
 @media (min-width: 768px) {
   #ContactFormWrapper {
@@ -1900,6 +1900,7 @@
 @media (max-width: 767.98px) {
   #ContactFormWrapper {
     padding-right: 15px;
+    height: 700px;
   }
 }
 
