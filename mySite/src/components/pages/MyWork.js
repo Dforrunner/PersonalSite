@@ -27,8 +27,8 @@ export default class MyWork extends React.Component{
 
             // Check to see if user has scrolled to the bottom of the page
             if (document.documentElement.scrollHeight -
-                document.documentElement.scrollTop ===
-                document.documentElement.clientHeight){
+                document.documentElement.scrollTop <
+                (document.documentElement.clientHeight + 300)){
                 this.loadProjects()
             }
         }
@@ -44,7 +44,6 @@ export default class MyWork extends React.Component{
                 .then(res => res.json())
                 .then(
                     (result) => {
-                        console.log(result);
                         this.setState({
                             loading: false,
                             projects: [...this.state.projects, ...result.project_list],

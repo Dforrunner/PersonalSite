@@ -106,12 +106,14 @@ constructor(props) {
                     {social_links(items.instagram, "instagram-1")}
 
                     <div className="f-row-center pt-3">
-                        <ImageWebp
-                            srcWebp={items.avatar_webp}
-                            src={items.avatar}
-                            className="nav_profile_img"
-                            alt="Avatar image"
-                        />
+                        {isLoaded &&
+                            <ImageWebp
+                                srcWebp={items.avatar_webp}
+                                src={items.avatar}
+                                className="nav_profile_img"
+                                alt="Avatar image"
+                            />
+                        }
                     </div>
                 </div>
             </nav>
