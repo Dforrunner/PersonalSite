@@ -2,6 +2,24 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import MyGoogleMap from "../mics/google_map/google_map";
 
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+var csrftoken = getCookie('csrftoken');
+
+console.log(csrftoken);
 export default class Contact extends React.Component{
     constructor(pros) {
         super(pros);
@@ -30,7 +48,7 @@ export default class Contact extends React.Component{
     };
 
     render() {
-        const {is_errors, res_errors, is_sent, sending, req_status, msg_color} = this.state;
+        const {res_errors, is_sent, sending, req_status, msg_color} = this.state;
         return (
             <div id="ContactPageWrapper">
                 <div id="ContactFormWrapper">
@@ -66,7 +84,6 @@ export default class Contact extends React.Component{
                         }}
                         onSubmit={(values, { setSubmitting }) => {
                             this.setState({sending: true}, () => {
-                                var csrftoken = getCookie('csrftoken');
                                 fetch('/ajax/send_email/', {
                                     method: 'POST',
                                     headers: {
