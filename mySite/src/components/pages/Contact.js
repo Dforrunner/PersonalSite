@@ -75,6 +75,7 @@ export default class Contact extends React.Component{
                                     body: JSON.stringify(values)
                                 }).then(res => res.json())
                                     .then((data) =>{
+                                        console.log(data);
                                         if(data.success){
                                             this.setState({
                                                 sending: false,
@@ -88,7 +89,7 @@ export default class Contact extends React.Component{
                                             this.setState({
                                                 is_errors: true,
                                                 is_sent: true,
-                                                res_errors: JSON.parse(data.errors),
+                                                res_errors: data.errors,
                                                 req_status: "Error sending",
                                                 msg_color: "error",
                                             })
