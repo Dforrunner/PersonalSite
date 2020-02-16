@@ -48,7 +48,7 @@ def resize_img(img, new_width, new_height):
 
 
 # Helper function that resizes images and converts them to webp using libwebp
-def to_webp_resized(field, width, height):
+def to_webp_optimized(field, width, height):
     # Using PIL to open the image and then resizing it
     img = Image.open(field)
     resized_img = resize_img(img, width, height)
@@ -61,11 +61,22 @@ def to_webp_resized(field, width, height):
 
 
 # Optimizing images using PIL
-def optimize_image(field, width, height):
+def to_jpg_optimized(field, width, height):
     # Using PIL to open the image and then resizing it
     img = Image.open(field)
     resized_img = resize_img(img, width, height)
+
+    # Initializing final image that will be saved. If the file format is JPG then
+    # there is no need to convert it so the final image will be the resized image
+    # otherwise if it's not JPG format the final image will be the image that was converted to JPG
+    final_img = resized_img
+    # If image format is not JPG convert to jpeg so that we can use lossy compression
+    if img.format != 'JPG':
+        # Converting Image to JPG
+        final_img = resized_img.convert('RGB')
+    # Getting the file path we want to save the jpg image to and setting the right extension
+    file_path = change_extension_of_path(path=field.path, extension=".jpg")
     # Optimize and save image
-    resized_img.save(fp=field.path, optimize=True, quality=60)
-    # Return image basename
-    return os.path.basename(field.path)
+    final_img.save(fp=file_path, optimize=True, quality=70)
+    # Return image basename with the correct extension
+    return change_extension(filename=field, extension='.jpg')

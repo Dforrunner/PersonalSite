@@ -1,4 +1,5 @@
 import React from 'react';
+import ImageWebp from "../mics/ImageWebp";
 
 function LinkIcon(href, icon) {
     icon = `icon-${icon} cyan-text`;
@@ -74,14 +75,29 @@ export default class MyWork extends React.Component{
                     projects.map((project) =>
                         <div key={project.pk} className="animated slideInLeft">
                             <div className='mockup-image-group'>
-                                {project.desktop_img &&
-                                    <img src={project.desktop_img} alt="Project Desktop Image" className="desktop-img" />
+                                {(project.desktop_img || project.desktop_img_webp) &&
+                                    <ImageWebp
+                                        srcWebp={project.desktop_img_webp}
+                                        src={project.desktop_img}
+                                        className="desktop-img"
+                                        alt="Project Desktop Image"
+                                    />
                                 }
-                                {project.tablet_img &&
-                                    <img src={project.tablet_img} alt="Project Tablet Image" className="tablet-img" />
+                                {(project.tablet_img || project.tablet_img_webp) &&
+                                    <ImageWebp
+                                        srcWebp={project.tablet_img_webp}
+                                        src={project.tablet_img}
+                                        className="tablet-img"
+                                        alt="Project Tablet Image"
+                                    />
                                 }
-                                {project.mobile_img &&
-                                    <img src={project.mobile_img} alt="Project Mobile Image" className="mobile-img" />
+                                {(project.mobile_img || project.mobile_img_webp) &&
+                                    <ImageWebp
+                                        srcWebp={project.mobile_img_webp}
+                                        src={project.mobile_img}
+                                        className="mobile-img"
+                                        alt="Project Mobile Image"
+                                    />
                                 }
                             </div>
 

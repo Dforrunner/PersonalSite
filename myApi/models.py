@@ -1,5 +1,5 @@
 from django.db import models
-from .image_handlers import to_webp_resized, optimize_image
+from .image_handlers import to_webp_optimized, to_jpg_optimized
 
 # Year dropdown choices
 YEARS = [
@@ -56,7 +56,7 @@ MONTHS_SHORT = [
 class Sidebar(models.Model):
     logo = models.FileField(
         upload_to='',
-        verbose_name='Logo',
+        verbose_name='Logo (Will be converted to JPG)',
         blank=True,
         null=True
     )
@@ -68,7 +68,7 @@ class Sidebar(models.Model):
     )
     avatar = models.FileField(
         upload_to='',
-        verbose_name='Avatar',
+        verbose_name='Avatar (Will be converted to JPG)',
         blank=True,
         null=True
     )
@@ -124,21 +124,24 @@ class Sidebar(models.Model):
         verbose_name='StackOverflow Link'
     )
 
-    # Converting images to Webp format and resizing
+    # Optimize images and save
     def save(self, *args, **kwargs):
-        width = 200
-        height = 'auto'
+        w = 150
+        h = 'auto'
 
-        # Optimizing the image in original format and then making another copy and optimizing it in
-        # Webp format. This is so that we have a version in both formats.
+        # Converting image to jpg and optimizing
         if self.logo:
-            self.logo = optimize_image(self.logo, width=width, height=height)
+            self.logo = to_jpg_optimized(self.logo, width=w, height=h)
         if self.avatar:
-            self.avatar = optimize_image(self.avatar, width=width, height=height)
+            self.avatar = to_jpg_optimized(self.avatar, width=w, height=h)
+
+        # Converting image to webp and optimizing
         if self.logo_webp:
-            self.logo_webp = to_webp_resized(field=self.logo_webp, width=width, height=height)
+            self.logo_webp = to_webp_optimized(field=self.logo_webp, width=w, height=h)
         if self.avatar_webp:
-            self.avatar_webp = to_webp_resized(field=self.avatar_webp, width=width, height=height)
+            self.avatar_webp = to_webp_optimized(field=self.avatar_webp, width=w, height=h)
+
+        # Saving changes
         super(Sidebar, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -191,14 +194,31 @@ class About(models.Model):
     )
     profile_img = models.FileField(
         upload_to='',
+        verbose_name='Profile Image (Will be converted to JPG)',
+        blank=True,
+        null=True
+    )
+    profile_img_webp = models.FileField(
+        upload_to='',
+        verbose_name='Profile Image (Will be Converted to Webp)',
         blank=True,
         null=True
     )
 
-    # Converting images to Webp format and resizing
+    # Optimize images and save
     def save(self, *args, **kwargs):
+        w = 500
+        h = 'auto'
+
+        # Converting image to jpg and optimizing
         if self.profile_img:
-            self.profile_img = to_webp_resized(field=self.profile_img, width=500, height='auto')
+            self.profile_img = to_jpg_optimized(field=self.profile_img, width=w, height=h)
+
+        # Converting image to webp and optimizing
+        if self.profile_img_webp:
+            self.profile_img_webp = to_webp_optimized(field=self.profile_img_webp, width=w, height=w)
+
+        # Saving changes
         super(About, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -305,19 +325,37 @@ class Projects(models.Model):
     )
     desktop_img = models.FileField(
         upload_to='',
-        verbose_name='Project Desktop Image',
+        verbose_name='Project Desktop Image (Will be converted to JPG)',
+        null=True,
+        blank=True
+    )
+    desktop_img_webp = models.FileField(
+        upload_to='',
+        verbose_name='Project Desktop Image (Will be Converted to Webp)',
         null=True,
         blank=True
     )
     tablet_img = models.FileField(
         upload_to='',
-        verbose_name='Project Tablet Image',
+        verbose_name='Project Tablet Image (Will be converted to JPG)',
+        null=True,
+        blank=True
+    )
+    tablet_img_webp = models.FileField(
+        upload_to='',
+        verbose_name='Project Tablet Image (Will be Converted to Webp)',
         null=True,
         blank=True
     )
     mobile_img = models.FileField(
         upload_to='',
-        verbose_name='Project Mobile Image',
+        verbose_name='Project Mobile Image (Will be converted to JPG)',
+        null=True,
+        blank=True
+    )
+    mobile_img_webp = models.FileField(
+        upload_to='',
+        verbose_name='Project Mobile Image (Will be Converted to Webp)',
         null=True,
         blank=True
     )
@@ -371,12 +409,30 @@ class Projects(models.Model):
 
     # Converting images to Webp format and resizing
     def save(self, *args, **kwargs):
+        dw = 1000
+        dh = 'auto'
+        tw = 500
+        th = 'auto'
+        mw = 350
+        mh = 'auto'
+
+        # Converting image to jpg and optimizing
         if self.desktop_img:
-            self.desktop_img = to_webp_resized(field=self.desktop_img, width=1000, height='auto')
+            self.desktop_img = to_jpg_optimized(field=self.desktop_img, width=dw, height=dh)
         if self.tablet_img:
-            self.tablet_img = to_webp_resized(field=self.tablet_img, width=500, height='auto')
+            self.tablet_img = to_jpg_optimized(field=self.tablet_img, width=tw, height=th)
         if self.mobile_img:
-            self.mobile_img = to_webp_resized(field=self.mobile_img, width=350, height='auto')
+            self.mobile_img = to_jpg_optimized(field=self.mobile_img, width=mw, height=mh)
+
+        # Converting image to webp and optimizing
+        if self.desktop_img_webp:
+            self.desktop_img_webp = to_webp_optimized(field=self.desktop_img_webp, width=dw, height=dh)
+        if self.tablet_img_webp:
+            self.tablet_img_webp = to_webp_optimized(field=self.tablet_img_webp, width=tw, height=th)
+        if self.mobile_img_webp:
+            self.mobile_img_webp = to_webp_optimized(field=self.mobile_img_webp, width=mw, height=mh)
+
+        # Saving changes
         super(Projects, self).save(*args, **kwargs)
 
     def __str__(self):

@@ -1,4 +1,5 @@
 import React from 'react';
+import ImageWebp from "../mics/ImageWebp";
 
 export default class About extends React.Component{
     constructor(props) {
@@ -39,7 +40,12 @@ export default class About extends React.Component{
                     <p>{items.p3}</p>
                 </div>
                 <div className="about-right-content">
-                    <img className="about-prof-img" src={items.profile_img} alt="Profile Image" />
+                    <ImageWebp
+                        srcWebp={items.profile_img_webp}
+                        src={items.profile_img}
+                        className="about-prof-img"
+                        alt="Profile Image"
+                    />
                 </div>
             </div>
         );

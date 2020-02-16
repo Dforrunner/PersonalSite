@@ -1,5 +1,6 @@
-import React, {Component, useState} from 'react';
+import React from 'react';
 import {NavLink} from 'react-router-dom';
+import ImageWebp from "../mics/ImageWebp";
 
 // NavLink macro. Separating all the common things and making it a reusable component
 const nav_link = (to, data_after, icon) => {
@@ -73,14 +74,20 @@ constructor(props) {
 
     render() {
     const {error, isLoaded, items} = this.state;
-    console.log(this.props.useWebp);
         return (
             <nav id="sidebar">
                 <button id="collapseBars"><i className="icon-menu"> </i></button>
 
                 <div className="f-row-center p-2">
                     <NavLink to="/">
-                        <img src={this.props.useWebp === true ? items.logo_webp : items.logo} alt='M' id="logo"/>
+                        {isLoaded &&
+                            <ImageWebp
+                                srcWebp={items.logo_webp}
+                                src={items.logo}
+                                alt="M"
+                                id="logo"
+                            />
+                        }
                     </NavLink>
                 </div>
 
@@ -99,7 +106,12 @@ constructor(props) {
                     {social_links(items.instagram, "instagram-1")}
 
                     <div className="f-row-center pt-3">
-                        <img src={this.props.useWebp === true ? items.avatar_webp : items.avatar} className="nav_profile_img" alt="avatar image"/>
+                        <ImageWebp
+                            srcWebp={items.avatar_webp}
+                            src={items.avatar}
+                            className="nav_profile_img"
+                            alt="Avatar image"
+                        />
                     </div>
                 </div>
             </nav>
