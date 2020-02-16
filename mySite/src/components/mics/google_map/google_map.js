@@ -35,21 +35,23 @@ export default class MyGoogleMap extends React.Component{
      constructor(pros) {
         super(pros);
         this.state = {
-            latitude: 40.532293,
-            longitude: -74.456657,
+            isLoaded: false,
+            latitude:  0,
+            longitude: 0,
             marker: "http://127.0.0.1:8000/media/map_marker/map_marker.png"
         }
     }
 
     componentDidMount() {
-       fetch(`${process.env.REACT_APP_HOST}/api/google-map/`)
+       fetch('/api/google-map/')
             .then(res => res.json())
             .then(
                 (result) => {
                     this.setState({
                         latitude: Number(result[0].latitude),
                         longitude: Number(result[0].longitude),
-                        marker: result[0].marker
+                        marker: result[0].marker,
+                        isLoaded: true
                     })
                 },
                 (error) => {
@@ -58,19 +60,22 @@ export default class MyGoogleMap extends React.Component{
             );
     }
     render() {
+         const {isLoaded} = this.state;
         return(
             <div id="GoogleMapWrapper">
-                <WrappedMap
-                    googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${
-                       process.env.REACT_APP_GOOGLE_KEY
-                    }`}
-                    loadingElement={<div style={{width: "100%"}} />}
-                    containerElement={<div style={{ height: `100%` }} />}
-                    mapElement={<div style={{ height: `100%` }} />}
-                    latitude={this.state.latitude}
-                    longitude={this.state.longitude}
-                    marker={this.state.marker}
-                />
+                {isLoaded &&
+                    <WrappedMap
+                        googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${
+                            process.env.REACT_APP_GOOGLE_KEY
+                        }`}
+                        loadingElement={<div style={{width: "100%"}}/>}
+                        containerElement={<div style={{height: `100%`}}/>}
+                        mapElement={<div style={{height: `100%`}}/>}
+                        latitude={this.state.latitude}
+                        longitude={this.state.longitude}
+                        marker={this.state.marker}
+                    />
+                }
             </div>
         )
     }
