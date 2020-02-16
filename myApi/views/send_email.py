@@ -2,11 +2,11 @@ from django.core.mail import send_mail, BadHeaderError
 from django.http import JsonResponse
 from myApi.forms import ContactForm
 from django.conf import settings
-import os
+from django.views.decorators.csrf import ensure_csrf_cookie
 import json
 
 
-# Sending email
+@ensure_csrf_cookie
 def send_email_method(request):
     # Validating request type and form
     data = {}
