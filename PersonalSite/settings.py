@@ -177,3 +177,5 @@ WEBPACK_LOADER = {
         'LOADER_CLASS': 'webpack_loader.loader.WebpackLoader',
     }
 }
+
+SECURE_SSL_REDIRECT = True
