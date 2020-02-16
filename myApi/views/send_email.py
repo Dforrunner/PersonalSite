@@ -48,6 +48,7 @@ def send_email_method(request):
 
             response = {'success': True,
                         'message': 'Successfully Sent!',
+                        'errors': "",
                         'msg_color': 'success'}
         else:
             print(json.dumps(form.errors))

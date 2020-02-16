@@ -11,7 +11,7 @@ function FormField(class_name, type, name, placeholder, res_field, component=und
             <ErrorMessage name={name}>
                 {errorMessage => <div className="error">{errorMessage}</div>}
             </ErrorMessage>
-            <p className="error">{is_errors ? res_field : " "}</p>
+            <p className="error">{is_errors && res_field}</p>
         </div>
     )
 }
@@ -72,7 +72,7 @@ export default class Contact extends React.Component{
                                       'Content-Type': 'application/json',
                                       'X-CSRFToken': csrftoken,
                                     },
-                                    body:  JSON.stringify(values)
+                                    body: JSON.stringify(values)
                                 }).then(res => res.json())
                                     .then((data) =>{
                                         if(data.success){
@@ -117,7 +117,7 @@ export default class Contact extends React.Component{
                                             {sending ? "Sending.." : "Submit"}
                                         </button>
 
-                                        <p className={msg_color}>{is_sent ? req_status : " "}</p>
+                                        <p className={msg_color}>{is_sent && req_status}</p>
                                     </div>
                                 </div>
                             </Form>
