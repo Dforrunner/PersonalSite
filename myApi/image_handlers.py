@@ -64,7 +64,7 @@ def to_webp_optimized(field, width, height):
     # Getting the file path we want to save the webp image to and setting the right extension
     file_path = change_extension_of_path(path=field.path, extension=".webp")
     # Using webp module to convert and save the image
-    webp.save_image(resized_img, file_path, quality=60)
+    webp.save_image(resized_img, file_path, quality=70)
     # Save image to cloudinary and return the url
     return save_to_cloudinary(file_path)['secure_url']
 

@@ -3,13 +3,14 @@ import ImageWebp from "../mics/ImageWebp";
 
 function LinkIcon(href, icon) {
     icon = `icon-${icon} cyan-text`;
-    return(
+    return (
         <a href={href} target="_blank">
             <i className={icon}> </i>
         </a>
     )
 }
-export default class MyWork extends React.Component{
+
+export default class MyWork extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,7 +21,7 @@ export default class MyWork extends React.Component{
             offset: 0,
             limit: 2
         };
-         // Scroll event
+        // Scroll event
         window.onscroll = () => {
             const {state: {error, loading, hasMore}} = this;
             if (error || loading || !hasMore) return;
@@ -28,7 +29,7 @@ export default class MyWork extends React.Component{
             // Check to see if user has scrolled to the bottom of the page
             if (document.documentElement.scrollHeight -
                 document.documentElement.scrollTop <
-                (document.documentElement.clientHeight + 300)){
+                (document.documentElement.clientHeight + 300)) {
                 this.loadProjects()
             }
         }
@@ -37,26 +38,24 @@ export default class MyWork extends React.Component{
     /**
      * Fetching projects based on the set limit every time it's called
      */
-    loadProjects = () =>{
-        this.setState({loading:true}, () => {
+    loadProjects = () => {
+        this.setState({loading: true}, () => {
             const {offset, limit} = this.state;
             fetch(`/lazy-load-projects/?limit=${limit}&offset=${offset}`)
                 .then(res => res.json())
                 .then(
-                    (result) => {
+                    result =>
                         this.setState({
                             loading: false,
                             projects: [...this.state.projects, ...result.project_list],
                             offset: offset + limit,
                             hasMore: result.has_more
-                        });
-                    },
-                    (error) => {
+                        }),
+                    error =>
                         this.setState({
                             loading: false,
                             error
-                        });
-                    }
+                        })
                 )
         })
     };
@@ -74,29 +73,29 @@ export default class MyWork extends React.Component{
                     projects.map((project) =>
                         <div key={project.pk} className="animated slideInLeft">
                             <div className='mockup-image-group'>
-                                {(project.desktop_img || project.desktop_img_webp) &&
-                                    <ImageWebp
-                                        srcWebp={project.desktop_img_webp}
-                                        src={project.desktop_img}
-                                        className="desktop-img"
-                                        alt="Project Desktop Image"
-                                    />
+                                {(project.desktop_img_jpg || project.desktop_img_webp) &&
+                                <ImageWebp
+                                    srcWebp={project.desktop_img_webp}
+                                    src={project.desktop_img_jpg}
+                                    className="desktop-img"
+                                    alt="Project Desktop Image"
+                                />
                                 }
-                                {(project.tablet_img || project.tablet_img_webp) &&
-                                    <ImageWebp
-                                        srcWebp={project.tablet_img_webp}
-                                        src={project.tablet_img}
-                                        className="tablet-img"
-                                        alt="Project Tablet Image"
-                                    />
+                                {(project.tablet_img_jpg || project.tablet_img_webp) &&
+                                <ImageWebp
+                                    srcWebp={project.tablet_img_webp}
+                                    src={project.tablet_img_jpg}
+                                    className="tablet-img"
+                                    alt="Project Tablet Image"
+                                />
                                 }
-                                {(project.mobile_img || project.mobile_img_webp) &&
-                                    <ImageWebp
-                                        srcWebp={project.mobile_img_webp}
-                                        src={project.mobile_img}
-                                        className="mobile-img"
-                                        alt="Project Mobile Image"
-                                    />
+                                {(project.mobile_img_jpg || project.mobile_img_webp) &&
+                                <ImageWebp
+                                    srcWebp={project.mobile_img_webp}
+                                    src={project.mobile_img_jpg}
+                                    className="mobile-img"
+                                    alt="Project Mobile Image"
+                                />
                                 }
                             </div>
 

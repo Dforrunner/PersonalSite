@@ -42,7 +42,7 @@ export default class About extends React.Component{
                 <div className="about-right-content">
                     <ImageWebp
                         srcWebp={items.profile_img_webp}
-                        src={items.profile_img}
+                        src={items.profile_img_jpg}
                         className="about-prof-img"
                         alt="Profile Image"
                     />

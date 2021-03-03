@@ -83,7 +83,7 @@ constructor(props) {
                         {isLoaded &&
                             <ImageWebp
                                 srcWebp={items.logo_webp}
-                                src={items.logo}
+                                src={items.logo_jpg}
                                 alt="M"
                                 id="logo"
                             />
@@ -109,7 +109,7 @@ constructor(props) {
                         {isLoaded &&
                             <ImageWebp
                                 srcWebp={items.avatar_webp}
-                                src={items.avatar}
+                                src={items.avatar_jpg}
                                 className="nav_profile_img"
                                 alt="Avatar image"
                             />

@@ -56,72 +56,93 @@ MONTHS_SHORT = [
 class Sidebar(models.Model):
     logo = models.FileField(
         upload_to='',
-        verbose_name='Logo (Will be converted to JPG)',
+        verbose_name='Upload Logo',
         blank=True,
         null=True
     )
-    logo_webp = models.FileField(
-        upload_to='',
-        verbose_name='Logo (Will be converted to Webp)',
+    logo_jpg = models.URLField(
+        max_length=255,
+        verbose_name='Logo URL (JPG)',
+        blank=True,
+        null=True
+    )
+    logo_webp = models.URLField(
+        max_length=255,
+        verbose_name='Logo URL (Webp)',
         blank=True,
         null=True
     )
     avatar = models.FileField(
         upload_to='',
-        verbose_name='Avatar (Will be converted to JPG)',
+        verbose_name=' Upload Avatar',
         blank=True,
         null=True
     )
-    avatar_webp = models.FileField(
-        upload_to='',
-        verbose_name='Avatar (Will be converted to Webp)',
+    avatar_jpg = models.URLField(
+        max_length=255,
+        verbose_name='Avatar URL (JPG)',
         blank=True,
         null=True
     )
-    instagram = models.TextField(
-        null=True,
+    avatar_webp = models.URLField(
+        max_length=255,
+        verbose_name='Avatar URL (Webp)',
         blank=True,
-        verbose_name='Instagram Link'
+        null=True
     )
-    linkedin = models.TextField(
+    instagram = models.URLField(
+        max_length=255,
         null=True,
         blank=True,
-        verbose_name='LinkedIn Link'
+        verbose_name='Instagram URL'
     )
-    github = models.TextField(
+    linkedin = models.URLField(
+        max_length=255,
         null=True,
         blank=True,
-        verbose_name='GitHub Link'
+        verbose_name='LinkedIn URL'
     )
-    facebook = models.TextField(
+    github = models.URLField(
+        max_length=255,
         null=True,
         blank=True,
-        verbose_name='Facebook Link'
+        verbose_name='GitHub URL'
     )
-    youtube = models.TextField(
+    facebook = models.URLField(
+        max_length=255,
         null=True,
         blank=True,
-        verbose_name='Youtube Link'
+        verbose_name='Facebook URL'
     )
-    medium = models.TextField(
+    youtube = models.URLField(
+        max_length=255,
         null=True,
         blank=True,
-        verbose_name='Medium Link'
+        verbose_name='Youtube URL'
     )
-    slack = models.TextField(
+    medium = models.URLField(
+        max_length=255,
         null=True,
         blank=True,
-        verbose_name='Slack Link'
+        verbose_name='Medium URL'
     )
-    CodePen = models.TextField(
+    slack = models.URLField(
+        max_length=255,
         null=True,
         blank=True,
-        verbose_name='CodePen Link'
+        verbose_name='Slack URL'
     )
-    stack_overflow = models.TextField(
+    CodePen = models.URLField(
+        max_length=255,
         null=True,
         blank=True,
-        verbose_name='StackOverflow Link'
+        verbose_name='CodePen URL'
+    )
+    stack_overflow = models.URLField(
+        max_length=255,
+        null=True,
+        blank=True,
+        verbose_name='StackOverflow URL'
     )
 
     # Optimize images and save
@@ -132,11 +153,11 @@ class Sidebar(models.Model):
         # Optimizing images before saving
         if self.logo:
             logo = self.logo
-            self.logo = to_jpg_optimized(field=logo, width=w, height=h)
+            self.logo_jpg = to_jpg_optimized(field=logo, width=w, height=h)
             self.logo_webp = to_webp_optimized(field=logo, width=w, height=h)
         if self.avatar:
             avatar = self.avatar
-            self.avatar = to_jpg_optimized(field=avatar, width=w, height=h)
+            self.avatar_jpg = to_jpg_optimized(field=avatar, width=w, height=h)
             self.avatar_webp = to_webp_optimized(field=avatar, width=w, height=h)
 
         # Saving changes
@@ -192,13 +213,19 @@ class About(models.Model):
     )
     profile_img = models.FileField(
         upload_to='',
-        verbose_name='Profile Image (Will be converted to JPG)',
+        verbose_name='Upload Profile Image',
         blank=True,
         null=True
     )
-    profile_img_webp = models.FileField(
-        upload_to='',
-        verbose_name='Profile Image (Will be Converted to Webp)',
+    profile_img_jpg = models.URLField(
+        max_length=255,
+        verbose_name='Profile Image URL (JPG)',
+        blank=True,
+        null=True
+    )
+    profile_img_webp = models.URLField(
+        max_length=255,
+        verbose_name='Profile Image URL (Webp)',
         blank=True,
         null=True
     )
@@ -211,7 +238,7 @@ class About(models.Model):
         # Converting image to jpg and optimizing
         if self.profile_img:
             profile_img = self.profile_img
-            self.profile_img = to_jpg_optimized(field=profile_img, width=w, height=h)
+            self.profile_img_jpg = to_jpg_optimized(field=profile_img, width=w, height=h)
             self.profile_img_webp = to_webp_optimized(field=profile_img, width=w, height=w)
 
             # Saving changes
@@ -266,6 +293,7 @@ class Experience(models.Model):
     class Meta:
         verbose_name = "Experience"
         verbose_name_plural = "Experiences"
+        ordering = ('end_year',)
 
 
 class SkillNames(models.Model):
@@ -321,49 +349,73 @@ class Projects(models.Model):
     )
     desktop_img = models.FileField(
         upload_to='',
-        verbose_name='Project Desktop Image (Will be converted to JPG)',
+        verbose_name='Upload Desktop Image',
         null=True,
         blank=True
     )
-    desktop_img_webp = models.FileField(
-        upload_to='',
-        verbose_name='Project Desktop Image (Will be Converted to Webp)',
+    desktop_img_jpg = models.URLField(
+        verbose_name='Desktop Image URL (JPG)',
+        max_length=255,
+        null=True,
+        blank=True
+    )
+    desktop_img_webp = models.URLField(
+        verbose_name='Desktop Image URL (Webp)',
+        max_length=255,
         null=True,
         blank=True
     )
     tablet_img = models.FileField(
         upload_to='',
-        verbose_name='Project Tablet Image (Will be converted to JPG)',
+        verbose_name='Upload Tablet Image',
         null=True,
         blank=True
     )
-    tablet_img_webp = models.FileField(
-        upload_to='',
-        verbose_name='Project Tablet Image (Will be Converted to Webp)',
+    tablet_img_jpg = models.URLField(
+        verbose_name='Tablet Image URL (JPG)',
+        max_length=255,
+        null=True,
+        blank=True
+    )
+    tablet_img_webp = models.URLField(
+        verbose_name='Tablet Image URL (Webp)',
+        max_length=255,
         null=True,
         blank=True
     )
     mobile_img = models.FileField(
         upload_to='',
-        verbose_name='Project Mobile Image (Will be converted to JPG)',
+        verbose_name='Upload Mobile Image',
         null=True,
         blank=True
     )
-    mobile_img_webp = models.FileField(
-        upload_to='',
-        verbose_name='Project Mobile Image (Will be Converted to Webp)',
+    mobile_img_jpg = models.URLField(
+        verbose_name='Mobile Image URL (JPG)',
+        max_length=255,
         null=True,
         blank=True
     )
-    github = models.TextField(
+    mobile_img_webp = models.URLField(
+        verbose_name='Mobile Image URL (Webp)',
+        max_length=255,
         null=True,
         blank=True
     )
-    site_link = models.TextField(
+    github = models.URLField(
+        max_length=255,
+        verbose_name='GitHub URL',
         null=True,
         blank=True
     )
-    video = models.TextField(
+    site_link = models.URLField(
+        max_length=255,
+        verbose_name='Site URL',
+        null=True,
+        blank=True
+    )
+    video = models.URLField(
+        max_length=255,
+        verbose_name='Video URL',
         null=True,
         blank=True
     )
@@ -415,15 +467,15 @@ class Projects(models.Model):
         # Converting image to jpg and optimizing
         if self.desktop_img:
             desktop_img = self.desktop_img
-            self.desktop_img = to_jpg_optimized(field=desktop_img, width=dw, height=dh)
+            self.desktop_img_jpg = to_jpg_optimized(field=desktop_img, width=dw, height=dh)
             self.desktop_img_webp = to_webp_optimized(field=desktop_img, width=dw, height=dh)
         if self.tablet_img:
             tablet_img = self.tablet_img
-            self.tablet_img = to_jpg_optimized(field=tablet_img, width=tw, height=th)
+            self.tablet_img_jpg = to_jpg_optimized(field=tablet_img, width=tw, height=th)
             self.tablet_img_webp = to_webp_optimized(field=tablet_img, width=tw, height=th)
         if self.mobile_img:
             mobile_img = self.mobile_img
-            self.mobile_img = to_jpg_optimized(field=mobile_img, width=mw, height=mh)
+            self.mobile_img_jpg = to_jpg_optimized(field=mobile_img, width=mw, height=mh)
             self.mobile_img_webp = to_webp_optimized(field=mobile_img, width=mw, height=mh)
 
         # Saving changes

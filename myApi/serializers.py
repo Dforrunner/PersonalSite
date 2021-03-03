@@ -6,9 +6,9 @@ from .models import Sidebar, Home, About, Experience, ResponsibilityList,  Skill
 class SidebarSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Sidebar
-        fields = ('logo',
+        fields = ('logo_jpg',
                   'logo_webp',
-                  'avatar',
+                  'avatar_jpg',
                   'avatar_webp',
                   'instagram',
                   'linkedin',
@@ -34,7 +34,7 @@ class AboutSerializer(serializers.HyperlinkedModelSerializer):
                   'p1',
                   'p2',
                   'p3',
-                  'profile_img',
+                  'profile_img_jpg',
                   'profile_img_webp'
                   )
 
@@ -87,11 +87,11 @@ class ProjectsSerializer(serializers.ModelSerializer):
                   'title',
                   'description',
                   'tools_used',
-                  'desktop_img',
+                  'desktop_img_jpg',
                   'desktop_img_webp',
-                  'tablet_img',
+                  'tablet_img_jpg',
                   'tablet_img_webp',
-                  'mobile_img',
+                  'mobile_img_jpg',
                   'mobile_img_webp',
                   'github',
                   'site_link',
