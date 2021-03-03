@@ -1,6 +1,7 @@
 import webp
 from PIL import Image
 import os
+from cloudinary import uploader as cloudinary_uploader
 
 
 # Helper function that take the basename of a path and changes its extension
@@ -36,15 +37,23 @@ def get_extension(filename):
 def resize_img(img, new_width, new_height):
     org_width, org_height = img.size
     if new_width == 'auto':
-        new_width = new_height/(org_height/org_width)
+        new_width = new_height / (org_height / org_width)
     if new_height == 'auto':
-        new_height = (org_height/org_width) * new_width
+        new_height = (org_height / org_width) * new_width
     if new_width == 'original':
         new_width = org_width
     if new_height == 'original':
         new_height = org_height
 
     return img.resize((int(new_width), int(new_height)))
+
+
+# Save file to Cloudinary
+def save_to_cloudinary(file):
+    return cloudinary_uploader.upload(
+        file,
+        overwrite=True,
+        resource_type="image")
 
 
 # Helper function that resizes images and converts them to webp using libwebp
@@ -56,8 +65,8 @@ def to_webp_optimized(field, width, height):
     file_path = change_extension_of_path(path=field.path, extension=".webp")
     # Using webp module to convert and save the image
     webp.save_image(resized_img, file_path, quality=60)
-    # Returning the new name of the file
-    return change_extension(filename=field, extension='.webp')
+    # Save image to cloudinary and return the url
+    return save_to_cloudinary(file_path)['secure_url']
 
 
 # Optimizing images using PIL
@@ -78,5 +87,5 @@ def to_jpg_optimized(field, width, height):
     file_path = change_extension_of_path(path=field.path, extension=".jpg")
     # Optimize and save image
     final_img.save(fp=file_path, optimize=True, quality=70)
-    # Return image basename with the correct extension
-    return change_extension(filename=field, extension='.jpg')
+    # Save image to cloudinary and return the url
+    return save_to_cloudinary(file_path)['secure_url']

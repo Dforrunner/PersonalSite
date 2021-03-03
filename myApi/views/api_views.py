@@ -47,6 +47,3 @@ class ContactViewSet(viewsets.ModelViewSet):
 class GoogleMapSerializerViewSet(viewsets.ModelViewSet):
     queryset = GoogleMap.objects.all()
     serializer_class = GoogleMapSerializer
-
-
-

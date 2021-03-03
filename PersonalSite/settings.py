@@ -14,7 +14,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -22,16 +21,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-print(os.getenv('DEBUG'))
 DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = ['127.0.0.1',
+ALLOWED_HOSTS = ['localhost',
+                 '127.0.0.1',
                  '127.0.0.1:8000',
                  'muhammetbarut.herokuapp.com',
                  'www.muhammetbarut.herokuapp.com',
                  'muhammetbarut.com',
                  'www.muhammetbarut.com']
-
 
 # Application definition
 
@@ -52,6 +50,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'webpack_loader',
     'django_cleanup.apps.CleanupConfig',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -87,7 +86,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'PersonalSite.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -98,10 +96,9 @@ DATABASES = {
         'USER': os.getenv('DATABASE_USER'),
         'PASSWORD': os.getenv('DATABASE_PASSWORD'),
         'HOST': os.getenv('DATABASE_HOST'),
-        'PORT': '5432',
+        'PORT': '5432'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -121,7 +118,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -134,7 +130,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
@@ -156,6 +151,12 @@ EMAIL_TIMEOUT = 15
 # Image Optimization TinyPNG
 OPTIMIZED_IMAGE_METHOD = 'tinypng'
 TINYPNG_KEY = os.getenv('TINYPNG_KEY')
+
+CLOUDINARY = {
+    'cloud_name': os.getenv('CLOUDINARY_API_COULD_NAME'),
+    'api_key': os.getenv('CLOUDINARY_API_KEY'),
+    'api_secret': os.getenv('CLOUDINARY_API_SECRET'),
+}
 
 # Whitenoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -179,4 +180,5 @@ WEBPACK_LOADER = {
     }
 }
 
-SECURE_SSL_REDIRECT = True
+# Note: May need to clear browser cache after changing this setting
+SECURE_SSL_REDIRECT = False  # TODO: set to True before production

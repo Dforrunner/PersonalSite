@@ -3,23 +3,23 @@ from .image_handlers import to_webp_optimized, to_jpg_optimized
 
 # Year dropdown choices
 YEARS = [
-        (1, 2005),
-        (2, 2006),
-        (3, 2007),
-        (4, 2008),
-        (5, 2009),
-        (6, 2010),
-        (7, 2011),
-        (8, 2012),
-        (9, 2013),
-        (10, 2014),
-        (11, 2015),
-        (12, 2016),
-        (13, 2017),
-        (14, 2018),
-        (15, 2019),
-        (16, 2020),
-    ]
+    (1, 2005),
+    (2, 2006),
+    (3, 2007),
+    (4, 2008),
+    (5, 2009),
+    (6, 2010),
+    (7, 2011),
+    (8, 2012),
+    (9, 2013),
+    (10, 2014),
+    (11, 2015),
+    (12, 2016),
+    (13, 2017),
+    (14, 2018),
+    (15, 2019),
+    (16, 2020),
+]
 
 # Months dropdown choices
 MONTHS = [
@@ -129,17 +129,15 @@ class Sidebar(models.Model):
         w = 150
         h = 'auto'
 
-        # Converting image to jpg and optimizing
+        # Optimizing images before saving
         if self.logo:
-            self.logo = to_jpg_optimized(self.logo, width=w, height=h)
+            logo = self.logo
+            self.logo = to_jpg_optimized(field=logo, width=w, height=h)
+            self.logo_webp = to_webp_optimized(field=logo, width=w, height=h)
         if self.avatar:
-            self.avatar = to_jpg_optimized(self.avatar, width=w, height=h)
-
-        # Converting image to webp and optimizing
-        if self.logo_webp:
-            self.logo_webp = to_webp_optimized(field=self.logo_webp, width=w, height=h)
-        if self.avatar_webp:
-            self.avatar_webp = to_webp_optimized(field=self.avatar_webp, width=w, height=h)
+            avatar = self.avatar
+            self.avatar = to_jpg_optimized(field=avatar, width=w, height=h)
+            self.avatar_webp = to_webp_optimized(field=avatar, width=w, height=h)
 
         # Saving changes
         super(Sidebar, self).save(*args, **kwargs)
@@ -212,13 +210,11 @@ class About(models.Model):
 
         # Converting image to jpg and optimizing
         if self.profile_img:
-            self.profile_img = to_jpg_optimized(field=self.profile_img, width=w, height=h)
+            profile_img = self.profile_img
+            self.profile_img = to_jpg_optimized(field=profile_img, width=w, height=h)
+            self.profile_img_webp = to_webp_optimized(field=profile_img, width=w, height=w)
 
-        # Converting image to webp and optimizing
-        if self.profile_img_webp:
-            self.profile_img_webp = to_webp_optimized(field=self.profile_img_webp, width=w, height=w)
-
-        # Saving changes
+            # Saving changes
         super(About, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -418,19 +414,17 @@ class Projects(models.Model):
 
         # Converting image to jpg and optimizing
         if self.desktop_img:
-            self.desktop_img = to_jpg_optimized(field=self.desktop_img, width=dw, height=dh)
+            desktop_img = self.desktop_img
+            self.desktop_img = to_jpg_optimized(field=desktop_img, width=dw, height=dh)
+            self.desktop_img_webp = to_webp_optimized(field=desktop_img, width=dw, height=dh)
         if self.tablet_img:
-            self.tablet_img = to_jpg_optimized(field=self.tablet_img, width=tw, height=th)
+            tablet_img = self.tablet_img
+            self.tablet_img = to_jpg_optimized(field=tablet_img, width=tw, height=th)
+            self.tablet_img_webp = to_webp_optimized(field=tablet_img, width=tw, height=th)
         if self.mobile_img:
-            self.mobile_img = to_jpg_optimized(field=self.mobile_img, width=mw, height=mh)
-
-        # Converting image to webp and optimizing
-        if self.desktop_img_webp:
-            self.desktop_img_webp = to_webp_optimized(field=self.desktop_img_webp, width=dw, height=dh)
-        if self.tablet_img_webp:
-            self.tablet_img_webp = to_webp_optimized(field=self.tablet_img_webp, width=tw, height=th)
-        if self.mobile_img_webp:
-            self.mobile_img_webp = to_webp_optimized(field=self.mobile_img_webp, width=mw, height=mh)
+            mobile_img = self.mobile_img
+            self.mobile_img = to_jpg_optimized(field=mobile_img, width=mw, height=mh)
+            self.mobile_img_webp = to_webp_optimized(field=mobile_img, width=mw, height=mh)
 
         # Saving changes
         super(Projects, self).save(*args, **kwargs)
@@ -441,7 +435,7 @@ class Projects(models.Model):
     class Meta:
         verbose_name = 'Project'
         verbose_name_plural = 'Projects'
-        ordering = ('list_order', )
+        ordering = ('list_order',)
 
 
 class Contact(models.Model):
