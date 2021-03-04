@@ -169,4 +169,4 @@ REST_FRAMEWORK = {
 }
 
 # Note: May need to clear browser cache after changing this setting
-SECURE_SSL_REDIRECT = False  # set to True before production
+SECURE_SSL_REDIRECT = True  # set to True before production
