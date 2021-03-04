@@ -1,5 +1,5 @@
 # Base Image
-FROM python:3.7
+FROM python:3.9
 
 # create and set working directory
 RUN mkdir /usr/src/app
