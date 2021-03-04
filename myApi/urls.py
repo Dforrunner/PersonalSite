@@ -1,6 +1,7 @@
 from django.urls import include, path
 from rest_framework import routers
 from .views import api_views, send_email, lazy_loaded_views
+from django.views.generic import RedirectView
 
 # Initializing router
 router = routers.DefaultRouter()
@@ -20,8 +21,8 @@ router.register('google-map', api_views.GoogleMapSerializerViewSet)
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('api/', include(router.urls)),
+    path('api', RedirectView.as_view(url="/api/")),
     path('lazy-load-projects/', lazy_loaded_views.ProjectsLazyLoadViewSet.as_view({'get': 'list'}), name='ld-projects'),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('ajax/send_email/', send_email.send_email_method, name='send_email'),
+    path('ajax/send_email', send_email.send_email_method, name='send_email'),
 ]
-

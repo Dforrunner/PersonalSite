@@ -1,10 +1,8 @@
-var path = require("path");
+const path = require("path");
 const Dotenv = require('dotenv-webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-var BundleTracker = require('webpack-bundle-tracker');
-
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     context: __dirname,
@@ -12,19 +10,25 @@ module.exports = {
     entry: './mySite/src/index.js',
 
     output: {
-        path: path.join(__dirname, '/mySite/static/mySite/scripts'),
+        path: path.join(__dirname, '/mySite/static/scripts'),
         filename: "[name]-[hash].js",
-        publicPath: '/static/mySite/scripts/'
+        publicPath: '/static/scripts/'
     },
+
+    optimization: {
+        minimize: true,
+    },
+
     plugins: [
         new Dotenv(),
-        new UglifyJsPlugin(),
-        new BundleTracker({
-            filename: './webpack-stats.json'
-        }),
         new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname, "/mySite/templates/template.html"),
+            filename: path.join(__dirname, "/mySite/templates/index.html")
+        }),
         new BundleAnalyzerPlugin()
     ],
+
     module: {
         rules: [
             {
@@ -36,6 +40,7 @@ module.exports = {
             }
         ]
     },
+
     resolve: {
         extensions: ['*', '.js', '.jsx']
     }

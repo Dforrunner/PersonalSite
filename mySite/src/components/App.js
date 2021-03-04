@@ -1,6 +1,6 @@
 import React, {Component, Suspense, lazy} from 'react';
 import {Route, Switch, Redirect} from 'react-router-dom';
-import { Router } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import Sidebar from "./base/sidebar";
 import Home from "./pages/Home";

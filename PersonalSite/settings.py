@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     # Third Party apps
     'optimized_image',
     'rest_framework',
-    'webpack_loader',
     'django_cleanup.apps.CleanupConfig',
     'cloudinary',
 ]
@@ -137,7 +136,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "mySite/static")
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'mySite/static/mySite/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'mySite/static/media')
 
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -169,16 +168,5 @@ REST_FRAMEWORK = {
     ]
 }
 
-WEBPACK_LOADER = {
-    'DEFAULT': {
-        'CACHE': not DEBUG,
-        'BUNDLE_DIR_NAME': 'scripts/',
-        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
-        'POLL_INTERVAL': 0.1,
-        'TIMEOUT': None,
-        'LOADER_CLASS': 'webpack_loader.loader.WebpackLoader',
-    }
-}
-
 # Note: May need to clear browser cache after changing this setting
-SECURE_SSL_REDIRECT = True  # set to True before production
+SECURE_SSL_REDIRECT = False  # set to True before production
