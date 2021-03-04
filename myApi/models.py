@@ -52,6 +52,39 @@ MONTHS_SHORT = [
     ('12', 'Dec'),
 ]
 
+ORDER_CHOICES = [
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5),
+    (6, 6),
+    (7, 7),
+    (8, 8),
+    (9, 9),
+    (10, 10),
+    (11, 11),
+    (12, 12),
+    (13, 13),
+    (14, 14),
+    (15, 15),
+    (16, 16),
+    (17, 17),
+    (18, 18),
+    (19, 19),
+    (20, 20),
+    (21, 21),
+    (22, 22),
+    (23, 23),
+    (24, 24),
+    (25, 25),
+    (26, 26),
+    (27, 27),
+    (28, 28),
+    (29, 29),
+    (30, 30)
+]
+
 
 class Sidebar(models.Model):
     logo = models.FileField(
@@ -286,6 +319,11 @@ class Experience(models.Model):
         ResponsibilityList,
         related_name='experience'
     )
+    list_order = models.IntegerField(
+        choices=ORDER_CHOICES,
+        null=True,
+        blank=True
+    )
 
     def __str__(self):
         return f"{self.title} at {self.company_name}"
@@ -293,7 +331,7 @@ class Experience(models.Model):
     class Meta:
         verbose_name = "Experience"
         verbose_name_plural = "Experiences"
-        ordering = ('end_year',)
+        ordering = ('list_order',)
 
 
 class SkillNames(models.Model):
@@ -419,41 +457,11 @@ class Projects(models.Model):
         null=True,
         blank=True
     )
-
-    ORDER_CHOICES = [
-        (1, 1),
-        (2, 2),
-        (3, 3),
-        (4, 4),
-        (5, 5),
-        (6, 6),
-        (7, 7),
-        (8, 8),
-        (9, 9),
-        (10, 10),
-        (11, 11),
-        (12, 12),
-        (13, 13),
-        (14, 14),
-        (15, 15),
-        (16, 16),
-        (17, 17),
-        (18, 18),
-        (19, 19),
-        (20, 20),
-        (21, 21),
-        (22, 22),
-        (23, 23),
-        (24, 24),
-        (25, 25),
-        (26, 26),
-        (27, 27),
-        (28, 28),
-        (29, 29),
-        (30, 30)
-    ]
-
-    list_order = models.IntegerField(choices=ORDER_CHOICES, null=True, blank=True)
+    list_order = models.IntegerField(
+        choices=ORDER_CHOICES,
+        null=True,
+        blank=True
+    )
 
     # Converting images to Webp format and resizing
     def save(self, *args, **kwargs):
