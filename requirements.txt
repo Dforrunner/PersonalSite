@@ -20,7 +20,7 @@ msgpack==1.0.4
 numpy==1.20.1
 packageurl-python==0.10.0
 packaging==21.3
-Pillow==8.1.1
+Pillow==9.0.1
 pip-api==0.0.29
 pip_audit==2.4.1
 psycopg2==2.8.6
