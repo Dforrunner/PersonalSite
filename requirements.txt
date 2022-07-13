@@ -39,7 +39,7 @@ sortedcontainers==2.4.0
 sqlparse==0.4.1
 tinify==1.5.1
 toml==0.10.2
-urllib3==1.26.3
+urllib3==1.26.5
 webencodings==0.5.1
 webp==0.1.0
 whitenoise==5.2.0
