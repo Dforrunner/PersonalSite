@@ -87,6 +87,7 @@ ORDER_CHOICES = [
 
 
 class Sidebar(models.Model):
+    id = models.AutoField(primary_key=True)
     logo = models.FileField(
         upload_to='',
         verbose_name='Upload Logo',
@@ -205,6 +206,7 @@ class Sidebar(models.Model):
 
 
 class Home(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(
         max_length=30,
         verbose_name='Name'
@@ -223,6 +225,7 @@ class Home(models.Model):
 
 
 class About(models.Model):
+    id = models.AutoField(primary_key=True)
     p_title = models.CharField(
         max_length=64,
         null=True,
@@ -286,6 +289,7 @@ class About(models.Model):
 
 
 class ResponsibilityList(models.Model):
+    id = models.AutoField(primary_key=True)
     responsibility = models.CharField(
         max_length=255,
     )
@@ -295,6 +299,7 @@ class ResponsibilityList(models.Model):
 
 
 class Experience(models.Model):
+    id = models.AutoField(primary_key=True)
     title = models.CharField(
         max_length=64,
     )
@@ -335,6 +340,7 @@ class Experience(models.Model):
 
 
 class SkillNames(models.Model):
+    id = models.AutoField(primary_key=True)
     skill_name = models.CharField(
         max_length=64,
         verbose_name='Skill/Tool Name',
@@ -350,6 +356,7 @@ class SkillNames(models.Model):
 
 
 class Skills(models.Model):
+    id = models.AutoField(primary_key=True)
     skill_category = models.CharField(
         max_length=64,
         verbose_name='Skill Category',
@@ -370,6 +377,7 @@ class Skills(models.Model):
 
 
 class Projects(models.Model):
+    id = models.AutoField(primary_key=True)
     title = models.CharField(
         max_length=64,
         null=True,
@@ -499,6 +507,7 @@ class Projects(models.Model):
 
 
 class Contact(models.Model):
+    id = models.AutoField(primary_key=True)
     email = models.EmailField(
         max_length=128,
         null=True,
@@ -515,6 +524,7 @@ class Contact(models.Model):
 
 
 class GoogleMap(models.Model):
+    id = models.AutoField(primary_key=True)
     latitude = models.FloatField()
     longitude = models.FloatField()
     marker = models.FileField(upload_to='map_marker')
