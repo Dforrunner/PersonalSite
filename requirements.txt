@@ -13,7 +13,7 @@ Django==4.0.6
 django-cleanup==6.0.0
 django-optimized-image==0.3.0
 djangorestframework==3.13.1
-dparse==0.5.1
+dparse==0.5.2
 gunicorn==20.1.0
 html5lib==1.1
 idna==3.3
